@@ -3,7 +3,7 @@ class CreatePrivateMessages < ActiveRecord::Migration
     create_table :private_messages do |t|
       t.integer :sender_id, null: false
       t.integer :receiver_id, null: false
-      t.string :subject, null: false
+      t.string :subject, default: "No Subject Given"
       t.text :message, null: false
       
       t.timestamps

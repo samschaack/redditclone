@@ -4,7 +4,8 @@ window.Sync = {
   Views: {},
   Routers: {},
   initialize: function() {
-    
+    new Sync.Routers.Router();
+    Backbone.history.start();
   }
 };
 

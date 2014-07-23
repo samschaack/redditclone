@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_reader :password
   
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
   validates :password_digest, presence: { message: "Password Can't Be Blank" }
   validates :password, length: { minimum: 6, allow_nil: true }
   
@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :sub_memberships
   has_many :subs, through: :sub_memberships
+  has_many :owned_subs, class_name: "Sub", foreign_key: :owner_id
   
   after_initialize :ensure_session_token
   
