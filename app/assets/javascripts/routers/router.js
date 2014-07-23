@@ -20,7 +20,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       this.currentView.remove();
     }
     
-    $("main").html(newView.render().$el);
+    $(".main").html(newView.render().$el);
     this.currentView = newView;
   }
 });

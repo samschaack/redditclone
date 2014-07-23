@@ -1,0 +1,7 @@
+<div class="posts">
+  <% posts.forEach(function(post) { %>
+    <div class="post">
+      <%= post.escape('title') %>
+    </div>
+  <% }) %>
+</div>

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :subs, through: :sub_memberships
   has_many :owned_subs, class_name: "Sub", foreign_key: :owner_id
   
-  after_initialize :ensure_session_token
+  after_initialize :ensure_token
   
   def self.find_by_credentials(username, password)
     @user = User.find_by_username(username)
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(password)
   end
   
-  def ensure_session_token
-    self.session_token ||= SecureRandom.urlsafe_base64(16)
+  def ensure_token
+    self.token ||= SecureRandom.urlsafe_base64(16)
   end
 end

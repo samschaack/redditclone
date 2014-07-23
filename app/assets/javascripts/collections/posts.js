@@ -1,5 +1,5 @@
 Sync.Collections.Posts = Backbone.Collection.extend({
-  model: Sync.Models.Board,
+  model: Sync.Models.Post,
   
   url: "/api/posts",
   
