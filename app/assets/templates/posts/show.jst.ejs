@@ -7,9 +7,12 @@
         <%= post.escape('body') %>
       </div>
     <% } else { %>
-      <h3><a href="<%= post.escape('url') %>"><%= post.escape('title') %></a></h3>
+      <h3><button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>">
+        <span class="glyphicon glyphicon-plus" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
+      </button> <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a></h3>
     <% } %>
     </div>
+    <div class="post-content" data-id="<%= post.escape('id') %>"></div>
     <div class="post-info">
       <div class="poster in-show">
         <% var post_time = post.escape('created_at'); %>
@@ -26,7 +29,7 @@
     </div>
   </div>
   <div class="comment-section">
-    
+    Comments:
   </div>
   <br>
   <a href="#/s/<%= post.escape('name') %>"><< <%= post.escape('name') %></a>

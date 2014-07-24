@@ -9,6 +9,15 @@
       <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
     </div>
     <div class="post" data-id="<%= post.escape('id') %>">
+      <% if (post.escape('url')) { %>
+        <button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>">
+          <span class="glyphicon glyphicon-plus" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
+        </button>
+      <% } else { %>
+        <button class="btn btn-xs expand-body">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      <% } %>
       <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
         <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a>
@@ -16,6 +25,7 @@
         <%= post.escape('title') %> - text
       <% } %>
       </div>
+      <div class="post-content" data-id="<%= post.escape('id') %>"></div>
       <div class="post-info-wrapper" data-id="<%= post.escape('id') %>">
         <div class="poster">
           <% var post_time = post.escape('created_at'); %>
