@@ -7,4 +7,8 @@ class Sub < ActiveRecord::Base
   has_many :users, through: :sub_memberships
   
   belongs_to :user, foreign_key: :owner_id
+  
+  def num_users
+    self.users.length
+  end
 end

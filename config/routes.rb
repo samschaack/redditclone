@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users
   end
   
+  get '/api/subs/:name', to: 'api/subs#get_sub_info'
   get '/api/posts', to: 'api/posts#front_page'
-  get '/api/posts/:name', to: 'api/posts#sub_page'
+  get '/api/s/:name', to: 'api/posts#sub_page'
 end

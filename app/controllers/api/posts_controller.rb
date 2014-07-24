@@ -9,7 +9,10 @@ module Api
     end
     
     def sub_page
-      # grab sub from params, return user's posts filtered by sub
+      @posts = Sub.find_by_name(params[:name]).posts
+      @sub = Sub.find_by_name(params[:name])
+      
+      render :sub_page
     end
     
     def front_page
@@ -37,7 +40,7 @@ module Api
     
     private
     
-    def board_params
+    def post_params
       params.require(:post).permit(:title, :url, :body, :sub_id, :user_id)
     end
   end

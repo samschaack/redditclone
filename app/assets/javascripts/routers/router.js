@@ -17,7 +17,20 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   subPage: function(sub_name) {
+    var sub = new Sync.Models.Sub;
+    sub.url = 'api/subs/' + sub_name;
+    sub.fetch();
     
+    var posts = new Sync.Collections.Posts;
+    posts.url = 'api/s/' + sub_name;
+    posts.fetch();
+    
+    var subPageView = new Sync.Views.SubPage({
+      collection: posts,
+      sub: sub
+    });
+    
+    this._swapView(subPageView);
   },
   
   _swapView: function(newView) {

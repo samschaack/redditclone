@@ -1,0 +1,1 @@
+json.extract! @sub, :name, :description, :num_users

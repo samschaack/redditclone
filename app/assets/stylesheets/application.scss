@@ -32,8 +32,8 @@ body {
   width: 90%;
   margin: 0 auto;
   margin-bottom: 2rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: .5rem;
   padding-bottom: .5rem;
   border-radius: .5rem;
   border-left: 1px #E5F7FF solid;
@@ -82,6 +82,7 @@ body {
 
 .post-title {
   font-size: 120%;
+  display: inline-block;
 }
 
 .posts {
@@ -94,10 +95,13 @@ body {
   border-top: 1px lightgray solid;
   border-left: 1px lightgray solid;
   padding-top: 1rem;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   padding-right: 3rem;
   margin-bottom: 1rem;
   border-radius: .4rem;
+  left: 3%;
+  display: inline-block;
+  width: 96.75%;
   
 //  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 //  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
@@ -176,6 +180,10 @@ body {
   font-size: 90%;
 }
 
+.post-info-wrapper {
+  display: block;
+}
+
 .sign-out-button {
   position: absolute;
   left: 92.50%;
@@ -213,4 +221,32 @@ body {
 
 .btn {
   border-radius: .3rem;
+}
+
+.sub-stats {
+  font-size: 60%;
+}
+
+.post-score-wrapper {
+  position: relative;
+}
+
+.score-box {
+//  border: 1px red solid;
+  display: inline-block;
+  position: absolute;
+  top: -3%;
+  left: 0%;
+  width: 1.5%;
+  margin-left: 1rem;
+  margin-right: 2rem;
+  vertical-align: top;
+}
+
+.upvote {
+  background: transparent;
+}
+
+.downvote {
+  background: transparent;
 }

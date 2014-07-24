@@ -1,5 +1,15 @@
 <div class="-page-header">
-  Front Page
+  <%= sub.escape('name') %> - <%= sub.escape('description') %>
+  <div class="sub-stats">
+    <% var num_users = parseInt(sub.escape('num_users')) %>
+    <% if (num_users === 1) { %>
+      this sub has <%= sub.escape('num_users') %> user
+    <% } else if (num_users > 1) { %>
+      this sub has <%= sub.escape('num_users') %> users
+    <% } else { %>
+      this sub has no users
+    <% } %>
+  </div>
 </div>
 <div class="posts">
   <% posts.forEach(function(post) { %>
