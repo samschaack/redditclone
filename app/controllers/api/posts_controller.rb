@@ -8,7 +8,7 @@ module Api
       
     end
     
-    def sub
+    def sub_page
       # grab sub from params, return user's posts filtered by sub
     end
     
@@ -24,8 +24,9 @@ module Api
         render json: @posts
       else
         #give user all posts from default subs (all posts as of now)
-        @posts = Post.all
-        render json: @posts
+        @posts = Post.where("sub_id = '1'")
+        #render json: @posts
+        render :front_page
       end
     end
     

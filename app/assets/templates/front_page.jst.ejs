@@ -1,7 +1,28 @@
+<div class="page-header">
+  Front Page
+</div>
 <div class="posts">
   <% posts.forEach(function(post) { %>
-    <div class="post">
-      <%= post.escape('title') %>
+    <div class="post" data-id="<%= post.escape('id') %>">
+      <div class="post-title">
+      <% if (post.escape('url')) { %>
+        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a>
+      <% } else { %>
+        <%= post.escape('title') %> - text
+      <% } %>
+      </div>
+      <div class="poster">
+        <% var post_time = post.escape('created_at'); %>
+        by <%= post.escape('user') %> 
+      </div>
+      <div class="date-time">
+        at 
+        <% if (post_time.slice(11, 13) > 12) { %>
+          <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 19) %> PM on <%= post_time.slice(0, 10) %>
+        <% } else { %>
+          <%= post_time.slice(11, 19) %> AM on <%= post_time.slice(0, 10) %>
+        <% } %>
+      </div>
     </div>
   <% }) %>
 </div>

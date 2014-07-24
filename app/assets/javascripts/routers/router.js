@@ -1,6 +1,7 @@
 Sync.Routers.Router = Backbone.Router.extend({
   routes: {
-    "": "frontPage"
+    "": "frontPage",
+    "s/:sub_name": "subPage"
   },
   
   frontPage: function() {
@@ -13,6 +14,10 @@ Sync.Routers.Router = Backbone.Router.extend({
     });
     
     this._swapView(frontPageView);
+  },
+  
+  subPage: function(sub_name) {
+    
   },
   
   _swapView: function(newView) {
