@@ -90,11 +90,11 @@ body {
 }
 
 .post {
-  height: 6rem;
+  min-height: 6rem;
   position: relative;
   border-top: 1px lightgray solid;
   border-left: 1px lightgray solid;
-  padding-top: 1rem;
+  padding-top: .5rem;
   padding-left: 1.5rem;
   padding-right: 3rem;
   margin-bottom: 1rem;
@@ -102,6 +102,9 @@ body {
   left: 3%;
   display: inline-block;
   width: 96.75%;
+  
+  //white-space: nowrap;
+  overflow-x: auto;
   
 //  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 //  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
@@ -177,7 +180,7 @@ body {
 
 .date-time {
   display: inline-block;
-  font-size: 90%;
+  font-size: 80%;
 }
 
 .post-info-wrapper {
@@ -241,6 +244,9 @@ body {
   margin-left: 1rem;
   margin-right: 2rem;
   vertical-align: top;
+  text-shadow: 1px 1px #DDD;
+  text-align: center;
+  font-size: 75%;
 }
 
 .upvote {
@@ -249,4 +255,31 @@ body {
 
 .downvote {
   background: transparent;
+}
+
+.post-show {
+  margin-left: 2rem;
+  margin-top: 5rem;
+}
+
+.post-section {
+  padding-bottom: 2rem;
+  margin-right: .5rem;
+  border-bottom: thin #CCC solid;
+}
+
+.in-show {
+  margin-top: 1rem;
+}
+
+.expand-image {
+  background: transparent;
+  border: 1px #CCC solid;
+  margin-right: .333rem;
+}
+
+.expand-body {
+  background: transparent;
+  border: 1px #CCC solid;
+  margin-right: .333rem;
 }

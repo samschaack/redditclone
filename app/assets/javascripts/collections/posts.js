@@ -11,8 +11,8 @@ Sync.Collections.Posts = Backbone.Collection.extend({
       post.fetch();
     } else {
       post = new Sync.Models.Post({ id: id });
-      board.fetch({
-        success: function() { boards.add(board); }
+      post.fetch({
+        success: function() { posts.add(post); }
       })
     }
     

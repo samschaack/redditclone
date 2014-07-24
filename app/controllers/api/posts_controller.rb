@@ -35,7 +35,11 @@ module Api
     
     def show
       @post = Post.find(params[:id])
-      render json: @post
+      @user = @post.user
+      @sub = @post.sub
+      
+      # render json: @post
+      render :post_show
     end
     
     private

@@ -9,24 +9,24 @@
       <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
     </div>
     <div class="post" data-id="<%= post.escape('id') %>">
-      <div class="post-title">
+      <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
         <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a>
       <% } else { %>
         <%= post.escape('title') %> - text
       <% } %>
       </div>
-      <div class="post-info-wrapper">
+      <div class="post-info-wrapper" data-id="<%= post.escape('id') %>">
         <div class="poster">
           <% var post_time = post.escape('created_at'); %>
           by <%= post.escape('user') %> 
         </div>
-        <div class="date-time">
+        <div class="date-time" data-id="<%= post.escape('id') %>">
           at 
           <% if (post_time.slice(11, 13) > 12) { %>
-            <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 19) %> PM on <%= post_time.slice(0, 10) %>
+            <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 19) %> PM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
           <% } else { %>
-            <%= post_time.slice(11, 19) %> AM on <%= post_time.slice(0, 10) %>
+            <%= post_time.slice(11, 19) %> AM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
           <% } %>
         </div>
       </div>

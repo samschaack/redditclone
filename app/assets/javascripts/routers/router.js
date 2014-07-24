@@ -1,7 +1,8 @@
 Sync.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "frontPage",
-    "s/:sub_name": "subPage"
+    "s/:sub_name": "subPage",
+    "p/:id": "postShow"
   },
   
   frontPage: function() {
@@ -33,6 +34,16 @@ Sync.Routers.Router = Backbone.Router.extend({
     this._swapView(subPageView);
   },
   
+  postShow: function(id) {
+    var post = Sync.Collections.posts.getOrFetch(id);
+    
+    var postShowView = new Sync.Views.PostShow({
+      model: post
+    });
+    
+    this._swapView(postShowView);
+  },
+  
   _swapView: function(newView) {
     if (this.currentView) {
       this.currentView.remove();
@@ -40,5 +51,25 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     $(".main").html(newView.render().$el);
     this.currentView = newView;
+    
+    $("#sub-navigate").val("");
+    $("#sub-navigate").blur();
+    
+    $('html').keypress(function(e) {
+      if (e.which == 112) {
+        document.getElementById("sub-navigate").focus();
+      } else if (e.which == 115) {
+        document.getElementById("sub-navigate").focus();
+      } else if (e.which == 117) {
+        document.getElementById("sub-navigate").focus();
+      }
+    });
+    
+    $('#sub-navigate').keypress(function(e) {
+      if (e.which == 13) {
+        e.preventDefault();
+        Backbone.history.navigate("#/" + $("#sub-navigate").val());
+      }
+    });
   }
 });

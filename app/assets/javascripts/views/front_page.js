@@ -3,30 +3,19 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
   
   initialize: function(options) {
     this.collection = options.collection;
-    this.listenTo(this.collection, "sync", this.render)
+    this.listenTo(this.collection, "sync", this.render);
+  },
+  
+  events: {
+    "click div.post": "postShow"
+  },
+  
+  postShow: function(event) {
+    var post_id = $(event.target).data('id');
     
-    $("#sub-navigate").val("");
-    $("#sub-navigate").blur();
-    
-    $('html').keypress(function(e) {
-      if (e.which == 115) {
-        document.getElementById("sub-navigate").focus();
-      }
-      if (e.which == 117) {
-        document.getElementById("sub-navigate").focus();
-      }
-    });
-    
-    $('#sub-navigate').keypress(function(e) {
-      if (e.which == 13) {
-        e.preventDefault();
-        // if ($('#sub-navigate').val() === "s") {
-        //   Backbone.history.navigate("#/");
-        // } else {
-          Backbone.history.navigate("#/" + $("#sub-navigate").val());
-        // }
-      }
-    });
+    if (post_id !== undefined) {
+      Backbone.history.navigate("#/p/" + post_id);
+    }
   },
   
   render: function() {
