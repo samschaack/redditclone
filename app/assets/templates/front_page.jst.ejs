@@ -6,9 +6,9 @@
     <div class="post" data-id="<%= post.escape('id') %>">
       <div class="post-title">
       <% if (post.escape('url')) { %>
-        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a>
+        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - /<%= post.escape('sub').toLowerCase() %>
       <% } else { %>
-        <%= post.escape('title') %> - text
+        <%= post.escape('title') %> - text - /<%= post.escape('sub').toLowerCase() %>
       <% } %>
       </div>
       <div class="poster">
