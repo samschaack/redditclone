@@ -23,7 +23,7 @@
   
   <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
     <% if signed_in? %>
-      <button type="button" class="btn btn-danger sign-out-button btn-sm"><span class="glyphicon glyphicon-off" style="color:white"></span></button>
+      <button type="button" class="btn btn-danger sign-out-button btn-sm"><span class="glyphicon glyphicon-off sign-out-span"></span></button>
     <% else %>
       <button type="button" class="btn btn-success sign-up-button btn-sm"><span class="glyphicon glyphicon-user" style="color:white"></span></button>
       <button type="button" class="btn btn-info sign-in-button btn-sm"><span class="glyphicon glyphicon-log-in" style="color:white"></span></button>
@@ -51,14 +51,14 @@
       <div class="form-group">
         <input type="text" id="sub-navigate" class="form-control" placeholder="Goto Subreddit:" style="text-align:center;" autocomplete="off">
       </div>
-      <button type="submit" class="btn btn-default" id="sub-navigate-button">Go</button>
+      <!-- <button type="submit" class="btn btn-default" id="sub-navigate-button">Go</button> -->
     </form>
   </div>
 </div>
 </nav>
 
 <% if flash[:errors] %>
-<div class="alert alert-warning alert-dismissible" role="alert">
+<div class="alert alert-warning alert-dismissible" style="margin-top:3rem;" role="alert">
    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 <%= flash[:errors].join("<br>") %>
 </div>

@@ -2,7 +2,30 @@ Sync.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "frontPage",
     "s/:sub_name": "subPage",
-    "p/:id": "postShow"
+    "p": "newPost",
+    "p/:id": "postShow",
+    "u": "newSession",
+    "u/new": "newUser",
+    "u/me": "accountPage",
+    "u/:id": "userPage"
+  },
+  
+  newUser: function() {
+    var newUserView = new Sync.Views.SignUp();
+    
+    this._swapView(newUserView);
+  },
+  
+  newSession: function() {
+    var newSessionView = new Sync.Views.SignIn();
+    
+    this._swapView(newSessionView);
+  },
+  
+  newPost: function() {
+    var newPostView = new Sync.Views.NewPost({ user: 1 });
+    
+    this._swapView(newPostView);
   },
   
   frontPage: function() {
@@ -44,6 +67,30 @@ Sync.Routers.Router = Backbone.Router.extend({
     this._swapView(postShowView);
   },
   
+  setButtonEvents: function() {
+    $("#sub-navigate").val("");
+    $("#sub-navigate").blur();
+    
+    if (Backbone.history.fragment !== "u/new") {
+      $('html').keypress(function(e) {
+        if (e.which == 112) {
+          document.getElementById("sub-navigate").focus();
+        } else if (e.which == 115) {
+          document.getElementById("sub-navigate").focus();
+        } else if (e.which == 117) {
+          document.getElementById("sub-navigate").focus();
+        }
+      });
+    
+      $('#sub-navigate').keypress(function(e) {
+        if (e.which == 13) {
+          e.preventDefault();
+          Backbone.history.navigate("#/" + $("#sub-navigate").val());
+        }
+      });
+    }
+  },
+  
   _swapView: function(newView) {
     if (this.currentView) {
       this.currentView.remove();
@@ -52,24 +99,6 @@ Sync.Routers.Router = Backbone.Router.extend({
     $(".main").html(newView.render().$el);
     this.currentView = newView;
     
-    $("#sub-navigate").val("");
-    $("#sub-navigate").blur();
-    
-    $('html').keypress(function(e) {
-      if (e.which == 112) {
-        document.getElementById("sub-navigate").focus();
-      } else if (e.which == 115) {
-        document.getElementById("sub-navigate").focus();
-      } else if (e.which == 117) {
-        document.getElementById("sub-navigate").focus();
-      }
-    });
-    
-    $('#sub-navigate').keypress(function(e) {
-      if (e.which == 13) {
-        e.preventDefault();
-        Backbone.history.navigate("#/" + $("#sub-navigate").val());
-      }
-    });
+    this.setButtonEvents();
   }
 });

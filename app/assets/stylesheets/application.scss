@@ -28,13 +28,13 @@ body * {
 }
 
 body {
-  padding-top: 5rem;
+  padding-top: 4rem;
   width: 90%;
   margin: 0 auto;
   margin-bottom: 2rem;
   padding-left: 1rem;
   padding-right: .5rem;
-  padding-bottom: .5rem;
+  padding-bottom: 0rem;
   border-radius: .5rem;
   border-left: 1px #E5F7FF solid;
   border-right: 1px #E5F7FF solid;
@@ -126,7 +126,7 @@ body {
 }
 
 .main {
-  //
+  position: relative;
 }
 
 .post-title {
@@ -240,10 +240,26 @@ body {
   position: absolute;
   left: 92.50%;
   top: 28%;
-  color: #555;
-  background-color: #53ABDF;
-  border: none;
+//  background-color: #53ABDF;
+  background-color: #FFF;
+//  border-color: #53ABDF;
+  border-color: #888;
+//  border: none;
   opacity: 50%;
+  color: #888;
+}
+
+.sign-out-button:hover {
+  background-color: #53ABDF;
+  border: 1px #53ABDF solid;
+  color: white;
+  .sign-out-span {
+    color: white;
+  }
+}
+
+.sign-out-span {
+  color: #777;
 }
 
 .sign-up-button {
@@ -267,7 +283,7 @@ body {
   left: 50%;
   bottom: 17%;
   width: 20rem;
-  margin-left: -8.5rem;
+  margin-left: -10rem;
   border: thin #666 solid;
 }
 
@@ -327,10 +343,34 @@ body {
   margin-right: .333rem;
 }
 
+.expand-image:hover {
+  background-color: #53ABDF;
+  border-color: #53ABDF;
+  .expand-image-span {
+    color: white;
+  }
+}
+
+.expand-image-span:hover {
+  color: white;
+}
+
 .expand-body {
   background: transparent;
   border: 1px #CCC solid;
   margin-right: .333rem;
+}
+
+.expand-body:hover {
+  background-color: #53ABDF;
+  border-color: #53ABDF;
+  .expand-body-span {
+    color: white;
+  }
+}
+
+.expand-body-span:hover {
+  color: white;
 }
 
 .post-content {
@@ -340,4 +380,61 @@ body {
 
 .comment-section {
   margin-top: 1rem;
+}
+
+.sign-up {
+  position: absolute;
+  left: 50%;
+  padding-top: 18%;
+  min-width: 32.5%;
+  margin-left: -16.25%;
+  height: 80rem;
+}
+
+//.front-page-box-wrapper {
+//  position: absolute;
+//  border: 1px solid red;
+//  height: 30%;
+//  width: 120%;
+//  left: 0%;
+//}
+
+.sign-in {
+  position: absolute;
+  left: 40%;
+  padding-top: 18%;
+  min-width: 32.5%;
+  padding-left: 5%;
+  padding-right: 5%;
+//  margin-left: -16.25%;
+  margin-left: -11.25%;
+  height: 80rem;
+}
+
+.my-text-box {
+  border-radius: .3rem;
+  border: 1px solid #DDD;
+  text-align:center;
+}
+
+.sign-up-btn {
+  margin-left: 1rem;
+  width: 7rem;
+}
+
+.post-new {
+  position: absolute;
+  border: 2px solid #777;
+  border-radius: .5rem;
+  padding: 3rem;
+  width: 45%;
+  margin-left: -22.5%;
+  left: 50%;
+  top: 12rem;
+  height: 65rem;
+  background-color: white;
+}
+
+.post-type-select-button {
+  border: 1px #888 solid;
 }

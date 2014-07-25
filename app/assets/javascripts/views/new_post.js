@@ -1,8 +1,12 @@
-Sync.Views.SignUp = Backbone.CompositeView.extend({
-  template: JST["sign_up"],
+Sync.Views.NewPost = Backbone.View.extend({
+  template: JST["posts/new"],
   
   events: {
     "submit form": "submit"
+  },
+  
+  initialize: function(options) {
+    this.user = options.user;
   },
   
   submit: function() {
@@ -10,9 +14,9 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
     var view = this;
     
     var params = $(event.target).serializeJSON();
-    var user = new Sync.Models.User(params["user"]);
+    var session = new Sync.Models.Session(params["user"]);
     
-    user.save({}, {
+    session.save({}, {
       success: function() {
         Backbone.history.navigate("#", { trigger: true });
       }
@@ -20,10 +24,10 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
   },
   
   render: function() {
-    var renderedContent = this.template();
+    var renderedContent = this.template({ user: this.user });
     
     this.$el.html(renderedContent);
     
     return this;
   }
-});
+})

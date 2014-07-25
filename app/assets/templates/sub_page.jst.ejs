@@ -1,15 +1,19 @@
 <div class="-page-header">
-  <%= sub.escape('name') %> - <%= sub.escape('description') %>
-  <div class="sub-stats">
-    <% var num_users = parseInt(sub.escape('num_users')) %>
-    <% if (num_users === 1) { %>
-      this sub has <%= sub.escape('num_users') %> user
-    <% } else if (num_users > 1) { %>
-      this sub has <%= sub.escape('num_users') %> users
-    <% } else { %>
-      this sub has no users
-    <% } %>
-  </div>
+  <% if (sub.escape('name')) { %>
+    <%= sub.escape('name') %> - <%= sub.escape('description') %>
+    <div class="sub-stats">
+      <% var num_users = parseInt(sub.escape('num_users')) %>
+      <% if (num_users === 1) { %>
+        this sub has <%= sub.escape('num_users') %> user
+      <% } else if (num_users > 1) { %>
+        this sub has <%= sub.escape('num_users') %> users
+      <% } else { %>
+        this sub has no users
+      <% } %>
+    </div>
+  <% } else { %>
+    this sub doesn't exist yet. <a href="#">create?</a>
+  <% } %>
 </div>
 <div class="posts">
   <% posts.forEach(function(post) { %>
@@ -19,16 +23,16 @@
       <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
     </div>
     <div class="post" data-id="<%= post.escape('id') %>">
+      <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
         <button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>">
-          <span class="glyphicon glyphicon-plus" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
+          <span class="glyphicon glyphicon-plus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
         </button>
       <% } else { %>
         <button class="btn btn-xs expand-body" data-id="<%= post.escape('id') %>" data-body="<%= post.escape('body') %>">
-          <span class="glyphicon glyphicon-plus" data-id="<%= post.escape('id') %>" data-body="<%= post.escape('body') %>"></span>
+          <span class="glyphicon glyphicon-plus expand-body-span" data-id="<%= post.escape('id') %>" data-body="<%= post.escape('body') %>"></span>
         </button>
       <% } %>
-      <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
         <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a>
       <% } else { %>
@@ -44,9 +48,9 @@
         <div class="date-time" data-id="<%= post.escape('id') %>">
           at 
           <% if (post_time.slice(11, 13) > 12) { %>
-            <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 19) %> PM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
+            <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 16) %> PM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
           <% } else { %>
-            <%= post_time.slice(11, 19) %> AM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
+            <%= post_time.slice(11, 16) %> AM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
           <% } %>
         </div>
       </div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :posts, except: [:index]
     resources :users
+    resource :session
   end
   
   get '/api/subs/:name', to: 'api/subs#get_sub_info'

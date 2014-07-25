@@ -21,10 +21,12 @@ module Api
         @posts = []
         
         current_user.subs.each do |sub|
-          @posts << sub.posts
+          sub.posts.each do |post|
+            @posts << post
+          end
         end
         
-        render json: @posts
+        render :front_page
       else
         #give user all posts from default subs (all posts as of now)
         @posts = Post.where("sub_id = '1'")

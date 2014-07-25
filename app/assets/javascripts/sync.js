@@ -10,5 +10,9 @@ window.Sync = {
 };
 
 $(document).ready(function(){
+  function makePost() {
+    Backbone.history.navigate("#/p", { trigger: true });
+  };
   
+  $('#make-post').on('click', makePost);
 });

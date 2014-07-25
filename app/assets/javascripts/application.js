@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require backbone
-//= serializeJSON
+//= require serializeJSON
 //= require bootstrap
 //= require sync
 //= require_tree ../templates

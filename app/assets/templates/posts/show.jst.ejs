@@ -8,7 +8,7 @@
       </div>
     <% } else { %>
       <h3><button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>">
-        <span class="glyphicon glyphicon-plus" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
+        <span class="glyphicon glyphicon-plus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
       </button> <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a></h3>
     <% } %>
     </div>
@@ -21,9 +21,9 @@
       <div class="date-time" data-id="<%= post.escape('id') %>">
         at 
         <% if (post_time.slice(11, 13) > 12) { %>
-          <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 19) %> PM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
+          <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 16) %> PM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
         <% } else { %>
-          <%= post_time.slice(11, 19) %> AM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
+          <%= post_time.slice(11, 16) %> AM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
         <% } %>
       </div>
     </div>
