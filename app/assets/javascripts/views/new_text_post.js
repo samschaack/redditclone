@@ -11,14 +11,15 @@ Sync.Views.NewTextPost = Backbone.View.extend({
   
   submit: function() {
     event.preventDefault();
-    var view = this;
-    
+
     var params = $(event.target).serializeJSON();
-    var session = new Sync.Models.Session(params["user"]);
     
-    session.save({}, {
-      success: function() {
-        Backbone.history.navigate("#", { trigger: true });
+    var post = new Sync.Models.Post(params["post"]);
+    var sub = params["post"]["sub"]
+    
+    post.save({}, {
+      success: function(post) {
+        Backbone.history.navigate("#/p/" + post.id, { trigger: true });
       }
     });
   },

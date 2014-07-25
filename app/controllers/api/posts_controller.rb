@@ -1,7 +1,20 @@
 module Api
   class PostsController < ApiController
+    wrap_parameters :post, include: [:title, :url, :body, :user_id, :sub]
+    
     def create
+      @post = Post.new(post_params)
+      @post.sub_id = Sub.find_by_name(params[:post][:sub]).id
       
+      if !@post.sub_id
+        flash[:errors] = "that sub doesn't exist"
+        render json: flash[:errors]
+      elsif @post.save
+        render json: @post
+      else
+        flash[:errors] = @post.errors.full_messages
+        render json: @post.errors.full_messages
+      end
     end
     
     def destroy
@@ -47,7 +60,7 @@ module Api
     private
     
     def post_params
-      params.require(:post).permit(:title, :url, :body, :sub_id, :user_id)
+      params.require(:post).permit(:title, :url, :body, :user_id)
     end
   end
 end

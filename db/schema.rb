@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723181359) do
+ActiveRecord::Schema.define(version: 20140725173230) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",                      null: false
@@ -24,10 +27,10 @@ ActiveRecord::Schema.define(version: 20140723181359) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.string   "title",                  null: false
+    t.text     "title",                  null: false
     t.string   "url"
     t.text     "body"
     t.integer  "sub_id",                 null: false
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 20140723181359) do
     t.datetime "updated_at"
   end
 
-  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id"
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "private_messages", force: true do |t|
     t.integer  "sender_id",                                null: false
@@ -50,8 +53,8 @@ ActiveRecord::Schema.define(version: 20140723181359) do
     t.datetime "updated_at"
   end
 
-  add_index "private_messages", ["receiver_id"], name: "index_private_messages_on_receiver_id"
-  add_index "private_messages", ["sender_id"], name: "index_private_messages_on_sender_id"
+  add_index "private_messages", ["receiver_id"], name: "index_private_messages_on_receiver_id", using: :btree
+  add_index "private_messages", ["sender_id"], name: "index_private_messages_on_sender_id", using: :btree
 
   create_table "sub_memberships", force: true do |t|
     t.integer  "user_id",    null: false
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140723181359) do
     t.datetime "updated_at"
   end
 
-  add_index "subs", ["name"], name: "index_subs_on_name", unique: true
+  add_index "subs", ["name"], name: "index_subs_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",                         null: false
@@ -80,7 +83,7 @@ ActiveRecord::Schema.define(version: 20140723181359) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "upordown",      null: false

@@ -14,5 +14,21 @@ $(document).ready(function(){
     Backbone.history.navigate("#/p", { trigger: true });
   };
   
+  function gotoSignUp(event) {
+    event.preventDefault();
+    
+    Backbone.history.navigate('#/u/new');
+  }
+  
+  function gotoSignIn(event) {
+    event.preventDefault();
+    
+    Backbone.history.navigate('#/u');
+  }
+  
   $('#make-post').on('click', makePost);
+  
+  $('.sign-up-button').on('click', gotoSignUp);
+  
+  $('.sign-in-button').on('click', gotoSignIn);
 });
