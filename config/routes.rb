@@ -2,8 +2,15 @@ Rails.application.routes.draw do
   root to: 'pages#root'
   
   namespace :api, defaults: { format: :json } do
-    resources :posts, except: [:index]
-    resources :users
+    resources :posts, except: [:index, :new, :edit] do
+      resources :comments, only: [:index]
+    end
+    
+    resources :comments, except: [:index, :new, :edit] do
+      resources :comments, only: [:index]
+    end
+    
+    resources :users, except: [:new, :edit]
     resource :session
   end
   

@@ -40,7 +40,7 @@
       <% } %>
       </div>
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>
-      <div class="post-info-wrapper">
+      <div class="post-info-wrapper" data-id="<%= post.escape('id') %>">
         <div class="poster" data-id="<%= post.escape('id') %>">
           <% var post_time = post.escape('created_at'); %>
           by <%= post.escape('user') %> 

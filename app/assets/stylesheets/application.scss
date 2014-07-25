@@ -472,3 +472,20 @@ a[class="btn text-post-select-button"]:hover {
 .link-active:hover {
   color: white;
 }
+
+.comment {
+  border: 1px solid gray;
+  padding-left: 2rem;
+  padding-right: .3rem;
+  margin-bottom: .3rem;
+  border-radius: .3rem;
+}
+
+.comment-header {
+  font-size: 80%;
+  text-decoration: underline;
+}
+
+.comment-content {
+  font-size: 100%;
+}
