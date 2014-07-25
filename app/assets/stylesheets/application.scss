@@ -384,11 +384,17 @@ body {
 
 .sign-up {
   position: absolute;
+  border: 2px solid #777;
+  border-radius: .5rem;
+  padding: 3%;
+  padding-top: 2.2%;
+  padding-left: 5.5%;
+  width: 45%;
+  margin-left: -22.5%;
   left: 50%;
-  padding-top: 18%;
-  min-width: 32.5%;
-  margin-left: -16.25%;
-  height: 80rem;
+  top: 22rem;
+  height: 19rem;
+  background-color: white;
 }
 
 //.front-page-box-wrapper {
@@ -401,14 +407,17 @@ body {
 
 .sign-in {
   position: absolute;
-  left: 40%;
-  padding-top: 18%;
-  min-width: 32.5%;
-  padding-left: 5%;
-  padding-right: 5%;
-//  margin-left: -16.25%;
-  margin-left: -11.25%;
-  height: 80rem;
+  border: 2px solid #777;
+  border-radius: .5rem;
+  padding: 3%;
+  padding-top: 2.2%;
+  padding-left: 5.5%;
+  width: 45%;
+  margin-left: -22.5%;
+  left: 50%;
+  top: 22rem;
+  height: 19rem;
+  background-color: white;
 }
 
 .my-text-box {
@@ -426,7 +435,7 @@ body {
   position: absolute;
   border: 2px solid #777;
   border-radius: .5rem;
-  padding: 3rem;
+  padding: 1.5%;
   width: 45%;
   margin-left: -22.5%;
   left: 50%;
@@ -435,6 +444,31 @@ body {
   background-color: white;
 }
 
-.post-type-select-button {
+a.link-post-select-button {
   border: 1px #888 solid;
+  width: 48.5%;
+  margin-right: 1.5%;
+}
+
+a.text-post-select-button {
+  border: 1px #888 solid;
+  width: 48.5%;
+}
+
+a[class="btn link-post-select-button"]:hover {
+  color: #666;
+}
+
+a[class="btn text-post-select-button"]:hover {
+  color: #666;
+}
+
+.link-active {
+  background-color: #53ABDF;
+  border: 1px #53ABDF solid;
+  color: white;
+}
+
+.link-active:hover {
+  color: white;
 }

@@ -3,6 +3,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     "": "frontPage",
     "s/:sub_name": "subPage",
     "p": "newPost",
+    "p/text": "newTextPost",
     "p/:id": "postShow",
     "u": "newSession",
     "u/new": "newUser",
@@ -24,6 +25,12 @@ Sync.Routers.Router = Backbone.Router.extend({
   
   newPost: function() {
     var newPostView = new Sync.Views.NewPost({ user: 1 });
+    
+    this._swapView(newPostView);
+  },
+  
+  newTextPost: function() {
+    var newPostView = new Sync.Views.NewTextPost({ user: 1 });
     
     this._swapView(newPostView);
   },
@@ -73,7 +80,9 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     if (Backbone.history.fragment !== "u/new") {
       $('html').keypress(function(e) {
-        if (e.which == 112) {
+        if (e.which == 102) {
+        document.getElementById("sub-navigate").focus();
+        } else if (e.which == 112) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 115) {
           document.getElementById("sub-navigate").focus();
@@ -85,7 +94,11 @@ Sync.Routers.Router = Backbone.Router.extend({
       $('#sub-navigate').keypress(function(e) {
         if (e.which == 13) {
           e.preventDefault();
-          Backbone.history.navigate("#/" + $("#sub-navigate").val());
+          if ($('#sub-navigate').val() == "f") {
+            Backbone.history.navigate("#", { trigger: true });
+          } else {
+            Backbone.history.navigate("#/" + $("#sub-navigate").val());
+          }
         }
       });
     }
