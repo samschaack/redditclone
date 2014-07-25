@@ -52,6 +52,7 @@ module Api
       @post = Post.find(params[:id])
       @user = @post.user
       @sub = @post.sub
+      @current_user = current_user
       
       # render json: @post
       render :post_show

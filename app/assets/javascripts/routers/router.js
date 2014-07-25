@@ -3,7 +3,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     "": "frontPage",
     "s/:sub_name": "subPage",
     "p": "newPost",
-    "p/text": "newTextPost",
+    "p/t": "newTextPost",
     "p/:id": "postShow",
     "u": "newSession",
     "u/new": "newUser",
@@ -14,24 +14,28 @@ Sync.Routers.Router = Backbone.Router.extend({
   newUser: function() {
     var newUserView = new Sync.Views.SignUp();
     
+    $("#sub-navigate").attr("disabled", "disabled"); 
     this._swapView(newUserView);
   },
   
   newSession: function() {
     var newSessionView = new Sync.Views.SignIn();
     
+    $("#sub-navigate").attr("disabled", "disabled"); 
     this._swapView(newSessionView);
   },
   
   newPost: function() {
     var newPostView = new Sync.Views.NewPost({ user: 1 });
     
+    $("#sub-navigate").attr("disabled", "disabled"); 
     this._swapView(newPostView);
   },
   
   newTextPost: function() {
     var newPostView = new Sync.Views.NewTextPost({ user: 1 });
     
+    $("#sub-navigate").attr("disabled", "disabled"); 
     this._swapView(newPostView);
   },
   
@@ -44,6 +48,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       collection: Sync.Collections.posts
     });
     
+    $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(frontPageView);
   },
   
@@ -61,6 +66,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       sub: sub
     });
     
+    $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(subPageView);
   },
   
@@ -71,6 +77,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       model: post
     });
     
+    $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(postShowView);
   },
   
@@ -80,8 +87,10 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     if (Backbone.history.fragment !== "u/new") {
       $('html').keypress(function(e) {
-        if (e.which == 102) {
-        document.getElementById("sub-navigate").focus();
+        if (e.which == 96) {
+          $("#sub-navigate").removeAttr("disabled"); 
+        } else if (e.which == 102) {
+          document.getElementById("sub-navigate").focus();
         } else if (e.which == 112) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 115) {

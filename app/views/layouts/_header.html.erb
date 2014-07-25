@@ -9,7 +9,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" style="color: #555; font-size:200%; text-shadow: 1px 1px #DDD;" href="#"><%= image_tag('logo.png', size: "38x38") %> &nbsp[Perfect_Name]</a>
+    <a class="navbar-brand" style="color: #555; font-size:200%; text-shadow: 1px 1px #DDD;" href="#"><%= image_tag('logo.png', size: "38x38") %> &nbspreddit++</a>
     
   </div>
   
@@ -36,7 +36,12 @@
 <nav class="navbar navbar-not navbar-fixed-bottom" role="navigation">
 <!-- <div class="container container-fluid"> -->
 <div class="navbar-center">
-  <button class="btn btn-default" id="make-post">Post</button>
+  <!-- <button class="btn btn-default" id="make-post">post</button> -->
+  <form class="navbar-form navbar-right" role="search">
+    <div class="form-group">
+      <input type="text" id="sub-navigate" class="form-control" placeholder="goto:" style="text-align:center;" autocomplete="off">
+    </div>
+  </form>
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
@@ -47,12 +52,13 @@
   </div>
 
   <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
-    <form class="navbar-form navbar-right" role="search">
+    <!-- <form class="navbar-form navbar-right" role="search">
       <div class="form-group">
-        <input type="text" id="sub-navigate" class="form-control" placeholder="Goto Subreddit:" style="text-align:center;" autocomplete="off">
+        <input type="text" id="sub-navigate" class="form-control" placeholder="goto:" style="text-align:center;" autocomplete="off">
       </div>
-      <!-- <button type="submit" class="btn btn-default" id="sub-navigate-button">Go</button> -->
-    </form>
+    </form> -->
+    <!-- <button type="submit" class="btn btn-default" id="sub-navigate-button">Go</button> -->
+    <button class="btn btn-default" id="make-post">post</button>
   </div>
 </div>
 </nav>

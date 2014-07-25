@@ -220,6 +220,13 @@ body {
 }
 
 #sub-navigate {
+//  border: thin #666 solid;
+  
+  position: absolute;
+  left: 50%;
+  bottom: 17%;
+  width: 20rem;
+  margin-left: -10rem;
   border: thin #666 solid;
 }
 
@@ -279,11 +286,12 @@ body {
 }
 
 #make-post {
-  position: absolute;
-  left: 50%;
-  bottom: 17%;
+  border: thin #666 solid;
+//  position: absolute;
+//  left: 50%;
+//  bottom: 17%;
   width: 20rem;
-  margin-left: -10rem;
+//  margin-left: -10rem;
   border: thin #666 solid;
 }
 
@@ -380,11 +388,12 @@ body {
 
 .comment-section {
   margin-top: 1rem;
+  margin-left: -2rem;
 }
 
 .sign-up {
   position: absolute;
-  border: 2px solid #777;
+  border: 2px solid #BBB;
   border-radius: .5rem;
   padding: 3%;
   padding-top: 2.2%;
@@ -407,7 +416,7 @@ body {
 
 .sign-in {
   position: absolute;
-  border: 2px solid #777;
+  border: 2px solid #BBB;
   border-radius: .5rem;
   padding: 3%;
   padding-top: 2.2%;
@@ -433,7 +442,7 @@ body {
 
 .post-new {
   position: absolute;
-  border: 2px solid #777;
+  border: 2px solid #BBB;
   border-radius: .5rem;
   padding: 1.5%;
   width: 45%;
@@ -473,11 +482,18 @@ a[class="btn text-post-select-button"]:hover {
   color: white;
 }
 
+.comments-header {
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+}
+
 .comment {
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   padding-left: 2rem;
-  padding-right: .3rem;
-  margin-bottom: .3rem;
+  padding-right: .5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
   border-radius: .3rem;
 }
 
@@ -488,4 +504,31 @@ a[class="btn text-post-select-button"]:hover {
 
 .comment-content {
   font-size: 100%;
+  margin-bottom: .5rem;
+}
+
+.comment-reply {
+  font-size: 90%;
+}
+
+.post-reply {
+  margin-left: 2.5rem;
+}
+
+.button-link {
+  background-color: transparent;
+  border: none;
+  margin-left: -.5rem;
+  outline: none;
+}
+
+.button-link:hover {
+  color: #53ABDF;
+  text-decoration: underline;
+}
+
+.my-text-area {
+  margin-top: .3rem;
+  border-radius: .5rem;
+  border: 1px solid #BBB;
 }
