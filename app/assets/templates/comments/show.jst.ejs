@@ -1,4 +1,4 @@
-<div class="comment" style="margin-left: 2rem;<% if (parseInt(comment.escape('id')) % 2 === 0) { %>background-color: #F7F7F8;<% } else { %>background-color: white;<% } %>">
+<div class="comment" style="margin-left: 2rem;<% if (parseInt(comment.escape('indents')) % 2 === 1) { %>background-color: #F7F7F8;<% } else { %>background-color: white;<% } %>">
   <div class="comment-header">
     <%= comment.escape('user') %>
   </div>

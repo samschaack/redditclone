@@ -230,6 +230,12 @@ body {
   border: thin #666 solid;
 }
 
+#sub-navigate:focus {
+//  border: thin #666 solid;
+border: 2px #5CBAFF solid;
+  color: #5CBAFF;
+}
+
 #sub-navigate-button {
   border: thin #666 solid;
 }
@@ -287,11 +293,11 @@ body {
 
 #make-post {
   border: thin #666 solid;
-//  position: absolute;
-//  left: 50%;
-//  bottom: 17%;
+  position: absolute;
+  left: 90%;
+  bottom: 17%;
   width: 20rem;
-//  margin-left: -10rem;
+  margin-left: -10rem;
   border: thin #666 solid;
 }
 

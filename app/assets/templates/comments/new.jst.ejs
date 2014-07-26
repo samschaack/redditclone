@@ -1,0 +1,7 @@
+<form>
+  <textarea class='my-text-area' rows='2' cols='80' name='comment[body]' style='white-space: pre-wrap;'></textarea>
+  <input type="hidden" name="comment[user_id]" value="1">
+  <br>
+  <input type="hidden" name="comment[commentable_id]" value="<%= commentId %>">
+  <button class='btn btn-xs btn-default new-comment'>submit</button>
+</form>

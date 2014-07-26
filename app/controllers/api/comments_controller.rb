@@ -3,18 +3,14 @@ module Api
     wrap_parameters :comment, include: [:body, :commentable_id, :commentable_type, :user_id, :indents]
     
     def create
-      # @post = Post.new(post_params)
-      # @post.sub_id = Sub.find_by_name(params[:post][:sub]).id
-      #
-      # if !@post.sub_id
-      #   flash[:errors] = "that sub doesn't exist"
-      #   render json: flash[:errors]
-      # elsif @post.save
-      #   render json: @post
-      # else
-      #   flash[:errors] = @post.errors.full_messages
-      #   render json: @post.errors.full_messages
-      # end
+      @comment = Comment.new(comment_params)
+      
+      if @comment.save
+        render json: @comment
+      else
+        flash[:errors] = @comment.errors.full_messages
+        render json: @comment.errors.full_messages
+      end
     end
     
     def destroy
@@ -42,7 +38,7 @@ module Api
     private
     
     def comment_params
-      params.require(:comment).permit(:body)
+      params.require(:comment).permit(:body, :commentable_type, :commentable_id, :user_id, :indents)
     end
   end
 end

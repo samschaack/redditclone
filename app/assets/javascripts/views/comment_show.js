@@ -27,23 +27,28 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
   },
   
   createComment: function(event) {
+    var view = this;
     event.cancelBubble = true;
     if (event.stopPropagation) { event.stopPropagation(); }
     event.preventDefault();
-    event.preventDefault();
-
+    commentId = this.commentId;
+    
     var params = $("textarea").serializeJSON();
-    params["post"]["commentable_id"] = this.model.attributes.id;
-    params["post"]["commentable_type"] = "Comment";
+    params["comment"]["user_id"] = 1;
+    params["comment"]["commentable_id"] = this.commentId;
+    params["comment"]["commentable_type"] = "Comment";
+    params["comment"]["indents"] = parseInt(this.model.attributes.indents) + 1;
     
-    var post = new Sync.Models.Post(params["post"]);
-    var sub = params["post"]["sub"]
+    var comment = new Sync.Models.Comment(params["comment"]);
     
-    // post.save({}, {
-//       success: function(post) {
-//         Backbone.history.navigate("#/p/" + post.id, { trigger: true });
-//       }
-//     });
+    comment.save({}, {
+      success: function(comment) {
+        $("#sub-navigate").removeAttr("disabled"); 
+        var commentView = new Sync.Views.CommentShow({ model: comment });
+        $('.sub-comments-' + commentId).append(commentView.render().$el);
+        view.removeCommentFormNoEvent(commentId);
+      }
+    });
   },
   
   addComment: function(comment) {
@@ -62,14 +67,11 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     if (event.stopPropagation) { event.stopPropagation(); }
     event.preventDefault();
     
-    var comment_id = $(event.target).data('id');
+    $("#sub-navigate").attr("disabled", "disabled"); 
     
-    var form = "<form>"
-    form += "<textarea class='my-text-area' rows='2' cols='80' name='post[body]' style='white-space: pre-wrap;'></textarea>";
-    form += "<br><button class='btn btn-xs btn-default new-comment'>submit</button>";
-    form += "</form>";
-    
-    $('.new-comment-' + this.model.id).html(form)
+    this.commentId = $(event.target).data('id');
+    var newCommentView = new Sync.Views.NewComment({ commentId: this.commentId });
+    $('.new-comment-' + this.commentId).html(newCommentView.template({ commentId: this.commentId }));
   },
   
   removeCommentForm: function(event) {
@@ -77,8 +79,16 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     if (event.stopPropagation) { event.stopPropagation(); }
     event.preventDefault();
     
+    $("#sub-navigate").removeAttr("disabled"); 
+    
     var comment_id = $(event.target).data('id');
-    var button = "<button class='button-link comment-reply' data-id=" + comment_id + " data-indents=" + this.model.attributes.indents + ">reply</button>"
+    var button = "<button class='button-link comment-reply' data-id=" + this.commentId + " data-indents=" + this.model.attributes.indents + ">reply</button>"
+    $('.new-comment-' + this.model.id).html(button)
+  },
+  
+  removeCommentFormNoEvent: function(commentId, indents) {
+    // var comment_id = $(event.target).data('id');
+    var button = "<button class='button-link comment-reply' data-id=" + commentId + " data-indents=" + this.model.attributes.indents + ">reply</button>"
     $('.new-comment-' + this.model.id).html(button)
   },
   
