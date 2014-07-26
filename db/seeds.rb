@@ -11,6 +11,7 @@ Sub.create( { name: "physics", description: "post anything physics related", own
 Sub.create( { name: "webdev", description: "post anything related to the wonderful profession of web development", owner_id: 1 } )
 Sub.create( { name: "videos", description: "this sub is for interesting videos", owner_id: 1 } )
 Sub.create( { name: "gaming", description: "post anything related to gaming", owner_id: 1 } )
+Sub.create( { name: "new", description: "this sub is for all the newest content on the internet (yes NEW)", owner_id: 1 } )
 
 space_id = Sub.find_by_name("space")
 pics_id = Sub.find_by_name("pics")

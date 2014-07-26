@@ -11,6 +11,7 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     this.listenTo(
       this.model.comments(), "add", this.addComment
     );
+    
     this.listenTo(
       this.model.comments(), "remove", this.addComment
     );

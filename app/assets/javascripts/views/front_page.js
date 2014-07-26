@@ -124,7 +124,6 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
   
   postShow: function(event) {
     var post_id = $(event.target).data('id');
-    Sync.lastPage = "f";
     
     if (post_id !== undefined) {
       Backbone.history.navigate("#/p/c/" + post_id);

@@ -28,10 +28,11 @@ body * {
 }
 
 body {
-  padding-top: 4rem;
+//  padding-top: 4rem;
+  padding-top: 4.5rem;
   width: 90%;
   margin: 0 auto;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   padding-left: 1rem;
   padding-right: .5rem;
   padding-bottom: 0rem;
@@ -47,17 +48,21 @@ body {
 .navbar-default {
   background-color: #FFF;
   
-  background-image: -moz-linear-gradient(top, #FDFDFD, #FFF);
-  background-image: -ms-linear-gradient(top, #FDFDFD, #FFF);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FDFDFD), to(#FFF));
-  background-image: -webkit-linear-gradient(top, #FDFDFD, #FFF);
-  background-image: -o-linear-gradient(top, #FDFDFD, #FFF);
-  background-image: linear-gradient(top, #FDFDFD, #FFF);
+  background-image: -moz-linear-gradient(top, #FCFCFC, #FFF);
+  background-image: -ms-linear-gradient(top, #FCFCFC, #FFF);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FCFCFC), to(#FFF));
+  background-image: -webkit-linear-gradient(top, #FCFCFC, #FFF);
+  background-image: -o-linear-gradient(top, #FCFCFC, #FFF);
+  background-image: linear-gradient(top, #FCFCFC, #FFF);
   background-repeat: repeat-x;
   
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
-  -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, .375);
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, .375);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .375);
+  
+//  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+//  -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+//  box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
   
   /* IE8-9 gradient filter */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
@@ -221,7 +226,6 @@ body {
 
 #sub-navigate {
 //  border: thin #666 solid;
-  
   position: absolute;
   left: 50%;
   bottom: 17%;
@@ -232,8 +236,14 @@ body {
 
 #sub-navigate:focus {
 //  border: thin #666 solid;
-border: 2px #5CBAFF solid;
+  border: 2px #5CBAFF solid;
   color: #5CBAFF;
+}
+
+#sub-navigate:hover {
+  background-color: #5CBAFF;
+  border: thin #5CBAFF solid;
+  color: white;
 }
 
 #sub-navigate-button {
@@ -301,6 +311,28 @@ border: 2px #5CBAFF solid;
   border: thin #666 solid;
 }
 
+#make-post:hover {
+  background-color: #5CBAFF;
+  border: thin #5CBAFF solid;
+  color: white;
+}
+
+#last-page-button {
+  border: thin #666 solid;
+  position: absolute;
+  left: 10%;
+  bottom: 17%;
+  width: 20rem;
+  margin-left: -8.95rem;
+  border: thin #666 solid;
+}
+
+#last-page-button:hover {
+  background-color: #5CBAFF;
+  border: thin #5CBAFF solid;
+  color: white;
+}
+
 .btn {
   border-radius: .3rem;
 }
@@ -350,6 +382,21 @@ border: 2px #5CBAFF solid;
 
 .in-show {
   margin-top: 1rem;
+}
+
+.expand-all {
+  background: transparent;
+  border: 1px #CCC solid;
+  margin-right: .333rem;
+}
+
+.expand-all:hover {
+  background-color: #53ABDF;
+  border-color: #53ABDF;
+  color: white;
+  .expand-minimize-all-posts {
+    color: white;
+  }
 }
 
 .expand-image {

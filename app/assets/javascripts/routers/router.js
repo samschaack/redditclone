@@ -49,6 +49,8 @@ Sync.Routers.Router = Backbone.Router.extend({
       collection: Sync.Collections.posts
     });
     
+    Sync.lastPage = "f";
+    
     $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(frontPageView);
   },
@@ -66,6 +68,8 @@ Sync.Routers.Router = Backbone.Router.extend({
       collection: posts,
       sub: sub
     });
+    
+    Sync.lastPage = "s";
     
     $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(subPageView);
