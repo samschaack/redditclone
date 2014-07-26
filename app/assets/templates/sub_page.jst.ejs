@@ -1,6 +1,6 @@
 <div class="-page-header">
   <% if (sub.escape('name')) { %>
-    <%= sub.escape('name') %> - <%= sub.escape('description') %> <span class="expand-minimize-all-posts"><button class="btn btn-default expand-all">+</button></span>
+    <%= sub.escape('name') %> - <%= sub.escape('description') %> &nbsp<span class="expand-minimize-all-posts"><button class="btn btn-default expand-all">+</button></span>
     <div class="sub-stats">
       <% var num_users = parseInt(sub.escape('num_users')) %>
       <% if (num_users === 1) { %>
@@ -18,7 +18,7 @@
 <div class="posts">
   <% posts.each(function(post, index) { %>
     <div class="post-score-wrapper">
-      <span style="position:absolute;top:25%;"><%= index + 1 %></span>
+      <span style="position:absolute;top:1.55rem;"><%= index + 1 %></span>
     <div class="score-box">
       <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></button><%= post.escape('upvotes') + "|" + post.escape('downvotes') %>
       <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>

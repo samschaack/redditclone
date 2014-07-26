@@ -153,8 +153,9 @@ body {
 .post {
   min-height: 6rem;
   position: relative;
-  border-top: 1px lightgray solid;
-  border-left: 1px lightgray solid;
+//  border-top: 1px lightgray solid;
+//  border-left: 1px lightgray solid;
+//  border-right: 1px lightgray solid;
   padding-top: .5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -171,8 +172,8 @@ body {
 //  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 //  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 
-  box-shadow: 0 6px .5px -4px #DDD;
-  border-right: 1px lightgray solid;
+//  box-shadow: 0 6px .5px -4px #DDD;
+  box-shadow: 0 6px .1px -4px #DDD;
 
 //-webkit-box-shadow: 0 8px -3px -5px black;
 //     -moz-box-shadow: 0 8px 3px -5px black;
@@ -204,8 +205,8 @@ body {
 }
 
 .post:hover {
-  border: 2px #5CBAFF solid;
-  border-radius: .4rem;
+//  border: 2px #5CBAFF solid;
+//  border-radius: .4rem;
 }
 
 .poster {
@@ -381,7 +382,7 @@ body {
 //  border: 1px red solid;
   display: inline-block;
   position: absolute;
-  top: 0%;
+  top: -6%;
   left: 0%;
   width: 1.5%;
   margin-left: 2rem;
@@ -626,7 +627,6 @@ a[class="btn text-post-select-button"]:hover {
 .comment-header {
   font-size: 80%;
   margin-bottom: .2rem;
-//  text-decoration: underline;
 }
 
 .comment-content {
