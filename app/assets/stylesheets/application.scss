@@ -505,7 +505,8 @@ a[class="btn text-post-select-button"]:hover {
 
 .comment-header {
   font-size: 80%;
-  text-decoration: underline;
+  margin-bottom: .2rem;
+//  text-decoration: underline;
 }
 
 .comment-content {
@@ -517,15 +518,17 @@ a[class="btn text-post-select-button"]:hover {
   font-size: 90%;
 }
 
-.post-reply {
-  margin-left: 2.5rem;
-}
-
 .button-link {
   background-color: transparent;
   border: none;
   margin-left: -.5rem;
   outline: none;
+}
+
+.post-reply {
+  margin-left: .5rem;
+  margin-bottom: .5rem;
+  color: #53ABDF;
 }
 
 .button-link:hover {
@@ -537,4 +540,9 @@ a[class="btn text-post-select-button"]:hover {
   margin-top: .3rem;
   border-radius: .5rem;
   border: 1px solid #BBB;
+}
+
+.new-post-comment {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }

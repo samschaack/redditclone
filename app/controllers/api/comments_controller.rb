@@ -9,7 +9,7 @@ module Api
         render json: @comment
       else
         flash[:errors] = @comment.errors.full_messages
-        render json: @comment.errors.full_messages
+        render json: @comment
       end
     end
     

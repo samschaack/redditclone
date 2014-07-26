@@ -32,10 +32,12 @@
     <div class="comments-header">
       Comments:
     </div>
+    <div class='new-post-comment'>
+      <button class="button-link post-reply" data-id="<%= post.escape('id') %>">comment</button>
+    </div>
     <div class="comments">
       
     </div>
-    <a href="#" class="post-reply">comment</a>
   </div>
   <br>
   <a href="#/s/<%= post.escape('name') %>"><< <%= post.escape('name') %></a>

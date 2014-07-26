@@ -7,5 +7,9 @@ Sync.Collections.PostComments = Backbone.Collection.extend({
   
   initialize: function(models, options) {
     this.post = options.post
+  },
+  
+  comparator: function(model) {
+    return -model.get('upvotes') + model.get('downvotes');
   }
 })

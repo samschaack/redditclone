@@ -1,6 +1,6 @@
 <div class="comment" style="margin-left: 2rem;<% if (parseInt(comment.escape('indents')) % 2 === 1) { %>background-color: #F7F7F8;<% } else { %>background-color: white;<% } %>">
   <div class="comment-header">
-    <%= comment.escape('user') %>
+    <span style="color:#53ABDF;border-bottom:1px solid #53ABDF"><%= comment.escape('user') %></span>
   </div>
   <div class="comment-content">
     <%= comment.escape('body') %>
@@ -9,4 +9,5 @@
   </div>
   <div class="new-comment-<%= comment.escape('id') %>">
   <button class="button-link comment-reply" data-id="<%= comment.escape('id') %>" data-indents="<%= comment.escape('indents') %>">reply</button>
+  </div>
 </div>
