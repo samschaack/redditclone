@@ -545,7 +545,12 @@ body {
 
 img {
   max-width: 100%;
-  height: auto;
+  max-height: 50%;
+}
+
+img.header {
+  max-width: none;
+  max-height: none;
 }
 
 .comment-section {

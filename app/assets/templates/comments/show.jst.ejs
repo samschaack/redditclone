@@ -2,12 +2,12 @@
   <div class="comment-header">
     <span style="color:#53ABDF;"><a href="#/u/<%= comment.escape('user') %>"><%= comment.escape('user') %></a></span> 
     <div class="date-time" data-id="<%= comment.escape('id') %>">
-      <% comment_time = comment.escape('created_at') %>
-      at 
-      <% if (comment_time.slice(11, 13) > 12) { %>
-        <%= parseInt(comment_time.slice(11, 13)) - 12 %><%= comment_time.slice(13, 16) %> PM on <%= comment_time.slice(5, 10) %>-<%= comment_time.slice(0, 4) %>
+      <% comment_time = new Date(comment.escape('created_at')) %>
+      <% if (comment_time.toTimeString().slice(0, 2) > 12) { %>
+        <% var timeString = comment_time.toTimeString().slice(0, 2) - 12 %>
+        at <%= timeString + comment_time.toTimeString().slice(2, 5) %>pm on <%= comment_time.toDateString() %>
       <% } else { %>
-        <%= comment_time.slice(11, 16) %> AM on <%= comment_time.slice(5, 10) %>-<%= comment_time.slice(0, 4) %>
+        at <%= comment_time.toTimeString().slice(0, 5) %>am on <%= comment_time.toDateString() %>
       <% } %>
     </div>
   </div>

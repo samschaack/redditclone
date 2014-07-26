@@ -1,6 +1,6 @@
 <div class="post-show">
   <div class="show-score-box">
-    <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></button><%= post.escape('upvotes') + "|" + post.escape('downvotes') %>
+    <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></button><%= post.escape('upvotes') - post.escape('downvotes') %>
     <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
   </div>
   <div class="post-section">
@@ -28,11 +28,12 @@
         by <%= post.escape('username') %> to /<%= post.escape('name') %>
       </div>
       <div class="date-time" data-id="<%= post.escape('id') %>">
-        at 
-        <% if (post_time.slice(11, 13) > 12) { %>
-          <%= parseInt(post_time.slice(11, 13)) - 12 %><%= post_time.slice(13, 16) %> PM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
+        <% post_time = new Date(post.escape('created_at')) %>
+        <% if (post_time.toTimeString().slice(0, 2) > 12) { %>
+          <% var timeString = post_time.toTimeString().slice(0, 2) - 12 %>
+          at <%= timeString + post_time.toTimeString().slice(2, 5) %>pm on <%= post_time.toDateString() %>
         <% } else { %>
-          <%= post_time.slice(11, 16) %> AM on <%= post_time.slice(5, 10) %>-<%= post_time.slice(0, 4) %>
+          at <%= post_time.toTimeString().slice(0, 5) %>am on <%= post_time.toDateString() %>
         <% } %>
       </div>
     </div>
