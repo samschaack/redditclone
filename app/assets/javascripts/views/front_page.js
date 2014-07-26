@@ -61,8 +61,11 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     var view = this;
     
     this.collection.models.forEach(function(model) {
-      if (model.attributes.url) {
-        view.toggleImage(model.attributes.id, model.attributes.url);
+      var url = model.attributes.url;
+      if (url) {
+        if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") {
+          view.toggleImage(model.attributes.id, url);
+        }
       } else {
         view.toggleBody(model.attributes.id, model.attributes.body);
       }
@@ -77,10 +80,13 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     var view = this;
     
     this.collection.models.forEach(function(model) {
-      if (model.attributes.url) {
-        view.toggleImage(model.attributes.id, model.attributes.url);
+      var url = model.attributes.url;
+      if (url) {
+        if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") {
+          view.toggleImage(model.attributes.id, url);
+        }
       } else {
-        view.toggleBody(model.attributes.id, model.attributes.body);      
+        view.toggleBody(model.attributes.id, model.attributes.body);
       }
     });
     

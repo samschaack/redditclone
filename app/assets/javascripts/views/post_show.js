@@ -115,17 +115,18 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     if (this.model.attributes.url) {
       var url = this.model.attributes.url;
       var post_id = this.model.attributes.id;
-      
-      var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
+      if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") {
+        var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
     
-      if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
-        $contentTarget.html("<img src=" + url + ">");
-        $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
-        $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
-      } else {
-        $contentTarget.html("");
-        $("span.glyphicon-minus[data-id='" + post_id + "']").removeClass('glyphicon-minus');
-        $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-plus');
+        if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
+          $contentTarget.html("<img src=" + url + ">");
+          $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
+          $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
+        } else {
+          $contentTarget.html("");
+          $("span.glyphicon-minus[data-id='" + post_id + "']").removeClass('glyphicon-minus');
+          $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-plus');
+        }
       }
     }
   },

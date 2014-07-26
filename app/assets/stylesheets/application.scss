@@ -72,6 +72,13 @@ body {
   height: 7%;
 }
 
+//.navbar-default:hover {
+//  border-bottom: 1px #5CBAFF solid;
+//-webkit-box-shadow: 2px 2px 6px rgba(92, 186, 255, .375);
+//  -moz-box-shadow: 2px 2px 6px rgba(92, 186, 255, .375);
+//  box-shadow: 2px 2px 6px rgba(92, 186, 255, .375);
+//}
+
 .tabs-below > .nav-tabs,
 .tabs-right > .nav-tabs,
 .tabs-left > .nav-tabs {
@@ -232,6 +239,13 @@ body {
   width: 20rem;
   margin-left: -10rem;
   border: thin #666 solid;
+  
+  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
+  background:-webkit-linear-gradient(#FFF,#EEE);
+  background:-moz-linear-gradient(#FFF,#EEE);
+  background:-ms-linear-gradient(#FFF,#EEE);
+  background:-o-linear-gradient(#FFF,#EEE);
+  background:linear-gradient(#FFF,#EEE);
 }
 
 #sub-navigate:focus {
@@ -263,21 +277,24 @@ body {
   position: absolute;
   left: 92.50%;
   top: 28%;
-//  background-color: #53ABDF;
-  background-color: #FFF;
-//  border-color: #53ABDF;
   border-color: #888;
-//  border: none;
   opacity: 50%;
   color: #888;
+  
+  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background:-webkit-linear-gradient(#FFF,#F6F6F6);
+  background:-moz-linear-gradient(#FFF,#F6F6F6);
+  background:-ms-linear-gradient(#FFF,#F6F6F6);
+  background:-o-linear-gradient(#FFF,#F6F6F6);
+  background:linear-gradient(#FFF,#F6F6F6);
 }
 
 .sign-out-button:hover {
   background-color: #53ABDF;
   border: 1px #53ABDF solid;
-  color: white;
+  color: #53ABDF;
   .sign-out-span {
-    color: white;
+    color: #53ABDF;
   }
 }
 
@@ -309,12 +326,19 @@ body {
   width: 20rem;
   margin-left: -10rem;
   border: thin #666 solid;
+  
+  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
+  background:-webkit-linear-gradient(#FFF,#EEE);
+  background:-moz-linear-gradient(#FFF,#EEE);
+  background:-ms-linear-gradient(#FFF,#EEE);
+  background:-o-linear-gradient(#FFF,#EEE);
+  background:linear-gradient(#FFF,#EEE);
 }
 
 #make-post:hover {
   background-color: #5CBAFF;
   border: thin #5CBAFF solid;
-  color: white;
+  color: #53ABDF;
 }
 
 #last-page-button {
@@ -325,12 +349,19 @@ body {
   width: 20rem;
   margin-left: -8.95rem;
   border: thin #666 solid;
+  
+  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
+  background:-webkit-linear-gradient(#FFF,#EEE);
+  background:-moz-linear-gradient(#FFF,#EEE);
+  background:-ms-linear-gradient(#FFF,#EEE);
+  background:-o-linear-gradient(#FFF,#EEE);
+  background:linear-gradient(#FFF,#EEE);
 }
 
 #last-page-button:hover {
   background-color: #5CBAFF;
   border: thin #5CBAFF solid;
-  color: white;
+  color: #53ABDF;
 }
 
 .btn {
@@ -388,14 +419,43 @@ body {
   background: transparent;
   border: 1px #CCC solid;
   margin-right: .333rem;
+  
+  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background:-webkit-linear-gradient(#FFF,#F6F6F6);
+  background:-moz-linear-gradient(#FFF,#F6F6F6);
+  background:-ms-linear-gradient(#FFF,#F6F6F6);
+  background:-o-linear-gradient(#FFF,#F6F6F6);
+  background:linear-gradient(#FFF,#F6F6F6);
 }
 
 .expand-all:hover {
   background-color: #53ABDF;
   border-color: #53ABDF;
-  color: white;
+  color: #53ABDF;
   .expand-minimize-all-posts {
-    color: white;
+    color: #53ABDF;
+  }
+}
+
+.minimize-all {
+  background: transparent;
+  border: 1px #CCC solid;
+  margin-right: .333rem;
+  
+  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background:-webkit-linear-gradient(#FFF,#F6F6F6);
+  background:-moz-linear-gradient(#FFF,#F6F6F6);
+  background:-ms-linear-gradient(#FFF,#F6F6F6);
+  background:-o-linear-gradient(#FFF,#F6F6F6);
+  background:linear-gradient(#FFF,#F6F6F6);
+}
+
+.minimize-all:hover {
+  background-color: #53ABDF;
+  border-color: #53ABDF;
+  color: #53ABDF;
+  .expand-minimize-all-posts {
+    color: #53ABDF;
   }
 }
 
@@ -403,13 +463,20 @@ body {
   background: transparent;
   border: 1px #CCC solid;
   margin-right: .333rem;
+  
+  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background:-webkit-linear-gradient(#FFF,#F6F6F6);
+  background:-moz-linear-gradient(#FFF,#F6F6F6);
+  background:-ms-linear-gradient(#FFF,#F6F6F6);
+  background:-o-linear-gradient(#FFF,#F6F6F6);
+  background:linear-gradient(#FFF,#F6F6F6);
 }
 
 .expand-image:hover {
   background-color: #53ABDF;
   border-color: #53ABDF;
   .expand-image-span {
-    color: white;
+    color: #53ABDF;
   }
 }
 
