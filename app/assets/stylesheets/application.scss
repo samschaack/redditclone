@@ -150,7 +150,7 @@ body {
   border-left: 1px lightgray solid;
   padding-top: .5rem;
   padding-left: 1.5rem;
-  padding-right: 3rem;
+  padding-right: 1.5rem;
   margin-bottom: 1rem;
   border-radius: .4rem;
   left: 3%;
@@ -438,6 +438,11 @@ body {
 .post-content {
   margin-top: .5rem;
   margin-bottom: .5rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .comment-section {

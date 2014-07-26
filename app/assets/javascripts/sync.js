@@ -36,5 +36,5 @@ $(document).ready(function(){
   
   $('.sign-in-button').on('click', gotoSignIn);
   
-  $('#last-page-button').on('click', navToLastPage);
+  // $('#last-page-button').on('click', navToLastPage);
 });

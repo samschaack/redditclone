@@ -22,9 +22,9 @@
         </button>
       <% } %>
       <% if (post.escape('url')) { %>
-        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - /<%= post.escape('sub') %>
+        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - <a href="#/s/<%= post.escape('sub') %>">/<%= post.escape('sub') %></a>
       <% } else { %>
-        <%= post.escape('title') %> - text - /<%= post.escape('sub') %>
+        <%= post.escape('title') %> - text - <a href="#/s/<%= post.escape('sub') %>">/<%= post.escape('sub') %></a>
       <% } %>
       </div>
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>

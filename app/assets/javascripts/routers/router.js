@@ -49,7 +49,8 @@ Sync.Routers.Router = Backbone.Router.extend({
       collection: Sync.Collections.posts
     });
     
-    Sync.lastPage = "f";
+    // Sync.lastPage = "f";
+    Sync.lastPage = "#";
     
     $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(frontPageView);
@@ -69,7 +70,8 @@ Sync.Routers.Router = Backbone.Router.extend({
       sub: sub
     });
     
-    Sync.lastPage = "s";
+    // Sync.lastPage = "s";
+    Sync.lastPage = "#/s/" + sub_name;
     
     $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(subPageView);
@@ -105,6 +107,10 @@ Sync.Routers.Router = Backbone.Router.extend({
     this._swapView(postShowView);
   },
   
+  navToLastPage: function() {
+    Backbone.history.navigate(Sync.lastPage, { trigger: true });
+  },
+  
   setButtonEvents: function() {
     $("#sub-navigate").val("");
     $("#sub-navigate").blur();
@@ -135,6 +141,8 @@ Sync.Routers.Router = Backbone.Router.extend({
         }
       });
     }
+    
+    $('#last-page-button').on('click', this.navToLastPage);
   },
   
   _swapView: function(newView) {

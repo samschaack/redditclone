@@ -44,8 +44,8 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     
     comment.save({}, {
       success: function(comment) {
-        $("#sub-navigate").removeAttr("disabled"); 
-        // comment.attributes.username = current_user; (something like this)
+        $("#sub-navigate").removeAttr("disabled");
+        comment.attributes.user = "you";
         var commentView = new Sync.Views.CommentShow({ model: comment });
         $('.sub-comments-' + commentId).append(commentView.render().$el);
         view.removeCommentFormNoEvent(commentId);
