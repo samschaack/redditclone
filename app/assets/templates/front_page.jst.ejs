@@ -5,13 +5,29 @@
   <% posts.each(function(post, index) { %>
     <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
-      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.7rem"><%= index + 1 %>
+      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.7rem;"><%= index + 1 %>
       </div>
     <div class="score-box">
-      <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></button><%= post.escape('upvotes') - post.escape('downvotes') %>
-      <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
+      <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      <div style="width:100%;text-align:center;">
+        <% score = post.escape('upvotes') - post.escape('downvotes') %>
+        <% if (score > 0) { %>
+          <%= post.escape('upvotes') - post.escape('downvotes') %>
+        <% } else { %>
+          0
+        <% } %>
+      </div>
+      <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></span></button>
     </div>
-    <div class="post" data-id="<%= post.escape('id') %>">
+    <% var url = post.escape('url')%>
+    <% if (url && (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png")) { %>
+      <div class="thumbnail-section">
+          <img src="<%= post.escape('url') %>" class="thumbail-image">
+      </div>
+      <div class="thumbnail-post" data-id="<%= post.escape('id') %>">
+    <% } else { %>
+      <div class="text-post" data-id="<%= post.escape('id') %>">
+    <% } %>
       <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
         <% var url = post.escape('url') %>
