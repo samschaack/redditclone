@@ -1,12 +1,20 @@
 <div class="comment" style="margin-left: 2rem;<% if (parseInt(comment.escape('indents')) % 2 === 1) { %>background-color: #F7F7F8;<% } else { %>background-color: white;<% } %>">
   <div class="comment-header">
-    <span style="color:#53ABDF;border-bottom:1px solid #53ABDF"><%= comment.escape('user') %></span>
+    <span style="color:#53ABDF;"><a href="#/u/<%= comment.escape('user') %>"><%= comment.escape('user') %></a></span> 
+    <div class="date-time" data-id="<%= comment.escape('id') %>">
+      <% comment_time = comment.escape('created_at') %>
+      at 
+      <% if (comment_time.slice(11, 13) > 12) { %>
+        <%= parseInt(comment_time.slice(11, 13)) - 12 %><%= comment_time.slice(13, 16) %> PM on <%= comment_time.slice(5, 10) %>-<%= comment_time.slice(0, 4) %>
+      <% } else { %>
+        <%= comment_time.slice(11, 16) %> AM on <%= comment_time.slice(5, 10) %>-<%= comment_time.slice(0, 4) %>
+      <% } %>
+    </div>
   </div>
   <div class="comment-content">
     <%= comment.escape('body') %>
   </div>
   <div class="comment-info">
-    <!-- current time - post time -->
   </div>
   <div class="sub-comments-<%= comment.escape('id') %>">
   </div>

@@ -157,7 +157,7 @@ body {
 //  border-left: 1px lightgray solid;
 //  border-right: 1px lightgray solid;
   padding-top: .5rem;
-  padding-left: 1.5rem;
+  padding-left: 1rem;
   padding-right: 1.5rem;
   margin-bottom: 1rem;
   border-radius: .4rem;
@@ -241,12 +241,12 @@ body {
   margin-left: -10rem;
   border: thin #666 solid;
   
-  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
-  background:-webkit-linear-gradient(#FFF,#EEE);
-  background:-moz-linear-gradient(#FFF,#EEE);
-  background:-ms-linear-gradient(#FFF,#EEE);
-  background:-o-linear-gradient(#FFF,#EEE);
-  background:linear-gradient(#FFF,#EEE);
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
+  background: -webkit-linear-gradient(#FFF,#EEE);
+  background: -moz-linear-gradient(#FFF,#EEE);
+  background: -ms-linear-gradient(#FFF,#EEE);
+  background: -o-linear-gradient(#FFF,#EEE);
+  background: linear-gradient(#FFF,#EEE);
 }
 
 #sub-navigate:focus {
@@ -282,12 +282,12 @@ body {
   opacity: 50%;
   color: #888;
   
-  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
-  background:-webkit-linear-gradient(#FFF,#F6F6F6);
-  background:-moz-linear-gradient(#FFF,#F6F6F6);
-  background:-ms-linear-gradient(#FFF,#F6F6F6);
-  background:-o-linear-gradient(#FFF,#F6F6F6);
-  background:linear-gradient(#FFF,#F6F6F6);
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background: -webkit-linear-gradient(#FFF,#F6F6F6);
+  background: -moz-linear-gradient(#FFF,#F6F6F6);
+  background: -ms-linear-gradient(#FFF,#F6F6F6);
+  background: -o-linear-gradient(#FFF,#F6F6F6);
+  background: linear-gradient(#FFF,#F6F6F6);
 }
 
 .sign-out-button:hover {
@@ -328,12 +328,12 @@ body {
   margin-left: -10rem;
   border: thin #666 solid;
   
-  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
-  background:-webkit-linear-gradient(#FFF,#EEE);
-  background:-moz-linear-gradient(#FFF,#EEE);
-  background:-ms-linear-gradient(#FFF,#EEE);
-  background:-o-linear-gradient(#FFF,#EEE);
-  background:linear-gradient(#FFF,#EEE);
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
+  background: -webkit-linear-gradient(#FFF,#EEE);
+  background: -moz-linear-gradient(#FFF,#EEE);
+  background: -ms-linear-gradient(#FFF,#EEE);
+  background: -o-linear-gradient(#FFF,#EEE);
+  background: linear-gradient(#FFF,#EEE);
 }
 
 #make-post:hover {
@@ -351,12 +351,12 @@ body {
   margin-left: -8.95rem;
   border: thin #666 solid;
   
-  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
-  background:-webkit-linear-gradient(#FFF,#EEE);
-  background:-moz-linear-gradient(#FFF,#EEE);
-  background:-ms-linear-gradient(#FFF,#EEE);
-  background:-o-linear-gradient(#FFF,#EEE);
-  background:linear-gradient(#FFF,#EEE);
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
+  background: -webkit-linear-gradient(#FFF,#EEE);
+  background: -moz-linear-gradient(#FFF,#EEE);
+  background: -ms-linear-gradient(#FFF,#EEE);
+  background: -o-linear-gradient(#FFF,#EEE);
+  background: linear-gradient(#FFF,#EEE);
 }
 
 #last-page-button:hover {
@@ -378,15 +378,40 @@ body {
   margin-left: .5rem;
 }
 
+.title {
+  padding-left: 1.5rem;
+}
+
+.poster-in-show {
+  padding-left: 0rem;
+}
+
 .score-box {
 //  border: 1px red solid;
   display: inline-block;
   position: absolute;
-  top: -6%;
+//  top: 0%;
+  top: -.4rem;
   left: 0%;
   width: 1.5%;
   margin-left: 2rem;
   margin-right: 2rem;
+  vertical-align: top;
+  text-shadow: 1px 1px #DDD;
+  text-align: center;
+  font-size: 75%;
+}
+
+.show-score-box {
+//  border: 1px red solid;
+  display: inline-block;
+  position: absolute;
+//  top: 0%;
+  top: -1.3rem;
+  left: 0%;
+  width: 1.5%;
+  margin-left: 0rem;
+  margin-right: 1rem;
   vertical-align: top;
   text-shadow: 1px 1px #DDD;
   text-align: center;
@@ -410,6 +435,7 @@ body {
   padding-bottom: 1rem;
   margin-right: .5rem;
   border-bottom: thin #CCC solid;
+//  padding-left: 1.5rem;
 }
 
 .in-show {
@@ -421,12 +447,12 @@ body {
   border: 1px #CCC solid;
   margin-right: .333rem;
   
-  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
-  background:-webkit-linear-gradient(#FFF,#F6F6F6);
-  background:-moz-linear-gradient(#FFF,#F6F6F6);
-  background:-ms-linear-gradient(#FFF,#F6F6F6);
-  background:-o-linear-gradient(#FFF,#F6F6F6);
-  background:linear-gradient(#FFF,#F6F6F6);
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background: -webki t-linear-gradient(#FFF,#F6F6F6);
+  background: -moz-linear-gradient(#FFF,#F6F6F6);
+  background: -ms-linear-gradient(#FFF,#F6F6F6);
+  background: -o-linear-gradient(#FFF,#F6F6F6);
+  background: linear-gradient(#FFF,#F6F6F6);
 }
 
 .expand-all:hover {
@@ -442,13 +468,14 @@ body {
   background: transparent;
   border: 1px #CCC solid;
   margin-right: .333rem;
+  min-width: 3.4rem;
   
-  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
-  background:-webkit-linear-gradient(#FFF,#F6F6F6);
-  background:-moz-linear-gradient(#FFF,#F6F6F6);
-  background:-ms-linear-gradient(#FFF,#F6F6F6);
-  background:-o-linear-gradient(#FFF,#F6F6F6);
-  background:linear-gradient(#FFF,#F6F6F6);
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background: -webkit-linear-gradient(#FFF,#F6F6F6);
+  background: -moz-linear-gradient(#FFF,#F6F6F6);
+  background: -ms-linear-gradient(#FFF,#F6F6F6);
+  background: -o-linear-gradient(#FFF,#F6F6F6);
+  background: linear-gradient(#FFF,#F6F6F6);
 }
 
 .minimize-all:hover {
@@ -465,12 +492,12 @@ body {
   border: 1px #CCC solid;
   margin-right: .333rem;
   
-  background:-webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
-  background:-webkit-linear-gradient(#FFF,#F6F6F6);
-  background:-moz-linear-gradient(#FFF,#F6F6F6);
-  background:-ms-linear-gradient(#FFF,#F6F6F6);
-  background:-o-linear-gradient(#FFF,#F6F6F6);
-  background:linear-gradient(#FFF,#F6F6F6);
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background: -webkit-linear-gradient(#FFF,#F6F6F6);
+  background: -moz-linear-gradient(#FFF,#F6F6F6);
+  background: -ms-linear-gradient(#FFF,#F6F6F6);
+  background: -o-linear-gradient(#FFF,#F6F6F6);
+  background: linear-gradient(#FFF,#F6F6F6);
 }
 
 .expand-image:hover {
@@ -506,6 +533,14 @@ body {
 .post-content {
   margin-top: .5rem;
   margin-bottom: .5rem;
+  font-size: 92%;
+}
+
+.show-post-content {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  font-size: 92%;
+  padding-left: 1.5rem;
 }
 
 img {
@@ -626,7 +661,7 @@ a[class="btn text-post-select-button"]:hover {
 
 .comment-header {
   font-size: 80%;
-  margin-bottom: .2rem;
+  margin-bottom: .25rem;
 }
 
 .comment-content {

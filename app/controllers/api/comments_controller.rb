@@ -6,6 +6,7 @@ module Api
       @comment = Comment.new(comment_params)
       
       if @comment.save
+        @comment.update({ created_at: @comment.created_at.localtime })
         render json: @comment
       else
         flash[:errors] = @comment.errors.full_messages

@@ -1,20 +1,27 @@
 <div class="post-show">
+  <div class="show-score-box">
+    <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></button><%= post.escape('upvotes') + "|" + post.escape('downvotes') %>
+    <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
+  </div>
   <div class="post-section">
     <div class="title">
     <% if (post.escape('body')) { %>
-      <h2><%= post.escape('title') %></h2>
+      <h4><%= post.escape('title') %></h4>
       <div class="body">
         <%= post.escape('body') %>
       </div>
     <% } else { %>
       <h3><% var url = post.escape('url') %>
-        <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") { %>
-          <button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>">
+      <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> 
+      <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") { %>
+        <button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>" style="margin-bottom:.45rem;">
         <span class="glyphicon glyphicon-plus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
-      </button><% } %> <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a></h3>
+        </button>
+      <% } %>
+      </h3>
     <% } %>
     </div>
-    <div class="post-content" data-id="<%= post.escape('id') %>"></div>
+    <div class="show-post-content" data-id="<%= post.escape('id') %>"></div>
     <div class="post-info">
       <div class="poster in-show">
         <% var post_time = post.escape('created_at'); %>

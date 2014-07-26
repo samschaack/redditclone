@@ -23,5 +23,5 @@ Sync.Collections.Posts = Backbone.Collection.extend({
     return -model.get('upvotes') + model.get('downvotes');
   }
 });
-
+  
 Sync.Collections.posts = new Sync.Collections.Posts();

@@ -96,7 +96,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     
     var post_id = $(event.target).data('id');
     var url = $(event.target).data('url');
-    var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
+    var $contentTarget = $("div.show-post-content[data-id='" + post_id + "']");
     
     if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
       $contentTarget.html("<img src=" + url + ">");
@@ -116,7 +116,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
       var url = this.model.attributes.url;
       var post_id = this.model.attributes.id;
       if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") {
-        var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
+        var $contentTarget = $("div.show-post-content[data-id='" + post_id + "']");
     
         if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
           $contentTarget.html("<img src=" + url + ">");

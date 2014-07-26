@@ -5,7 +5,8 @@
   <% posts.each(function(post, index) { %>
     <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
-      <span style="position:absolute;top:1.33rem;font-size:120%;"><%= index + 1 %></span>
+      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.7rem"><%= index + 1 %>
+      </div>
     <div class="score-box">
       <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></button><%= post.escape('upvotes') + "|" + post.escape('downvotes') %>
       <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
