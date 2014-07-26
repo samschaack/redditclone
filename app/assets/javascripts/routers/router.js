@@ -4,7 +4,8 @@ Sync.Routers.Router = Backbone.Router.extend({
     "s/:sub_name": "subPage",
     "p": "newPost",
     "p/t": "newTextPost",
-    "p/:id": "postShow",
+    "p/:index": "postShow",
+    "p/c/:id": "postClickShow",
     "u": "newSession",
     "u/new": "newUser",
     "u/me": "accountPage",
@@ -70,8 +71,27 @@ Sync.Routers.Router = Backbone.Router.extend({
     this._swapView(subPageView);
   },
   
-  postShow: function(id) {
+  postClickShow: function(id) {
     var post = Sync.Collections.posts.getOrFetch(id);
+    
+    post = Sync.Collections.posts.getOrFetch(post.attributes.id);
+    
+    var postShowView = new Sync.Views.PostShow({
+      model: post
+    });
+    
+    $("#sub-navigate").removeAttr("disabled"); 
+    this._swapView(postShowView);
+  },
+  
+  postShow: function(index) {
+    if (index) {
+      var post = Sync.Collections.posts.findWhere({ index: parseInt(index) });
+    } else {
+      var post = Sync.Collections.posts.getOrFetch(id);
+    }
+    
+    post = Sync.Collections.posts.getOrFetch(post.attributes.id);
     
     var postShowView = new Sync.Views.PostShow({
       model: post

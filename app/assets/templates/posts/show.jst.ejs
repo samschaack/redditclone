@@ -29,16 +29,20 @@
     </div>
   </div>
   <div class="comment-section">
-    <div class="comments-header">
-      Comments:
-    </div>
     <div class='new-post-comment'>
       <button class="button-link post-reply" data-id="<%= post.escape('id') %>">comment</button>
+    </div>
+    <div class="comments-header">
+      Comments:
     </div>
     <div class="comments">
       
     </div>
   </div>
   <br>
-  <a href="#/s/<%= post.escape('name') %>"><< <%= post.escape('name') %></a>
+  <% if (Sync.lastPage === "f") { %>
+    <a href="#"><< front page</a>
+  <% } else { %>
+    <a href="#/s/<%= post.escape('name') %>"><< <%= post.escape('name') %></a>
+  <% } %>
 </div>

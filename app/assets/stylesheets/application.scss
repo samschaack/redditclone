@@ -311,6 +311,7 @@ border: 2px #5CBAFF solid;
 
 .post-score-wrapper {
   position: relative;
+  margin-left: .5rem;
 }
 
 .score-box {
@@ -320,7 +321,7 @@ border: 2px #5CBAFF solid;
   top: 0%;
   left: 0%;
   width: 1.5%;
-  margin-left: 1rem;
+  margin-left: 2rem;
   margin-right: 2rem;
   vertical-align: top;
   text-shadow: 1px 1px #DDD;
@@ -544,5 +545,5 @@ a[class="btn text-post-select-button"]:hover {
 
 .new-post-comment {
   margin-left: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
 }

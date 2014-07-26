@@ -9,6 +9,8 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
   },
   
   events: {
+    "click button.expand-all": "expandAll",
+    "click button.minimize-all": "minimizeAll",
     "click button.expand-image": "imageToggle",
     "click button.expand-body": "bodyToggle",
     "click div.post": "postShow"
@@ -17,8 +19,10 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
   postShow: function(event) {
     var post_id = $(event.target).data('id');
     
+    Sync.lastPage = "s";
+    
     if (post_id !== undefined) {
-      Backbone.history.navigate("#/p/" + post_id);
+      Backbone.history.navigate("#/p/c/" + post_id);
     }
   },
   
@@ -42,6 +46,52 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     }
   },
   
+  toggleImage: function(post_id, url) {
+    var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
+    
+    if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
+      $contentTarget.html("<img src=" + url + ">");
+      $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
+      $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
+    } else {
+      $contentTarget.html("");
+      $("span.glyphicon-minus[data-id='" + post_id + "']").removeClass('glyphicon-minus');
+      $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-plus');
+    }
+  },
+  
+  expandAll: function(event) {
+    event.preventDefault();
+    var view = this;
+    
+    this.collection.models.forEach(function(model) {
+      if (model.attributes.url) {
+        view.toggleImage(model.attributes.id, model.attributes.url);
+      } else {
+        view.toggleBody(model.attributes.id, model.attributes.body);      
+      }
+    });
+    
+    var $minimizeAll = "<button class='btn btn-default minimize-all'>-</button>";
+    $('.expand-minimize-all-posts').html($minimizeAll);
+  },
+  
+  minimizeAll: function(event) {
+    event.preventDefault();
+    var view = this;
+    
+    this.collection.models.forEach(function(model) {
+      if (model.attributes.url) {
+        view.toggleImage(model.attributes.id, model.attributes.url);
+      } else {
+        view.toggleBody(model.attributes.id, model.attributes.body);      
+      }
+    });
+    
+    var $expandAll = "<button class='btn btn-default expand-all'>+</button>";
+    $('.expand-minimize-all-posts').html($expandAll);
+  },
+  
   bodyToggle: function(event) {
     event.cancelBubble = true;
     if (event.stopPropagation) { event.stopPropagation(); }
@@ -49,6 +99,20 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     
     var post_id = $(event.target).data('id');
     var body = $(event.target).data('body');
+    var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
+    
+    if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
+      $contentTarget.html(body);
+      $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
+      $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
+    } else {
+      $contentTarget.html("");
+      $("span.glyphicon-minus[data-id='" + post_id + "']").removeClass('glyphicon-minus');
+      $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-plus');
+    }
+  },
+  
+  toggleBody: function(post_id, body) {
     var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
     
     if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {

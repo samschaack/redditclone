@@ -7,5 +7,9 @@ Sync.Collections.CommentComments = Backbone.Collection.extend({
   
   initialize: function(models, options) {
     this.comment = options.comment
+  },
+  
+  comparator: function(model) {
+    return -model.get('upvotes') + model.get('downvotes');
   }
 })

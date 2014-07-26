@@ -17,6 +17,13 @@ module Api
       end
     end
     
+    # def update
+    #   @post = Post.find(params[:id])
+    #   @post.update(post_params)
+    #
+    #   render json: @post
+    # end
+    
     def destroy
       
     end
