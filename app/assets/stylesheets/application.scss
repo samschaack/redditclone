@@ -157,7 +157,7 @@ body {
 //  border-left: 1px #DDD dotted;
 //  border-right: 1px #DDD dotted;
   padding-top: .5rem;
-  padding-left: 1rem;
+  margin-left: 1.2rem;
   padding-right: 1.5rem;
   margin-bottom: 1rem;
   border-radius: .4rem;
@@ -166,7 +166,7 @@ body {
   left: .9%;
 //  left: 3%;
   display: inline-block;
-  width: 91.75%;
+  width: 90.50%;
 //  width: 96.75%;
   
   //white-space: nowrap;
@@ -215,17 +215,18 @@ body {
 //  border-left: 1px #DDD dotted;
 //  border-right: 1px #DDD dotted;
   padding-top: .5rem;
-  padding-left: .2%;
+//  padding-left: .2%;
   padding-right: 1.5rem;
   margin-bottom: 1rem;
   border-radius: .4rem;
   margin-top: -.3rem;
+  margin-left: .5%;
 //  border: 1px red solid;
 //  left: .9%;
-  left: 3%;
+  left: 2.85%;
   display: inline-block;
 //  width: 91.75%;
-  width: 96.75%;
+  width: 96%;
   
   //white-space: nowrap;
   overflow-x: auto;
@@ -302,7 +303,7 @@ body {
     left: 2%;
     max-width: 4.5%;
     height: auto;
-    margin-left: 2rem;
+    margin-left: 2.3rem;
     margin-right: 2rem;
     vertical-align: top;
     text-shadow: 1px 1px #DDD;
@@ -467,6 +468,7 @@ body {
 
 .sub-stats {
   font-size: 60%;
+  margin-bottom: 3rem;
 }
 
 .post-score-wrapper {
@@ -489,6 +491,20 @@ body {
 //  top: 0%;
   top: -.4rem;
   left: 0%;
+  width: 1.5%;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  vertical-align: top;
+  text-shadow: 1px 1px #DDD;
+  text-align: center;
+  font-size: 75%;
+}
+
+.comment-vote-box {
+  display: inline-block;
+  position: absolute;
+  top: .4rem;
+  left: -.67%;
   width: 1.5%;
   margin-left: 2rem;
   margin-right: 2rem;
@@ -542,6 +558,8 @@ body {
   background: transparent;
   border: 1px #CCC solid;
   margin-right: .333rem;
+  position: absolute;
+  top: .045%;
   
   background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
   background: -webki t-linear-gradient(#FFF,#F6F6F6);
@@ -647,6 +665,7 @@ img {
 img.header {
   max-width: none;
   max-height: none;
+  padding-bottom: .8rem;
 }
 
 .comment-section {
@@ -758,16 +777,21 @@ a[class="btn text-post-select-button"]:hover {
   padding-bottom: .5rem;
   margin-bottom: .5rem;
   border-radius: .3rem;
+  position: relative;
 }
 
 .comment-header {
   font-size: 80%;
   margin-bottom: .25rem;
+  margin-left: 1.35%; //was 0
+//  border: 1px solid red;
 }
 
 .comment-content {
-  font-size: 100%;
+  font-size: 95%;
   margin-bottom: .5rem;
+  margin-left: 1.35%; //was 0
+//  border: 1px solid red;
 }
 
 .comment-reply {

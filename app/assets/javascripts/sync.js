@@ -26,6 +26,22 @@ $(document).ready(function(){
     Backbone.history.navigate('#/u');
   }
   
+  function signOut(event) {
+    event.preventDefault();
+    
+    $.ajax({
+      url: '/api/session',
+      type: 'DELETE',
+      data: formData,
+      success: function (thingy) {
+        Backbone.history.navigate("#", { trigger: true });
+      },
+      error: function () {
+        alert("error");
+      }
+    });
+  }
+  
   function navToLastPage() {
     // Backbone.history.navigate(window.Sync.lastPage);
   }
@@ -35,6 +51,8 @@ $(document).ready(function(){
   $('.sign-up-button').on('click', gotoSignUp);
   
   $('.sign-in-button').on('click', gotoSignIn);
+  
+  $('.sign-out-button').on('click', signOut);
   
   // $('#last-page-button').on('click', navToLastPage);
 });

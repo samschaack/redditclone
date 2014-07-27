@@ -13,7 +13,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     "click button.expand-body": "bodyToggle",
     "click div.thumbnail-post": "postShow",
     "click div.text-post": "postShow",
-    "click button.sign-out-button": "signOut",
+    "click button.sign-out-button": "signOut"
   },
   
   signOut: function(event) {

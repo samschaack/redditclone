@@ -1,21 +1,17 @@
 <div class="-page-header">
-  <h2 style="margin-bottom:2.6rem;margin-top:.5rem">front page &nbsp<span class="expand-minimize-all-posts"><button class="btn btn-default expand-all">+</button></span></h2>
+  <h2 style="margin-bottom:2.8rem;margin-top:.5rem">front page &nbsp<span class="expand-minimize-all-posts"><button class="btn btn-default expand-all">+</button></span></h2>
 </div>
 <div class="posts">
   <% posts.each(function(post, index) { %>
     <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
-      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.7rem;"><%= index + 1 %>
+      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.4%;"><%= index + 1 %>
       </div>
     <div class="score-box">
       <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></span></button>
       <div style="width:100%;text-align:center;">
         <% score = post.escape('upvotes') - post.escape('downvotes') %>
-        <% if (score > 0) { %>
-          <%= post.escape('upvotes') - post.escape('downvotes') %>
-        <% } else { %>
-          0
-        <% } %>
+        <%= score %>
       </div>
       <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></span></button>
     </div>

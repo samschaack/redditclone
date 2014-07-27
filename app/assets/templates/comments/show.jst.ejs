@@ -1,4 +1,8 @@
 <div class="comment" style="margin-left: 2rem;<% if (parseInt(comment.escape('indents')) % 2 === 1) { %>background-color: #F7F7F8;<% } else { %>background-color: white;<% } %>">
+  <div class="comment-vote-box">
+    <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></span></button>
+    <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></span></button>
+  </div>
   <div class="comment-header">
     <span style="color:#53ABDF;"><a href="#/u/<%= comment.escape('user') %>"><%= comment.escape('user') %></a></span> 
     <div class="date-time" data-id="<%= comment.escape('id') %>">

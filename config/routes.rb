@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
     
     resources :users, except: [:new, :edit]
-    resource :session
+    resource :session, only: [:create, :destroy]
   end
   
   get '/api/subs/:name', to: 'api/subs#get_sub_info'

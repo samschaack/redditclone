@@ -14,7 +14,7 @@
       <h3><% var url = post.escape('url') %>
       <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> 
       <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") { %>
-        <button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>" style="margin-bottom:.45rem;">
+        <button class="btn btn-sm expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>" style="margin-bottom:.45rem;">
         <span class="glyphicon glyphicon-plus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
         </button>
       <% } %>
@@ -43,7 +43,7 @@
       <button class="button-link post-reply" data-id="<%= post.escape('id') %>">reply</button>
     </div>
     <div class="comments-header">
-      comments:
+      <% if (numComments !== 0) { %>comments: <% } %>
     </div>
     <div class="comments">
       

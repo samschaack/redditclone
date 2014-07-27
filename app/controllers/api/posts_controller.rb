@@ -43,14 +43,18 @@ module Api
         current_user.subs.each do |sub|
           sub.posts.each do |post|
             @posts << post
+            break if @posts.length == 500
           end
+          break if @posts.length == 500
         end
+        
+        #@posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
         
         render :front_page
       else
         #give user all posts from default subs (all posts as of now)
-        @posts = Post.where("sub_id = '1'")
-        #render json: @posts
+        @posts = Post.all.where("sub_id = '1'").limit(500)
+        #@posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
         render :front_page
       end
     end

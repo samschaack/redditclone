@@ -12,11 +12,12 @@
       <% } %>
     </div>
   <% } else { %>
-    this sub doesn't exist yet. <a href="#">create?</a>
+    this sub doesn't exist yet. <a href="#/s/n">create?</a>
   <% } %>
 </div>
 <div class="posts">
   <% posts.each(function(post, index) { %>
+    <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
       <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.7rem"><%= index + 1 %>
       </div>
@@ -24,11 +25,7 @@
       <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></span></button>
       <div style="width:100%;text-align:center;">
         <% score = post.escape('upvotes') - post.escape('downvotes') %>
-        <% if (score > 0) { %>
-          <%= post.escape('upvotes') - post.escape('downvotes') %>
-        <% } else { %>
-          0
-        <% } %>
+        <%= score %>
       </div>
       <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></span></button>
     </div>
@@ -63,7 +60,7 @@
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>
       <div class="post-info-wrapper" data-id="<%= post.escape('id') %>">
         <div class="poster" data-id="<%= post.escape('id') %>">
-          <% var post_time = post.escape('created_at'); %>
+          <% var post_time = post.escape('created_at') %>
           by <%= post.escape('user') %> 
         </div>
         <div class="date-time" data-id="<%= post.escape('id') %>">

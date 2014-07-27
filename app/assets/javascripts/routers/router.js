@@ -1,6 +1,7 @@
 Sync.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "frontPage",
+    "s/n": "newSub",
     "s/:sub_name": "subPage",
     "p": "newPost",
     "p/t": "newTextPost",
@@ -33,6 +34,13 @@ Sync.Routers.Router = Backbone.Router.extend({
     this._swapView(newPostView);
   },
   
+  newSub: function() {
+    // var newSubView = new Sync.Views.NewSub({ user: 1 });
+    //
+    // $("#sub-navigate").attr("disabled", "disabled");
+    // this._swapView(newSubView);
+  },
+  
   newTextPost: function() {
     var newPostView = new Sync.Views.NewTextPost({ user: 1 });
     
@@ -43,6 +51,12 @@ Sync.Routers.Router = Backbone.Router.extend({
   frontPage: function() {
     //build home page (rails handles deciding which posts to send back?)
     
+    // Sync.Collections.posts.fetch();
+    
+    
+    //bad?
+    Sync.Collections.posts = new Sync.Collections.Posts;
+    Sync.Collections.posts.url = 'api/posts';
     Sync.Collections.posts.fetch();
     
     var frontPageView = new Sync.Views.FrontPage({
@@ -57,16 +71,25 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   subPage: function(sub_name) {
+    // Sync.Collections.posts.models.forEach(function(post) {
+    //   post.set('index', 0);
+    // });
+    
+    //bad?
     var sub = new Sync.Models.Sub;
     sub.url = 'api/subs/' + sub_name;
     sub.fetch();
     
-    var posts = new Sync.Collections.Posts;
-    posts.url = 'api/s/' + sub_name;
-    posts.fetch();
+    // var posts = new Sync.Collections.Posts;
+    // posts.url = 'api/s/' + sub_name;
+    // posts.fetch();
+    
+    Sync.Collections.posts = new Sync.Collections.Posts;
+    Sync.Collections.posts.url = 'api/s/' + sub_name;
+    Sync.Collections.posts.fetch();
     
     var subPageView = new Sync.Views.SubPage({
-      collection: posts,
+      collection: Sync.Collections.posts,
       sub: sub
     });
     

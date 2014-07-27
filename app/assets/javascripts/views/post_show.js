@@ -132,7 +132,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   },
   
   render: function() {
-    var renderedContent = this.template({ post: this.model });
+    var renderedContent = this.template({ post: this.model, numComments: this.model.comments().length });
     
     this.$el.html(renderedContent);
     this.attachSubviews();
