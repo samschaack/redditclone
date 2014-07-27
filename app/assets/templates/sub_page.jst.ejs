@@ -38,9 +38,9 @@
       <div class="thumbnail-section">
           <img src="<%= post.escape('url') %>" class="thumbail-image">
       </div>
-      <div class="thumbnail-post" data-id="<%= post.escape('id') %>">
+    <div class="thumbnail-post" style="<% if ((parseInt(index) + 1) % 2 === 0) { %>border-top: 2px #CCC dotted;<% } %>" data-id="<%= post.escape('id') %>">
     <% } else { %>
-      <div class="text-post" data-id="<%= post.escape('id') %>">
+      <div class="text-post" style="<% if ((parseInt(index) + 1) % 2 === 0) { %>border-top: 2px #CCC dotted;<% } %>" data-id="<%= post.escape('id') %>">
     <% } %>
       <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
@@ -56,9 +56,9 @@
         </button>
       <% } %>
       <% if (post.escape('url')) { %>
-        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a>
+        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> <span style="color:#5FAEDF;">·</span>
       <% } else { %>
-        <%= post.escape('title') %> - text
+        <%= post.escape('title') %> - text <span style="color:#5FAEDF;">·</span>
       <% } %>
       </div>
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>

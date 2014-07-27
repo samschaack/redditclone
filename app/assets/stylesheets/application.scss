@@ -6,12 +6,13 @@ $navbar-default-bg: black;
 html {
   background-color: #E3F5FF;
   
-  background-image: -moz-linear-gradient(top, #E3F5FF, #FFF);
-  background-image: -ms-linear-gradient(top, #E3F5FF, #FFF);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E3F5FF), to(#FFF));
-  background-image: -webkit-linear-gradient(top, #E3F5FF, #FFF);
-  background-image: -o-linear-gradient(top, #E3F5FF, #FFF);
-  background-image: linear-gradient(top, #E3F5FF, #FFF);
+//  background-image: -moz-linear-gradient(top, #E3F5FF, #FFF);
+//  background-image: -ms-linear-gradient(top, #E3F5FF, #FFF);
+//  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E3F5FF), to(#FFF));
+//  background-image: -webkit-linear-gradient(top, #E3F5FF, #FFF);
+//  background-image: -o-linear-gradient(top, #E3F5FF, #FFF);
+//  background-image: linear-gradient(top, #E3F5FF, #FFF);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#E3F5FF), to(#FFF));
   background-attachment: fixed;
 
   /* IE8-9 gradient filter */
@@ -48,13 +49,15 @@ body {
 .navbar-default {
   background-color: #FFF;
   
-  background-image: -moz-linear-gradient(top, #FCFCFC, #FFF);
-  background-image: -ms-linear-gradient(top, #FCFCFC, #FFF);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FCFCFC), to(#FFF));
-  background-image: -webkit-linear-gradient(top, #FCFCFC, #FFF);
-  background-image: -o-linear-gradient(top, #FCFCFC, #FFF);
-  background-image: linear-gradient(top, #FCFCFC, #FFF);
+//  background-image: -moz-linear-gradient(top, #FCFCFC, #FFF);
+//  background-image: -ms-linear-gradient(top, #FCFCFC, #FFF);
+//  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FCFCFC), to(#FFF));
+//  background-image: -webkit-linear-gradient(top, #FCFCFC, #FFF);
+//  background-image: -o-linear-gradient(top, #FCFCFC, #FFF);
+//  background-image: linear-gradient(top, #FCFCFC, #FFF);
   background-repeat: repeat-x;
+  
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#FAFAFA), to(#FFF));
   
   -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, .375);
   -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, .375);
@@ -153,7 +156,7 @@ body {
 .thumbnail-post {
   min-height: 6rem;
   position: relative;
-  border-top: 2px #CCC dotted;
+  border-top: 2px #BBB dotted;
 //  border-left: 1px #DDD dotted;
 //  border-right: 1px #DDD dotted;
   padding-top: .5rem;
@@ -211,7 +214,7 @@ body {
 .text-post {
   min-height: 6rem;
   position: relative;
-  border-top: 2px #CCC dotted;
+  border-top: 2px #BBB dotted;
 //  border-left: 1px #DDD dotted;
 //  border-right: 1px #DDD dotted;
   padding-top: .5rem;
@@ -551,7 +554,7 @@ body {
 
 .post-section {
   padding-bottom: 1rem;
-  margin-right: .5rem;
+  margin-right: 2rem;
   border-bottom: thin #CCC solid;
 //  padding-left: 1.5rem;
 }
@@ -568,7 +571,7 @@ body {
   top: .045%;
   
   background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
-  background: -webki t-linear-gradient(#FFF,#F6F6F6);
+  background: -webkit-linear-gradient(#FFF,#F6F6F6);
   background: -moz-linear-gradient(#FFF,#F6F6F6);
   background: -ms-linear-gradient(#FFF,#F6F6F6);
   background: -o-linear-gradient(#FFF,#F6F6F6);
@@ -673,6 +676,8 @@ img.header {
   max-height: none;
   padding-bottom: .8rem;
   margin-right: .5rem;
+//  -webkit-box-reflect: below 0px;
+  -webkit-box-reflect: below -18px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(40%, transparent), to(rgba(255,255,255,0.5)));
 }
 
 .comment-section {
