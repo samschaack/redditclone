@@ -53,7 +53,6 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     // Sync.Collections.posts.fetch();
     
-    
     //bad?
     Sync.Collections.posts = new Sync.Collections.Posts;
     Sync.Collections.posts.url = 'api/posts';
@@ -71,10 +70,6 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   subPage: function(sub_name) {
-    // Sync.Collections.posts.models.forEach(function(post) {
-    //   post.set('index', 0);
-    // });
-    
     //bad?
     var sub = new Sync.Models.Sub;
     sub.url = 'api/subs/' + sub_name;

@@ -19,15 +19,19 @@
   <% posts.each(function(post, index) { %>
     <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
-      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.7rem"><%= index + 1 %>
+      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.7rem"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#787878;"><%= index + 1 %></span><% } else { %><%= index + 1 %><% } %>
       </div>
     <div class="score-box">
-      <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      <button class="btn btn-xs upvote">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </button>
       <div style="width:100%;text-align:center;">
         <% score = post.escape('upvotes') - post.escape('downvotes') %>
         <%= score %>
       </div>
-      <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></span></button>
+      <button class="btn btn-xs downvote">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
     </div>
     <% var url = post.escape('url')%>
     <% if (url && (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png")) { %>
@@ -61,7 +65,7 @@
       <div class="post-info-wrapper" data-id="<%= post.escape('id') %>">
         <div class="poster" data-id="<%= post.escape('id') %>">
           <% var post_time = post.escape('created_at') %>
-          by <%= post.escape('user') %> 
+          by <a href="#/u/<%= post.escape('user') %>"><%= post.escape('user') %></a> 
         </div>
         <div class="date-time" data-id="<%= post.escape('id') %>">
           <% post_time = new Date(post.escape('created_at')) %>

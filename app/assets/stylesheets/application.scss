@@ -153,7 +153,7 @@ body {
 .thumbnail-post {
   min-height: 6rem;
   position: relative;
-  border-top: 2px #DDD dotted;
+  border-top: 2px #CCC dotted;
 //  border-left: 1px #DDD dotted;
 //  border-right: 1px #DDD dotted;
   padding-top: .5rem;
@@ -211,7 +211,7 @@ body {
 .text-post {
   min-height: 6rem;
   position: relative;
-  border-top: 2px #DDD dotted;
+  border-top: 2px #CCC dotted;
 //  border-left: 1px #DDD dotted;
 //  border-right: 1px #DDD dotted;
   padding-top: .5rem;
@@ -337,6 +337,7 @@ body {
   width: 20rem;
   margin-left: -10rem;
   border: thin #666 solid;
+  opacity: .8;
   
   background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
   background: -webkit-linear-gradient(#FFF,#EEE);
@@ -356,6 +357,7 @@ body {
   background-color: #5CBAFF;
   border: thin #5CBAFF solid;
   color: white;
+  opacity: 1;
 }
 
 #sub-navigate-button {
@@ -419,11 +421,12 @@ body {
 #make-post {
   border: thin #666 solid;
   position: absolute;
-  left: 90%;
+  left: 89.6%;
   bottom: 17%;
   width: 20rem;
   margin-left: -10rem;
   border: thin #666 solid;
+  opacity: .8;
   
   background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
   background: -webkit-linear-gradient(#FFF,#EEE);
@@ -437,16 +440,18 @@ body {
   background-color: #5CBAFF;
   border: thin #5CBAFF solid;
   color: #53ABDF;
+  opacity: 1;
 }
 
 #last-page-button {
   border: thin #666 solid;
   position: absolute;
-  left: 10%;
+  left: 10.5%;
   bottom: 17%;
   width: 20rem;
   margin-left: -8.95rem;
   border: thin #666 solid;
+  opacity: .8;
   
   background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#EEE));
   background: -webkit-linear-gradient(#FFF,#EEE);
@@ -460,6 +465,7 @@ body {
   background-color: #5CBAFF;
   border: thin #5CBAFF solid;
   color: #53ABDF;
+  opacity: 1;
 }
 
 .btn {
@@ -666,6 +672,7 @@ img.header {
   max-width: none;
   max-height: none;
   padding-bottom: .8rem;
+  margin-right: .5rem;
 }
 
 .comment-section {
