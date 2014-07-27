@@ -14,6 +14,7 @@
         at <%= comment_time.toTimeString().slice(0, 5) %>am on <%= comment_time.toDateString() %>
       <% } %>
     </div>
+    <button class="button-link comment-minimize" data-id="<%= comment.escape('id') %>" data-indents="<%= comment.escape('indents') %>">[-]</button>
   </div>
   <div class="comment-content">
     <%= comment.escape('body') %>

@@ -18,6 +18,10 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     
     this.model.comments().each(this.addComment.bind(this));
     this.model.comments().fetch();
+    
+    $('a').click(function(event){
+        event.stopImmediatePropagation();
+    });
   },
   
   events: {

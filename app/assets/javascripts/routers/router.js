@@ -2,13 +2,13 @@ Sync.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "frontPage",
     "s/n": "newSub",
-    "s/:sub_name": "subPage",
+    "s/:subName": "subPage",
     "p": "newPost",
     "p/t": "newTextPost",
     "p/:index": "postShow",
     "p/c/:id": "postClickShow",
     "u": "newSession",
-    "u/new": "newUser",
+    "u/n": "newUser",
     "u/me": "accountPage",
     "u/:id": "userPage"
   },
@@ -35,10 +35,10 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   newSub: function() {
-    // var newSubView = new Sync.Views.NewSub({ user: 1 });
-    //
-    // $("#sub-navigate").attr("disabled", "disabled");
-    // this._swapView(newSubView);
+    var newSubView = new Sync.Views.NewSub();
+
+    $("#sub-navigate").attr("disabled", "disabled");
+    this._swapView(newSubView);
   },
   
   newTextPost: function() {
@@ -69,18 +69,18 @@ Sync.Routers.Router = Backbone.Router.extend({
     this._swapView(frontPageView);
   },
   
-  subPage: function(sub_name) {
+  subPage: function(subName) {
     //bad?
     var sub = new Sync.Models.Sub;
-    sub.url = 'api/subs/' + sub_name;
+    sub.url = 'api/subs/' + subName;
     sub.fetch();
     
     // var posts = new Sync.Collections.Posts;
-    // posts.url = 'api/s/' + sub_name;
+    // posts.url = 'api/s/' + subName;
     // posts.fetch();
     
     Sync.Collections.posts = new Sync.Collections.Posts;
-    Sync.Collections.posts.url = 'api/s/' + sub_name;
+    Sync.Collections.posts.url = 'api/s/' + subName;
     Sync.Collections.posts.fetch();
     
     var subPageView = new Sync.Views.SubPage({
@@ -89,7 +89,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     });
     
     // Sync.lastPage = "s";
-    Sync.lastPage = "#/s/" + sub_name;
+    Sync.lastPage = "#/s/" + subName;
     
     $("#sub-navigate").removeAttr("disabled"); 
     this._swapView(subPageView);

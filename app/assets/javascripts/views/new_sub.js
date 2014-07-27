@@ -6,7 +6,7 @@ Sync.Views.NewSub = Backbone.View.extend({
   },
   
   initialize: function(options) {
-    this.user = options.user;
+    // this.user = current_user
   },
   
   submit: function() {
@@ -24,7 +24,7 @@ Sync.Views.NewSub = Backbone.View.extend({
   },
   
   render: function() {
-    var renderedContent = this.template({ user: this.user });
+    var renderedContent = this.template();   // this.user = current_user
     
     this.$el.html(renderedContent);
     
