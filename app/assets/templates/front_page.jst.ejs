@@ -8,14 +8,14 @@
       <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#8A8A8A;"><%= index + 1 %></span><% } else { %><span style="color:#737373;"><%= index + 1 %></span><% } %>
       </div>
     <div class="score-box">
-      <button class="btn btn-xs upvote">
+      <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
         <span class="glyphicon glyphicon-chevron-up"></span>
       </button>
       <div style="width:100%;text-align:center;">
         <% score = post.escape('upvotes') - post.escape('downvotes') %>
         <%= score %>
       </div>
-      <button class="btn btn-xs downvote">
+      <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
         <span class="glyphicon glyphicon-chevron-down"></span>
       </button>
     </div>

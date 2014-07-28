@@ -23,7 +23,7 @@ Sync.Views.SignIn = Backbone.CompositeView.extend({
     Backbone.history.navigate('#', { trigger: true });
     
     $('.sign-out-button').toggleClass('invisible');
-    $('.profile-header').html("signed in as " + user.username)
+    $('.profile-header').html("signed in as <a href='#/u/me'>" + user.username + "</a>");
     $('.profile-header').toggleClass('invisible');
     $('.sign-in-button').toggleClass('invisible');
     $('.sign-up-button').toggleClass('invisible');

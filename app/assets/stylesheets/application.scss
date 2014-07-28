@@ -840,6 +840,18 @@ a[class="btn text-post-select-button"]:hover {
   outline: none;
 }
 
+.link-button {
+  background:none!important;
+  border:none; 
+  padding:0!important;
+  cursor: pointer;
+  color: #428BCA;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
 .post-reply {
   margin-left: .5rem;
   margin-bottom: .5rem;

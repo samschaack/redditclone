@@ -32,6 +32,7 @@ module Api
     def sub_page
       @posts = Sub.find_by_name(params[:name]).posts
       @sub = Sub.find_by_name(params[:name])
+      @submembership = SubMembership.where(["sub_id = ? AND user_id = ?", @sub.id, current_user.id])
       
       render :sub_page
     end

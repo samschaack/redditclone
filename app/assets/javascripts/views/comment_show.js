@@ -49,7 +49,7 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     comment.save({}, {
       success: function(comment) {
         $("#sub-navigate").removeAttr("disabled");
-        comment.attributes.user = "you";
+        comment.attributes.user = comment.attributes.user;
         var commentView = new Sync.Views.CommentShow({ model: comment });
         $('.sub-comments-' + commentId).append(commentView.render().$el);
         view.removeCommentFormNoEvent(commentId);

@@ -14,7 +14,9 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     "click button.expand-image": "imageToggle",
     "click button.expand-body": "bodyToggle",
     "click div.thumbnail-post": "postShow",
-    "click div.text-post": "postShow"
+    "click div.text-post": "postShow",
+    "click button.subscribe": "subscribe",
+    "click button.unsubscribe": "unsubscribe"
   },
   
   postShow: function(event) {
@@ -134,6 +136,36 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
   gotoPage: function(event) {
     event.preventDefault();
     Backbone.history.navigate("#/" + $("#sub-navigate").val());
+  },
+  
+  subscribe: function(event) {
+    event.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '/api/sub_memberships',
+      data: {
+        sub: this.sub.attributes.name
+      },
+      success: function(data) {
+        $('.subscribe-section').html(' - ✓');
+        $('.unsubscribe-section').html('<span class="unsubscribe-section"> - <button class="link-button unsubscribe">unsubscribe</button></span>')
+      }
+    });
+  },
+
+  unsubscribe: function(event) {
+    event.preventDefault();
+    $.ajax({
+      type: 'DELETE',
+      url: '/api/sub_memberships',
+      data: {
+        sub: this.sub.attributes.name
+      },
+      success: function(data) {
+        $('.unsubscribe-section').html(' - ✓');
+        $('.subscribe-section').html('<span class="subscribe-section"> - <button class="link-button subscribe">subscribe</button></span>')
+      }
+    });
   },
   
   render: function() {
