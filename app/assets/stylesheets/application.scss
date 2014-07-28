@@ -77,8 +77,9 @@ body {
 
 .profile-header {
   position: absolute;
-  left: 84.25%;
+  right: 8.28%;
   top: 37%;
+  min-width: 4.3%;
 }
 
 //a { color: #53ABDF; }
@@ -859,4 +860,17 @@ a[class="btn text-post-select-button"]:hover {
 .new-post-comment {
   margin-left: 1rem;
   margin-bottom: .5rem;
+}
+
+.account-page {
+  position: absolute;
+  border: 2px solid #BBB;
+  border-radius: .5rem;
+  padding: 1.5%;
+  width: 45%;
+  margin-left: -22.5%;
+  left: 50%;
+  top: 12rem;
+  height: 58rem;
+  background-color: white;
 }

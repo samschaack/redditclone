@@ -73,7 +73,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     event.preventDefault();
     
     var params = $("textarea.new-post-comment-text").serializeJSON();
-    params["comment"]["user_id"] = 1;
+    params["comment"]["user"] = Sync.Models.session.username;
     params["comment"]["commentable_id"] = this.model.attributes.id;
     params["comment"]["commentable_type"] = "Post";
     

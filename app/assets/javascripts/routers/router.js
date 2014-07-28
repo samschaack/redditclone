@@ -163,6 +163,12 @@ Sync.Routers.Router = Backbone.Router.extend({
     $('#last-page-button').on('click', this.navToLastPage);
   },
   
+  accountPage: function() {
+    var accountPageView = new Sync.Views.AccountView();
+    
+    this._swapView(accountPageView);
+  },
+  
   _swapView: function(newView) {
     if (this.currentView) {
       this.currentView.remove();

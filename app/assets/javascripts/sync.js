@@ -14,6 +14,16 @@ window.Sync = {
       Sync.Models.session.points = userInfo.split(" ")[1];
       Sync.Models.session.email = userInfo.split(" ")[2];
     }
+  },
+  setSession: function(user) {
+    var userInfo = user.info;
+    
+    if (userInfo !== "none") {
+      Sync.Models.session = {};
+      Sync.Models.session.username = userInfo.split(" ")[0];
+      Sync.Models.session.points = userInfo.split(" ")[1];
+      Sync.Models.session.email = userInfo.split(" ")[2];
+    }
   }
 };
 

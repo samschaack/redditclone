@@ -1,10 +1,11 @@
 module Api
   class PostsController < ApiController
-    wrap_parameters :post, include: [:title, :url, :body, :user_id, :sub]
+    wrap_parameters :post, include: [:title, :url, :body, :sub, :user]
     
     def create
       @post = Post.new(post_params)
       @post.sub_id = Sub.find_by_name(params[:post][:sub]).id
+      @post.user_id = User.find_by_username(params[:post][:user]).id
       
       if !@post.sub_id
         flash[:errors] = "that sub doesn't exist"
@@ -72,7 +73,7 @@ module Api
     private
     
     def post_params
-      params.require(:post).permit(:title, :url, :body, :user_id) #no user_id
+      params.require(:post).permit(:title, :url, :body) #no user_id
     end
   end
 end
