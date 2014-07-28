@@ -1,11 +1,23 @@
 <div class="-page-header">
-  <h2 style="margin-bottom:2.8rem;margin-top:.5rem">front page &nbsp<span class="expand-minimize-all-posts"><button class="btn btn-default expand-all">+</button></span></h2>
+  <h2 style="margin-bottom:2.8rem;margin-top:.5rem">front page &nbsp
+    <span class="expand-minimize-all-posts">
+      <button class="btn btn-default expand-all">+</button>
+    </span>
+    <% if (!Sync.Models.session) { %>
+      <span class="commands-link">
+        <button class="link-button commands" style="color:red;">[goto commands]</button>
+        <span style="color:inherit;font-size:80%;">
+          (look at the bottom of the screen)
+        </span>
+      </span>
+    <% } %>
+  </h2>
 </div>
 <div class="posts">
   <% posts.each(function(post, index) { %>
     <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
-      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#8A8A8A;"><%= index + 1 %></span><% } else { %><span style="color:#737373;"><%= index + 1 %></span><% } %>
+      <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#9A9A9A;"><%= index + 1 %></span><% } else { %><span style="color:#737373;"><%= index + 1 %></span><% } %>
       </div>
     <div class="score-box">
       <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">

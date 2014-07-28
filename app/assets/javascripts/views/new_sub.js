@@ -47,7 +47,7 @@ Sync.Views.NewSub = Backbone.View.extend({
     if (this.subName) {
       renderedContent = this.template({ subName: this.subName });
     } else {
-      renderedContent = this.template();
+      renderedContent = this.template({ subName: null });
     }
     
     this.$el.html(renderedContent);

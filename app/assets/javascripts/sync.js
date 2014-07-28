@@ -14,6 +14,8 @@ window.Sync = {
       Sync.Models.session.points = userInfo.split(" ")[1];
       Sync.Models.session.email = userInfo.split(" ")[2];
     }
+    
+    Sync.setMessage("welcome");
   },
   
   setSession: function(user) {

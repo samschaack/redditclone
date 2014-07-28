@@ -1,8 +1,8 @@
 Sync.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "frontPage",
-    "s/n/:subName": "newSubWithName",
     "s/n": "newSub",
+    "s/n/:subName": "newSubWithName",
     "s/:subName": "subPage",
     "p": "newPost",
     "p/t": "newTextPost",
@@ -40,17 +40,27 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   newSub: function() {
-    var newSubView = new Sync.Views.NewSub();
+    if (Sync.Models.session) {
+      var newSubView = new Sync.Views.NewSub();
 
-    $("#sub-navigate").attr("disabled", "disabled");
-    this._swapView(newSubView);
+      $("#sub-navigate").attr("disabled", "disabled");
+      this._swapView(newSubView);
+    } else {
+      Sync.setAlert("can only create subs when signed in");
+      Backbone.history.navigate("#", { trigger: true });
+    }
   },
   
   newSubWithName: function(subName) {
-    var newSubView = new Sync.Views.NewSub({ subName: subName });
+    if (Sync.Models.session) {
+      var newSubView = new Sync.Views.NewSub({ subName: subName });
 
-    $("#sub-navigate").attr("disabled", "disabled");
-    this._swapView(newSubView);
+      $("#sub-navigate").attr("disabled", "disabled");
+      this._swapView(newSubView);
+    } else {
+      Sync.setAlert("can only create subs when signed in");
+      Backbone.history.navigate("#", { trigger: true });
+    }
   },
   
   newTextPost: function() {
