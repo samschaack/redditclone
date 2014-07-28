@@ -13,7 +13,9 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     "click button.expand-body": "bodyToggle",
     "click div.thumbnail-post": "postShow",
     "click div.text-post": "postShow",
-    "click button.sign-out-button": "signOut"
+    "click button.sign-out-button": "signOut",
+    "click .upvote": "upvote",
+    "click .downvote": "downvote"
   },
   
   signOut: function(event) {
@@ -135,6 +137,14 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     if (post_id !== undefined) {
       Backbone.history.navigate("#/p/c/" + post_id);
     }
+  },
+  
+  upvote: function(event) {
+    event.preventDefault();
+  },
+  
+  downvote: function(event) {
+    event.preventDefault();
   },
   
   render: function() {

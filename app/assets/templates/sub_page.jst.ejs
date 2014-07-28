@@ -23,7 +23,8 @@
       </span>
     </div>
   <% } else { %>
-    this sub doesn't exist yet. <a href="#/s/n">create?</a>
+    <% var url = Backbone.history.fragment %>
+    <%= url %> - this sub doesn't exist yet. <a href="#/s/n/<%= url.slice(2, url.length) %>">create?</a>
   <% } %>
 </div>
 <div class="posts">
@@ -91,5 +92,5 @@
       </div>
     </div>
   <% }) %>
-  <a href="#" style="margin-left: 1rem;"><< front page</a>
+  <a href="#" style="margin-left: 1rem;">< front page</a>
 </div>

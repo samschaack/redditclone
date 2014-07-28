@@ -85,6 +85,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
         comment.attributes.user = Sync.Models.session.username;
         view.addComment(comment);
         view.removeNewPostCommentFormNoEvent();
+        Sync.setMessage("comment created");
       }
     });
   },

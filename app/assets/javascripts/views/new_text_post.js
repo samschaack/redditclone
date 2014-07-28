@@ -20,6 +20,7 @@ Sync.Views.NewTextPost = Backbone.View.extend({
     post.save({}, {
       success: function(post) {
         Backbone.history.navigate("#/p/c/" + post.id, { trigger: true });
+        Sync.setMessage("post created");
       }
     });
   },

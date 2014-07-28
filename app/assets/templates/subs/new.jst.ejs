@@ -3,14 +3,18 @@
     <label>
       name
     </label>
-    <input type="text" name="sub[name]" class="form-control">
+    <% if (subName) { %>
+      <input type="text" name="sub[name]" value="<%= subName %>" class="form-control">
+    <% } else { %>
+      <input type="text" name="sub[name]" class="form-control">  
+    <% } %>
     <br>
     <label>
       description/rules
     </label>
     <textarea rows="15" name="sub[description]" class="form-control" style="white-space: pre-wrap;"></textarea>
     <br>
-    <input type="hidden" name="sub[owner_id]" value="1"> <!-- current_user.id -->
+    <input type="hidden" name="sub[owner]" value="<%= Sync.Models.session.username %>">
     <button class="btn btn-success new-sub-button form-control">create</button>
   </form>
 </div>

@@ -6,7 +6,9 @@ Sync.Views.NewSub = Backbone.View.extend({
   },
   
   initialize: function(options) {
-    // this.user = current_user
+    if (options) {
+      this.subName = options.subName;
+    }
   },
   
   submit: function() {
@@ -18,13 +20,35 @@ Sync.Views.NewSub = Backbone.View.extend({
     
     sub.save({}, {
       success: function(sub) {
-        Backbone.history.navigate("#/s/" + sub.name, { trigger: true });
+        $.ajax({
+          type: 'POST',
+          url: '/api/sub_memberships',
+          data: {
+            sub: sub.attributes.name
+          },
+          success: function(data) {
+            Sync.setMessage("sub created");
+            Backbone.history.navigate("#/s/" + sub.attributes.name, { trigger: true });
+            $('.subscribe-section').html(' - ✓');
+        
+            setTimeout(function() {
+              $('.subscribe-section').html('');
+              $('.unsubscribe-section').html('<span class="unsubscribe-section"> - <button class="link-button unsubscribe">unsubscribe</button></span>')
+            }, 3000)
+          }
+        });
       }
     });
   },
   
   render: function() {
-    var renderedContent = this.template();   // this.user = current_user
+    var renderedContent;
+    
+    if (this.subName) {
+      renderedContent = this.template({ subName: this.subName });
+    } else {
+      renderedContent = this.template();
+    }
     
     this.$el.html(renderedContent);
     

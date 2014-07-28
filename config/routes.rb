@@ -10,7 +10,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:index]
     end
     
+    resources :subs, only: [:create, :index]
     resources :sub_memberships, only: [:create]
+    
+    resources :votes, only: [:create, :destroy]
     
     resources :users, except: [:new, :edit]
     resource :session, only: [:create, :destroy]

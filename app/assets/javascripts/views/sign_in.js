@@ -32,10 +32,12 @@ Sync.Views.SignIn = Backbone.CompositeView.extend({
     Sync.Models.session.username = user.username;
     Sync.Models.session.points = user.points;
     Sync.Models.session.email = user.email;
+    
+    Sync.setMessage("success");
   },
   
   signInFailure: function() {
-    
+    Sync.setAlert("invalid username/password combo");
   },
   
   render: function() {

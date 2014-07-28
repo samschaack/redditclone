@@ -1,6 +1,7 @@
 Sync.Routers.Router = Backbone.Router.extend({
   routes: {
     "": "frontPage",
+    "s/n/:subName": "newSubWithName",
     "s/n": "newSub",
     "s/:subName": "subPage",
     "p": "newPost",
@@ -28,14 +29,25 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   newPost: function() {
-    var newPostView = new Sync.Views.NewPost({ user: 1 });
+    if (Sync.Models.session) {
+      var newPostView = new Sync.Views.NewPost({ user: 1 });
     
-    $("#sub-navigate").attr("disabled", "disabled"); 
-    this._swapView(newPostView);
+      $("#sub-navigate").attr("disabled", "disabled"); 
+      this._swapView(newPostView);
+    } else {
+      Sync.setAlert("must be signed in to post")
+    }
   },
   
   newSub: function() {
     var newSubView = new Sync.Views.NewSub();
+
+    $("#sub-navigate").attr("disabled", "disabled");
+    this._swapView(newSubView);
+  },
+  
+  newSubWithName: function(subName) {
+    var newSubView = new Sync.Views.NewSub({ subName: subName });
 
     $("#sub-navigate").attr("disabled", "disabled");
     this._swapView(newSubView);

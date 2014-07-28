@@ -82,6 +82,20 @@ body {
   min-width: 4.3%;
 }
 
+.alerts {
+  position: absolute;
+  left: 15.28%;
+  top: 37%;
+  color: red;
+}
+
+.messages {
+  position: absolute;
+  left: 15.28%;
+  top: 37%;
+  color: #00CF0B;
+}
+
 //a { color: #53ABDF; }
 
 //.navbar-default:hover {

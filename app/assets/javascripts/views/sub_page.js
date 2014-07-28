@@ -147,8 +147,12 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
         sub: this.sub.attributes.name
       },
       success: function(data) {
-        $('.subscribe-section').html(' - ✓');
-        $('.unsubscribe-section').html('<span class="unsubscribe-section"> - <button class="link-button unsubscribe">unsubscribe</button></span>')
+        $('.subscribe-section').html(' - <span style="color: #00CF0B;">✓</span>');
+        
+        setTimeout(function() {
+          $('.subscribe-section').html('');
+          $('.unsubscribe-section').html('<span class="unsubscribe-section"> - <button class="link-button unsubscribe">unsubscribe</button></span>')
+        }, 2000)
       }
     });
   },
@@ -162,8 +166,11 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
         sub: this.sub.attributes.name
       },
       success: function(data) {
-        $('.unsubscribe-section').html(' - ✓');
-        $('.subscribe-section').html('<span class="subscribe-section"> - <button class="link-button subscribe">subscribe</button></span>')
+        $('.unsubscribe-section').html(' - <span style="color: #00CF0B;">✓</span>');
+        
+        setTimeout(function() {
+          $('.unsubscribe-section').html('');
+        }, 2000)
       }
     });
   },
