@@ -3,7 +3,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     "": "frontPage",
     "s/n": "newSub",
     "s/n/:subName": "newSubWithName",
-    "s/all": "subDirectory",
+    "s/a": "subDirectory",
     "s/:subName": "subPage",
     "p": "newPost",
     "p/t": "newTextPost",
@@ -48,7 +48,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       this._swapView(newSubView);
     } else {
       Sync.setAlert("must be signed in to create a sub");
-      Backbone.history.navigate("#", { trigger: true });
+      Backbone.history.navigate(Backbone.history.fragment, { trigger: true });
     }
   },
   
@@ -66,7 +66,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       this._swapView(newSubView);
     } else {
       Sync.setAlert("must be signed in to create a sub");
-      Backbone.history.navigate("#", { trigger: true });
+      Backbone.history.navigate(Backbone.history.fragment, { trigger: true });
     }
   },
   
@@ -159,6 +159,8 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   setButtonEvents: function() {
+    var router = this;
+    
     $("#sub-navigate").val("");
     $("#sub-navigate").blur();
     
@@ -166,27 +168,24 @@ Sync.Routers.Router = Backbone.Router.extend({
       $('html').keypress(function(e) {
         if (e.which == 96) {
           $("#sub-navigate").removeAttr("disabled"); 
+        } else if (e.which == 98) {
+          document.getElementById("sub-navigate").focus();
         } else if (e.which == 102) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 112) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 115) {
           document.getElementById("sub-navigate").focus();
+        } else if (e.which == 116) {
+          document.getElementById("sub-navigate").focus();
         } else if (e.which == 117) {
           document.getElementById("sub-navigate").focus();
         }
       });
+      
+      this.lastPage = Backbone.history.fragment
     
-      $('#sub-navigate').keypress(function(e) {
-        if (e.which == 13) {
-          e.preventDefault();
-          if ($('#sub-navigate').val() == "f") {
-            Backbone.history.navigate("#", { trigger: true });
-          } else {
-            Backbone.history.navigate("#/" + $("#sub-navigate").val());
-          }
-        }
-      });
+
     }
     
     $('#last-page-button').on('click', this.navToLastPage);

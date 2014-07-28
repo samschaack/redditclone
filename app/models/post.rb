@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body, unless: :url
   
   has_many :votes, as: :voteable
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   
   belongs_to :user
   belongs_to :sub

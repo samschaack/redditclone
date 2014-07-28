@@ -139,7 +139,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
   
   showCommands: function(event) {
     event.preventDefault();
-    $('.commands-link').html("f - front-page | s/name - sub | s/n - new sub | u , u/n - signin/signup | u/me - your profile | p/index - show post with number index on current page | p - post | p/t - text-post")
+    $('.commands-link').html("<span style='font-size: 90%'>f - front-page | s/a - sub directory | s/name - sub | s/n - new sub | u , u/n - signin/signup | u/me - your profile | p/index - show post with number index on current page | p - post | p/t - text-post</span>")
   },
   
   upvote: function(event) {

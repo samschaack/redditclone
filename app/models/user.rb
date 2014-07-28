@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :votes
-  has_many :sub_memberships
+  has_many :sub_memberships, dependent: :destroy
   has_many :subs, through: :sub_memberships
   has_many :owned_subs, class_name: "Sub", foreign_key: :owner_id
   
