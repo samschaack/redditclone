@@ -46,7 +46,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       $("#sub-navigate").attr("disabled", "disabled");
       this._swapView(newSubView);
     } else {
-      Sync.setAlert("can only create subs when signed in");
+      Sync.setAlert("must be signed in to create a sub");
       Backbone.history.navigate("#", { trigger: true });
     }
   },
@@ -58,7 +58,7 @@ Sync.Routers.Router = Backbone.Router.extend({
       $("#sub-navigate").attr("disabled", "disabled");
       this._swapView(newSubView);
     } else {
-      Sync.setAlert("can only create subs when signed in");
+      Sync.setAlert("must be signed in to create a sub");
       Backbone.history.navigate("#", { trigger: true });
     }
   },
@@ -186,9 +186,16 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   accountPage: function() {
-    var accountPageView = new Sync.Views.AccountView();
+    var accountPageView = new Sync.Views.AccountPage();
     
     this._swapView(accountPageView);
+  },
+  
+  userPage: function(id) {
+    var user = Sync.Collections.users.getOrFetch(id);
+    var userPageView = new Sync.Views.UserShow({ user: user });
+    
+    this._swapView(userPageView);
   },
   
   _swapView: function(newView) {

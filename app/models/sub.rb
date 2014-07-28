@@ -9,6 +9,6 @@ class Sub < ActiveRecord::Base
   belongs_to :user, foreign_key: :owner_id
   
   def num_users
-    self.users.length + 1
+    self.users.length
   end
 end

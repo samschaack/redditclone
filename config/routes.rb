@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   get '/api/posts', to: 'api/posts#front_page'
   get '/api/s/:name', to: 'api/posts#sub_page'
   delete '/api/sub_memberships', to: 'api/sub_memberships#destroy'
+  get '/api/current', to: 'api/users#current'
 end

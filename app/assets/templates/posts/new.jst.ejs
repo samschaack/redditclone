@@ -17,7 +17,7 @@
     <label>
       sub
     </label>
-    <input type="text" name="post[sub]" class="form-control">
+    <input type="text" name="post[sub]" value="<% if (Sync.lastPage) { %><%= Sync.lastPage %><% } %>" class="form-control">
     <br>
     (pics, science, videos, music, etc.)
     <br>

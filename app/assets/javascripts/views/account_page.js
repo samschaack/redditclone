@@ -1,4 +1,4 @@
-Sync.Views.AccountView = Backbone.View.extend({
+Sync.Views.AccountPage = Backbone.View.extend({
   template: JST["users/profile"],
   
   initialize: function() {

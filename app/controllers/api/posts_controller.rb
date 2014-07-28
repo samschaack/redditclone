@@ -8,10 +8,9 @@ module Api
       @post.user_id = User.find_by_username(params[:post][:user]).id
       
       if !@post.sub_id
-        flash[:errors] = "that sub doesn't exist"
-        render json: flash[:errors]
+        render json: @post.errors.full_messages
       elsif @post.save
-        render json: @post
+        render json: @post.errors.full_messages
       else
         flash[:errors] = @post.errors.full_messages
         render json: @post.errors.full_messages
@@ -32,7 +31,12 @@ module Api
     def sub_page
       @posts = Sub.find_by_name(params[:name]).posts
       @sub = Sub.find_by_name(params[:name])
-      @submembership = SubMembership.where(["sub_id = ? AND user_id = ?", @sub.id, current_user.id])
+      
+      if signed_in? 
+        @submembership = SubMembership.where(["sub_id = ? AND user_id = ?", @sub.id, current_user.id])
+      else
+        @submembership = nil
+      end
       
       render :sub_page
     end
@@ -55,8 +59,17 @@ module Api
         render :front_page
       else
         #give user all posts from default subs (all posts as of now)
-        @posts = Post.all.where("sub_id = '1'").limit(500)
-        #@posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
+        @subs = Sub.all.where("owner_id = '1'")
+        @posts = []
+        
+        @subs.each do |sub|
+          sub.posts.each do |post|
+            @posts << post
+            break if @posts.length == 500
+          end
+          break if @posts.length == 500
+        end
+        
         render :front_page
       end
     end

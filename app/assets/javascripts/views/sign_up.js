@@ -19,7 +19,13 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
         $('.profile-header').toggleClass('invisible');
         $('.sign-in-button').toggleClass('invisible');
         $('.sign-up-button').toggleClass('invisible');
-        $('.profile-header').html("welcome, " + user.attributes.username + "!");
+        $('.profile-header').html("welcome, <a href='#/u/me'>" + user.attributes.username + "</a>!");
+        $('.commands-link').html('');
+        
+        Sync.Models.session = {};
+        Sync.Models.session.username = user.username;
+        Sync.Models.session.points = user.points;
+        Sync.Models.session.email = user.email;
       }
     });
   },

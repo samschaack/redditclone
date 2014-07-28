@@ -31,6 +31,10 @@ module Api
       render json: @user
     end
     
+    def current
+      render json: current_user
+    end
+    
     private
     
     def user_params

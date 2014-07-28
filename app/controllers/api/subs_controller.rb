@@ -5,10 +5,12 @@ module Api
     def get_sub_info
       @sub = Sub.find_by_name(params[:name])
       
-      if SubMembership.find_by_user_id_and_sub_id(current_user.id, @sub.id)
-        @submember = "yes"
-      else
-        @submember = "no"
+      if signed_in?
+        if SubMembership.find_by_user_id_and_sub_id(current_user.id, @sub.id)
+          @submember = "yes"
+        else
+          @submember = "no"
+        end
       end
       
       render :sub_info

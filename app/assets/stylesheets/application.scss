@@ -75,6 +75,10 @@ body {
   height: 7%;
 }
 
+.slightly-transparent {
+  opacity: .9;
+}
+
 .profile-header {
   position: absolute;
   right: 8.28%;
@@ -171,7 +175,7 @@ body {
 .commands-link {
   font-size: 55%;
   position: absolute;
-  top: .7%;
+  top: .81rem;
   left: 13.5%;
 }
 
@@ -391,7 +395,6 @@ body {
 #sub-navigate:hover {
   background-color: #5CBAFF;
   border: thin #5CBAFF solid;
-  color: white;
   opacity: 1;
 }
 
@@ -708,7 +711,6 @@ img.header {
   max-height: none;
   padding-bottom: .8rem;
   margin-right: .5rem;
-//  -webkit-box-reflect: below 0px;
   -webkit-box-reflect: below -18px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(40%, transparent), to(rgba(255,255,255,0.5)));
 }
 
@@ -731,14 +733,6 @@ img.header {
   height: 19rem;
   background-color: white;
 }
-
-//.front-page-box-wrapper {
-//  position: absolute;
-//  border: 1px solid red;
-//  height: 30%;
-//  width: 120%;
-//  left: 0%;
-//}
 
 .sign-in {
   position: absolute;
