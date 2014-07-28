@@ -192,8 +192,9 @@ $(document).ready(function(){
     $('.sign-in-button').toggleClass('invisible');
     $('.sign-up-button').toggleClass('invisible');
     
+    Sync.tabs.splice(0, Sync.tabs.length);
+    Sync.renderTabs();
     Sync.Models.session = null;
-    
     
     Sync.setMessage("success");
   }
