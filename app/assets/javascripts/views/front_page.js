@@ -15,8 +15,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     "click div.text-post": "postShow",
     "click button.sign-out-button": "signOut",
     "click .upvote": "upvote",
-    "click .downvote": "downvote",
-    "click button.commands": "showCommands"
+    "click .downvote": "downvote"
   },
   
   signOut: function(event) {
@@ -135,11 +134,6 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     if (post_id !== undefined) {
       Backbone.history.navigate("#/p/c/" + post_id);
     }
-  },
-  
-  showCommands: function(event) {
-    event.preventDefault();
-    $('.commands-link').html("<span style='font-size: 90%'>f - front-page | s/a - sub directory | s/name - sub | s/n - new sub | u , u/n - signin/signup | u/me - your profile | p/index - show post with number index on current page | p - post | p/t - text-post</span>")
   },
   
   upvote: function(event) {

@@ -317,7 +317,7 @@ body {
 .-page-header {
   font-size: 150%;
   margin-left: 1rem;
-  margin-top: 5rem;
+  margin-top: 6rem;
   margin-bottom: 2.5rem;
   text-shadow: 1px 1px #DDD;
   
@@ -903,6 +903,19 @@ a[class="btn text-post-select-button"]:hover {
   background-color: white;
 }
 
+.commands-page {
+  position: absolute;
+  border: 2px solid #BBB;
+  border-radius: .5rem;
+  padding: 1.5%;
+  width: 50%;
+  margin-left: -25%;
+  left: 50%;
+  top: 12rem;
+  min-height: 58rem;
+  background-color: white;
+}
+
 .sub-directory {
   position: absolute;
   border: 2px solid #BBB;
@@ -967,4 +980,8 @@ a[class="btn text-post-select-button"]:hover {
 .invis-text:hover {
   opacity: 1;
   top: 50%;
+}
+
+.text-commands {
+  font-family: monospace;
 }

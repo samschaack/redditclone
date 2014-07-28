@@ -47,6 +47,36 @@ window.Sync = {
   createTab: function(url) {
     Sync.tabs.push(url);
     var numTabs = Sync.tabs.length;
+    var tabSize = 18;
+    var initLeft = 17;
+    var color = "#BBB";
+    
+    $('.nav-tab-section').html('<style>.triangle-up { position: absolute; width: 0; height: 0; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-bottom: ' + tabSize + 'px solid ' + color + '; }</style>');
+    $('.nav-tab-section').append('<style>.triangle-down { position: absolute; width: 0; height: 0; top: .3px; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-top: ' + tabSize + 'px solid ' + color + '; }</style>');
+    
+    _(Sync.tabs).each(function(url, index) {
+      initLeft = 17 + (index * 4);
+      // $('.nav-tab-section').append('<div class="nav-tab" data-url="' + url + '" style="position:absolute; left: ' + initLeft + '%; top: 6.65rem;"><div class="triangle-down" style="left: ' + (tabSize * 3 - 1) + 'px" data-url="' + url + '"></div><div class="triangle-down" style="left: ' + (tabSize + 1) + 'px" data-url="' + url + '"></div><div class="triangle-up" style="left: ' + tabSize * 2 + 'px;" data-url="' + url + '"><span class="invis-text"></span></div></div>');
+      $('.nav-tab-section').append('<div class="nav-tab" data-url="' + url + '" style="position:absolute; left: ' + initLeft + '%; top: 100%;"><div class="triangle-down" style="left: ' + (tabSize * 3 - 1) + 'px" data-url="' + url + '"></div><div class="triangle-down" style="left: ' + (tabSize + 1) + 'px" data-url="' + url + '"></div><div class="triangle-up" style="left: ' + tabSize * 2 + 'px;" data-url="' + url + '"><span class="invis-text"></span></div></div>');
+    })
+    
+    $('.nav-tab').on("click", function(event) { Backbone.history.navigate("#/" + $(event.target).data('url'), { trigger: true }); })
+    $('.triangle-up').on("click", function(event) { Backbone.history.navigate("#/" + $(event.target).data('url'), { trigger: true }); })
+    $('.triangle-down').on("click", function(event) { Backbone.history.navigate("#/" + $(event.target).data('url'), { trigger: true }); })
+    
+    $('.nav-tab').mouseenter(function(event) {
+      if ($(event.target).data('url') === "") {
+        $('.messages').text("front page") 
+      } else {
+        $('.messages').text($(event.target).data('url')) 
+      }
+    });
+    
+    $('.nav-tab').mouseleave(function(event) { $('.messages').text('') });
+  },
+  
+  renderTabs: function() {
+    var numTabs = Sync.tabs.length;
     var tabSize = 15;
     var initLeft = 17;
     var color = "#BBB";
@@ -195,8 +225,21 @@ $(document).ready(function(){
         }
       } else if (command == "b") {
         Backbone.history.navigate("#/" + Sync.tabs[Sync.tabs.length - 1], { trigger: true });
+      } else if (command == "q/a") {
+        Sync.tabs.splice(0, Sync.tabs.length);
+        Sync.renderTabs();
+        $('#sub-navigate').val('');
+      } else if (command.slice(0, 2) == "q/") {
+        var tabNum = command.slice(2, 3);
+        Sync.tabs.splice(tabNum - 1, 1);
+        Sync.renderTabs();
+        $('#sub-navigate').val('');
       } else if ([1, 2, 3, 4, 5, 6, 7, 8, 9].indexOf(parseInt(command)) !== -1) {
-        Backbone.history.navigate("#/" + Sync.tabs[parseInt(command) - 1], { trigger: true });
+        if (Sync.tabs.length >= parseInt(command)) {
+          Backbone.history.navigate("#/" + Sync.tabs[parseInt(command) - 1], { trigger: true });
+        } else {
+          Backbone.history.navigate(Backbone.history.fragment, { trigger: true });
+        }
       } else {
         Backbone.history.navigate("#/" + $("#sub-navigate").val());
       }

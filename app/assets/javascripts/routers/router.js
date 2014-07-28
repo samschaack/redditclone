@@ -12,7 +12,14 @@ Sync.Routers.Router = Backbone.Router.extend({
     "u": "newSession",
     "u/n": "newUser",
     "u/me": "accountPage",
-    "u/:id": "userPage"
+    "u/:id": "userPage",
+    "c": "commandsPage"
+  },
+  
+  commandsPage: function() {
+    var commandsView = new Sync.Views.CommandsPage();
+    
+    this._swapView(commandsView);
   },
   
   newUser: function() {
@@ -170,9 +177,13 @@ Sync.Routers.Router = Backbone.Router.extend({
           $("#sub-navigate").removeAttr("disabled"); 
         } else if (e.which == 98) {
           document.getElementById("sub-navigate").focus();
+        } else if (e.which == 99) {
+          document.getElementById("sub-navigate").focus();
         } else if (e.which == 102) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 112) {
+          document.getElementById("sub-navigate").focus();
+        } else if (e.which == 113) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 115) {
           document.getElementById("sub-navigate").focus();
@@ -180,12 +191,12 @@ Sync.Routers.Router = Backbone.Router.extend({
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 117) {
           document.getElementById("sub-navigate").focus();
+        } else if (e.which > 48 && e.which < 58) {
+          document.getElementById("sub-navigate").focus();
         }
       });
       
-      this.lastPage = Backbone.history.fragment
-    
-
+      this.lastPage = Backbone.history.fragment;
     }
     
     $('#last-page-button').on('click', this.navToLastPage);
