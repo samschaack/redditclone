@@ -9,7 +9,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" style="color: #555; font-size:230%; text-shadow: 1px 1px #DDD;" href="#"><%= image_tag('logo.png', size: "38x38", class: "header") %><span style="color:#53ABDF;"><span style="color:#53ABDF;border-bottom:2px dotted #53ABDF">reddit</span>++</span></a>
+    <a class="navbar-brand" style="color: #555; font-size:230%; text-shadow: 1px 1px #DDD;" href="#/s/all"><%= image_tag('logo.png', size: "38x38", class: "header") %><span style="color:#53ABDF;"><span style="color:#53ABDF;border-bottom:2px dotted #53ABDF">reddit</span>++</span></a>
     <% if signed_in? %>
       <div class="profile-header">
         signed in as <a href="#/u/me"><%= current_user.username %></a>

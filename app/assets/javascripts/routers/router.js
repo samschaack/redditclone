@@ -3,6 +3,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     "": "frontPage",
     "s/n": "newSub",
     "s/n/:subName": "newSubWithName",
+    "s/all": "subDirectory",
     "s/:subName": "subPage",
     "p": "newPost",
     "p/t": "newTextPost",
@@ -49,6 +50,12 @@ Sync.Routers.Router = Backbone.Router.extend({
       Sync.setAlert("must be signed in to create a sub");
       Backbone.history.navigate("#", { trigger: true });
     }
+  },
+  
+  subDirectory: function() {
+    var subDirectoryView = new Sync.Views.SubDirectory();
+    
+    this._swapView(subDirectoryView);
   },
   
   newSubWithName: function(subName) {

@@ -59,11 +59,11 @@ module Api
         render :front_page
       else
         #give user all posts from default subs (all posts as of now)
-        @subs = Sub.all.where("owner_id = '1'")
+        #old method of generating default subs - @subs = Sub.all.where("owner_id = '1'")
         @posts = []
         
-        @subs.each do |sub|
-          sub.posts.each do |post|
+        Default.all.each do |default|
+          default.sub.posts.each do |post|
             @posts << post
             break if @posts.length == 500
           end

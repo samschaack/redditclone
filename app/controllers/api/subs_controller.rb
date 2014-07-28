@@ -28,5 +28,29 @@ module Api
         render text: "sub couldn't be created"
       end
     end
+    
+    def index
+      @subs = Sub.all
+      
+      render :all_sub_info
+    end
+    
+    def subscribed
+      @subs = current_user.subs
+      
+      render :all_sub_info
+    end
+    
+    def unsubscribed
+      @subs = Sub.all - current_user.subs
+      
+      render :all_sub_info
+    end
+    
+    def owned
+      @subs = current_user.owned_subs
+      
+      render :all_sub_info
+    end
   end
 end

@@ -1,0 +1,71 @@
+<div class="sub-directory">
+  <div class="sub-directory-header">
+    <h2 class="sub-directory-header-left">Sub Directory</h2>
+    <button class="btn btn-default refresh-directory">refresh</button>
+  </div>
+  <div class="sub-directory-body">
+    <% if (!Sync.Models.session) { %>
+      <div class="collection-section" style="padding-top: 2.5rem;">
+        <% collection.each(function(sub, index) { %>
+          <a href="#/s/<%= sub.escape('name') %>"><%= sub.escape('name') %></a> - <%= sub.escape('description') %> - <%= sub.escape('num_users') %> subscribers - <%= sub.escape('num_posts') %> 
+          <% if (sub.escape('num_posts') === '1') { %>
+            post
+          <% } else { %>
+            posts
+          <% } %>
+          <br><br>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <br>
+      <h4>Your Subscribed Subs: </h4>
+      <br>
+      <div class="subscribed">
+      <% subscribed.each(function(sub, index) { %>
+        <a href="#/s/<%= sub.escape('name') %>"><%= sub.escape('name') %></a> - <%= sub.escape('description') %> - <%= sub.escape('num_users') %> subscribers - <%= sub.escape('num_posts') %> 
+        <% if (sub.escape('num_posts') === '1') { %>
+          post
+        <% } else { %>
+          posts
+        <% } %>
+        <span class="unsubscribe-section-<%= sub.escape('id') %>">
+           - <button class="link-button unsubscribe" data-id="<%= sub.escape('id') %>">unsubscribe</button>
+        </span>
+        <br><br>
+      <% }) %>
+      </div>
+      <br>
+      <div class="unsubscribed">
+      <h4>Unsubscribed: </h4>
+      <br>
+      <% unsubscribed.each(function(sub, index) { %>
+        <a href="#/s/<%= sub.escape('name') %>"><%= sub.escape('name') %></a> - <%= sub.escape('description') %> - <%= sub.escape('num_users') %> subscribers - <%= sub.escape('num_posts') %> 
+        <% if (sub.escape('num_posts') === '1') { %>
+          post
+        <% } else { %>
+          posts
+        <% } %>
+        <span class="subscribe-section-<%= sub.escape('id') %>">
+           - <button class="link-button subscribe" data-id="<%= sub.escape('id') %>">subscribe</button>
+        </span>
+        <br><br>
+      <% }) %>
+      </div>
+      <br>
+      <h4>Your Owned Subs: </h4>
+      <br>
+      <div class="owned">
+      <% owned.each(function(sub, index) { %>
+        <a href="#/s/<%= sub.escape('name') %>"><%= sub.escape('name') %></a> - <%= sub.escape('description') %> - <%= sub.escape('num_users') %> subscribers - <%= sub.escape('num_posts') %> 
+        <% if (sub.escape('num_posts') === '1') { %>
+          post
+        <% } else { %>
+          posts
+        <% } %>
+        <br><br>
+      <% }) %>
+      </div>
+      <a href="#/s/n" class="btn btn-default form-control" style="margin-bottom:2rem;">new sub</a>
+    <% } %>
+  </div>
+</div>
