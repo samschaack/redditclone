@@ -10,6 +10,14 @@
       <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" style="color: #555; font-size:230%; text-shadow: 1px 1px #DDD;" href="#"><%= image_tag('logo.png', size: "38x38", class: "header") %><span style="color:#53ABDF;"><span style="color:#53ABDF;border-bottom:2px dotted #53ABDF">reddit</span>++</span></a>
+    <% if signed_in? %>
+      <div class="profile-header">
+        signed in as <%= current_user.username %>
+      </div>
+    <% else %>
+      <div class="profile-header invisible">
+      </div>
+    <% end %>
   </div>
   <!-- 69C1F5 -->
   <!-- <div class="tabbable tabs-below">
@@ -23,7 +31,10 @@
   <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
     <% if signed_in? %>
       <button type="button" class="btn btn-danger sign-out-button btn-sm"><span class="glyphicon glyphicon-off sign-out-span"></span></button>
+      <button type="button" class="btn btn-success sign-up-button btn-sm invisible"><span class="glyphicon glyphicon-user" style="color:white"></span></button>
+      <button type="button" class="btn btn-info sign-in-button btn-sm invisible"><span class="glyphicon glyphicon-log-in" style="color:white"></span></button>
     <% else %>
+      <button type="button" class="btn btn-danger sign-out-button btn-sm invisible"><span class="glyphicon glyphicon-off sign-out-span"></span></button>
       <button type="button" class="btn btn-success sign-up-button btn-sm"><span class="glyphicon glyphicon-user" style="color:white"></span></button>
       <button type="button" class="btn btn-info sign-in-button btn-sm"><span class="glyphicon glyphicon-log-in" style="color:white"></span></button>
     <% end %>

@@ -3,11 +3,24 @@ window.Sync = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(user) {
     new Sync.Routers.Router();
     Backbone.history.start();
+    var userInfo = user.info;
+    
+    if (userInfo !== "none") {
+      Sync.Models.session = {};
+      Sync.Models.session.username = userInfo.split(" ")[0];
+      Sync.Models.session.points = userInfo.split(" ")[1];
+      Sync.Models.session.email = userInfo.split(" ")[2];
+    }
   }
 };
+
+$(document).ajaxSend(function (e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});
 
 $(document).ready(function(){
   function makePost() {
@@ -17,7 +30,7 @@ $(document).ready(function(){
   function gotoSignUp(event) {
     event.preventDefault();
     
-    Backbone.history.navigate('#/u/new');
+    Backbone.history.navigate('#/u/n');
   }
   
   function gotoSignIn(event) {
@@ -28,18 +41,13 @@ $(document).ready(function(){
   
   function signOut(event) {
     event.preventDefault();
+    Sync.Models.user.signOut();
+    $('.sign-out-button').toggleClass('invisible');
+    $('.profile-header').toggleClass('invisible');
+    $('.sign-in-button').toggleClass('invisible');
+    $('.sign-up-button').toggleClass('invisible');
     
-    $.ajax({
-      url: '/api/session',
-      type: 'DELETE',
-      data: formData,
-      success: function (thingy) {
-        Backbone.history.navigate("#", { trigger: true });
-      },
-      error: function () {
-        alert("error");
-      }
-    });
+    Sync.Models.session = null;
   }
   
   function navToLastPage() {
@@ -53,6 +61,8 @@ $(document).ready(function(){
   $('.sign-in-button').on('click', gotoSignIn);
   
   $('.sign-out-button').on('click', signOut);
+  
+  //Sync.Models.user = 
   
   // $('#last-page-button').on('click', navToLastPage);
 });

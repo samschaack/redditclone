@@ -39,7 +39,7 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     commentId = this.commentId;
     
     var params = $("textarea").serializeJSON();
-    params["comment"]["user_id"] = 1;
+    params["comment"]["user"] = Sync.Models.session.username;
     params["comment"]["commentable_id"] = this.commentId;
     params["comment"]["commentable_type"] = "Comment";
     params["comment"]["indents"] = parseInt(this.model.attributes.indents) + 1;

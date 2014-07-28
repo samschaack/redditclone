@@ -14,11 +14,11 @@ class User < ActiveRecord::Base
   
   after_initialize :ensure_token
   
-  def self.find_by_credentials(username, password)
+  def self.authenticate(username, password)
     @user = User.find_by_username(username)
     
     if @user
-      if is_password?(password)
+      if @user.is_password?(password)
         @user
       else
         nil

@@ -40,7 +40,11 @@
   </div>
   <div class="comment-section">
     <div class='new-post-comment'>
-      <button class="button-link post-reply" data-id="<%= post.escape('id') %>">reply</button>
+      <% if (Sync.Models.session) { %>
+        <button class="button-link post-reply" data-id="<%= post.escape('id') %>">reply</button>
+      <% } else { %>
+        <a href="#/u/n">sign up</a> or <a href="#/u">sign in</a> to comment
+      <% } %>
     </div>
     <div class="comments-header">
       <% if (numComments !== 0) { %>comments: <% } %>

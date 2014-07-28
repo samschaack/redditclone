@@ -10,13 +10,32 @@ Sync.Views.SignIn = Backbone.CompositeView.extend({
     var view = this;
     
     var params = $(event.target).serializeJSON();
-    var session = new Sync.Models.Session(params["user"]);
+    // var attrs = new Sync.Models.Session(params["user"]);
+    var attrs = params["user"];
     
-    session.save({}, {
-      success: function() {
-        Backbone.history.navigate("#", { trigger: true });
-      }
-    });
+    Sync.Models.User.authorize(attrs, function(err, user) {
+      if (err) { view.signInFailure(); }
+      else { view.signInSuccess(user.attributes);}
+    })
+  },
+  
+  signInSuccess: function(user) {
+    Backbone.history.navigate('#', { trigger: true });
+    
+    $('.sign-out-button').toggleClass('invisible');
+    $('.profile-header').html("signed in as " + user.username)
+    $('.profile-header').toggleClass('invisible');
+    $('.sign-in-button').toggleClass('invisible');
+    $('.sign-up-button').toggleClass('invisible');
+    
+    Sync.Models.session = {};
+    Sync.Models.session.username = user.username;
+    Sync.Models.session.points = user.points;
+    Sync.Models.session.email = user.email;
+  },
+  
+  signInFailure: function() {
+    
   },
   
   render: function() {

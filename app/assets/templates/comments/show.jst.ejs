@@ -24,6 +24,8 @@
   <div class="sub-comments-<%= comment.escape('id') %>">
   </div>
   <div class="new-comment-<%= comment.escape('id') %>">
-  <button class="button-link comment-reply" data-id="<%= comment.escape('id') %>" data-indents="<%= comment.escape('indents') %>">reply</button>
+    <% if (Sync.Models.session) { %>
+      <button class="button-link comment-reply" data-id="<%= comment.escape('id') %>" data-indents="<%= comment.escape('indents') %>">reply</button>
+    <% } %>
   </div>
 </div>

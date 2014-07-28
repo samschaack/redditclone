@@ -1,22 +1,32 @@
 module Api
   class SessionsController < ApiController
+    respond_to :json
     wrap_parameters :user, include: [:username, :password]
-
+    
     def create
-      @user = User.find_by_credentials(params[:user])
+      @user = User.authenticate(params[:user][:username], params[:user][:password])
       
       if @user
-        sign_in!(@user)
-        redirect_to root_url
+        sign_in(@user)
+        respond_with @user, location: '#', notice: 'Signed In!'
       else
-        flash.now[:errors] = ["Invalid email and/or password"]
-        render :new
+        respond_to do |format|
+          format.json { render json: { error: 'Invalid Username/Password Combo', info: params[:user][:password] }}
+        end
       end
     end
     
     def destroy
-      sign_out!
-      redirect_to new_session_url
+      sign_out
+      respond_to do |format|
+        format.json { head :ok }
+      end
+    end
+    
+    private
+    
+    def session_params
+      params.require(:user).permit(:username, :password)
     end
   end
 end

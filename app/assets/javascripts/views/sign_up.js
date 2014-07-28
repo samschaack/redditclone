@@ -15,6 +15,10 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
     user.save({}, {
       success: function() {
         Backbone.history.navigate("#", { trigger: true });
+        $('.sign-out-button').toggleClass('invisible');
+        $('.profile-header').toggleClass('invisible');
+        $('.sign-in-button').toggleClass('invisible');
+        $('.sign-up-button').toggleClass('invisible');
       }
     });
   },
