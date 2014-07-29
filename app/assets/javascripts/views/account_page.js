@@ -3,6 +3,7 @@ Sync.Views.AccountPage = Backbone.View.extend({
   
   initialize: function() {
     //listen for posts, comments eventually
+    
   },
   
   render: function() {

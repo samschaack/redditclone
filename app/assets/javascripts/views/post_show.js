@@ -10,9 +10,10 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     this.listenTo(
       this.model.comments(), "add", this.addComment
     );
-    this.listenTo(
-      this.model.comments(), "remove", this.addComment
-    );
+    
+    // this.listenTo(
+//       this.model.comments(), "remove", this.addComment
+//     );
     
     this.model.comments().each(this.addComment.bind(this));
     this.model.comments().fetch();
@@ -52,7 +53,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   },
   
   removeNewPostCommentFormNoEvent: function() {
-    $('.new-post-comment').html("<button class='button-link post-reply' data-id=" + this.model.attributes.id + ">comment</button>");
+    $('.new-post-comment').html("<button class='button-link post-reply' data-id=" + this.model.attributes.id + ">reply</button>");
   },
   
   newPostComment: function() {
@@ -83,6 +84,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
       success: function(comment) {
         $("#sub-navigate").removeAttr("disabled"); 
         comment.attributes.user = Sync.Models.session.username;
+        comment.attributes.current_user = "true";
         view.addComment(comment);
         view.removeNewPostCommentFormNoEvent();
         Sync.setMessage("comment created");
