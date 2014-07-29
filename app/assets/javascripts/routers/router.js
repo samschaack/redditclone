@@ -94,6 +94,11 @@ Sync.Routers.Router = Backbone.Router.extend({
     Sync.Collections.posts.url = 'api/posts';
     Sync.Collections.posts.fetch();
     
+    if (Sync.Models.session) {
+      Sync.Collections.votes = new Sync.Collections.Votes;
+      Sync.Collections.votes.fetch();
+    }
+    
     var frontPageView = new Sync.Views.FrontPage({
       collection: Sync.Collections.posts
     });

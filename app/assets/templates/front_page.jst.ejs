@@ -20,18 +20,43 @@
     <div class="post-score-wrapper">
       <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#9A9A9A;"><%= index + 1 %></span><% } else { %><span style="color:#737373;"><%= index + 1 %></span><% } %>
       </div>
-    <div class="score-box">
-      <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
-        <span class="glyphicon glyphicon-chevron-up" data-id="<%= post.escape('id') %>"></span>
-      </button>
-      <div style="width:100%;text-align:center;">
-        <% score = post.escape('upvotes') - post.escape('downvotes') %>
-        <%= score %>
+      
+    <% if (Sync.Models.session) { %>
+      
+      <div class="score-box">
+        <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-up" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
+             color:#FF8B60;
+             <% } %>" data-id="<%= post.escape('id') %>"></span>
+        </button>
+        <div style="width:100%;text-align:center;">
+          <% score = post.escape('upvotes') - post.escape('downvotes') %>
+          <%= score %>
+        </div>
+        <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-down" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
+             color:#9494FF;
+             <% } %>" data-id="<%= post.escape('id') %>"></span>
+        </button>
       </div>
-      <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
-        <span class="glyphicon glyphicon-chevron-down" data-id="<%= post.escape('id') %>"></span>
-      </button>
-    </div>
+      
+    <% } else { %>
+      
+      <div class="score-box">
+        <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-up" data-id="<%= post.escape('id') %>"></span>
+        </button>
+        <div style="width:100%;text-align:center;">
+          <% score = post.escape('upvotes') - post.escape('downvotes') %>
+          <%= score %>
+        </div>
+        <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-down" data-id="<%= post.escape('id') %>"></span>
+        </button>
+      </div>
+      
+    <% } %>
+    
     <% var url = post.escape('url')%>
     <% if (url && (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png")) { %>
       <div class="thumbnail-section">

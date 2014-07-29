@@ -137,54 +137,48 @@ window.Sync = {
       },
       success: function(data) {
         var post = Sync.Collections.posts.findWhere({ id: id });
-        if (data === 1) {
+        if (data.status === "1") {
           //set vote
           if (upordown === 1) {
             post.set('upvotes', post.attributes.upvotes + 1);
+            Sync.Collections.votes.getOrFetch(data.id)
           } else {
             post.set('downvotes', post.attributes.downvotes + 1);
+            Sync.Collections.votes.getOrFetch(data.id)
           }
-        } else if (data === 2) {
+        } else if (data.status === "2") {
           //reverse vote
           if (upordown === 1) {
             post.set('upvotes', post.attributes.upvotes + 1);
             post.set('downvotes', post.attributes.downvotes - 1);
+            Sync.Collections.votes.getOrFetch(data.id)
           } else {
             post.set('upvotes', post.attributes.upvotes - 1);
             post.set('downvotes', post.attributes.downvotes + 1);
+            Sync.Collections.votes.getOrFetch(data.id)
           }
-        } else if (data === 3) {
+          
+          Sync.Collections.votes.remove(Sync.Collections.votes.findWhere({
+            voteable_type: type, 
+            voteable_id: id, 
+            upordown: upordown * -1
+          }))
+        } else if (data.status === "3") {
           //nullify vote
           if (upordown === 1) {
             post.set('upvotes', post.attributes.upvotes - 1);
           } else {
             post.set('downvotes', post.attributes.downvotes - 1);
           }
+          
+          Sync.Collections.votes.remove(Sync.Collections.votes.findWhere({
+            voteable_type: type, 
+            voteable_id: id, 
+            upordown: upordown
+          }))
         }
         post.save();
       }
-      // error: function(data) {
-  //       //delete upvote
-  //       $.ajax({
-  //         type: 'DELETE',
-  //         url: '/api/votes',
-  //         data: { vote:
-  //           {
-  //             voteable_id: id,
-  //             voteable_type: type
-  //           }
-  //         },
-  //         success: function(data) {
-  //           var post = Sync.Collections.posts.findWhere({ id: id });
-  //           if (upordown === 1) {
-  //             post.set('upvotes', post.attributes.upvotes - 1);
-  //           } else {
-  //             post.set('downvotes', post.attributes.downvotes - 1);
-  //           }
-  //           post.save();
-  //         }
-  //       });
-  //     }
     });
   }
 };

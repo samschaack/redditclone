@@ -13,18 +13,31 @@ module Api
         #new vote => save
         @vote = Vote.new({ user_id: current_user.id, voteable_type: params[:vote][:voteable_type], voteable_id: params[:vote][:voteable_id], upordown: params[:vote][:upordown] })
         @vote.save
-        render text: "1", status: 200
+        # render text: "1", status: 200
+        render json: { status: "1", id: @vote.id }
       elsif Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], upordownopp) != nil
         #reverse vote => destroy old one, create new one
         Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], upordownopp).destroy
         @vote = Vote.new({ user_id: current_user.id, voteable_type: params[:vote][:voteable_type], voteable_id: params[:vote][:voteable_id], upordown: params[:vote][:upordown] })
         @vote.save
-        render text: "2", status: 200
+        # render text: "2", status: 200
+        render json: { status: "2", id: @vote.id }
       elsif Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], params[:vote][:upordown]) != nil
         #undo vote => destroy old one
-        Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], params[:vote][:upordown]).destroy
-        render text: "3", status: 200
+        @vote = Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], params[:vote][:upordown])
+        @vote.destroy
+        render json: { status: "3", id: @vote.id }
       end
+    end
+    
+    def getVote
+      @vote = Vote.find(params[:id])
+      render json: @vote
+    end
+    
+    def index
+      @votes = current_user.votes
+      render json: @votes
     end
   end
 end
