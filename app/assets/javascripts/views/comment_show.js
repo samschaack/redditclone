@@ -12,9 +12,9 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
       this.model.comments(), "add", this.addComment
     );
     
-    // this.listenTo(
-    //   this.model.comments(), "remove", this.addComment
-    // );
+    this.listenTo(
+      this.model.comments(), "remove", this.removeComment
+    );
     
     this.model.comments().each(this.addComment.bind(this));
     this.model.comments().fetch();
@@ -41,9 +41,6 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     var comment = this.model;
     comment.destroy({
       success: function(comment) {
-        $('.sub-comments-' + comment.attributes.id).html('');
-        // debugger;
-        // $(that.$el[0]).html('');
       }
     });
   },
@@ -52,22 +49,22 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     event.preventDefault();
     var commentId = $(event.target).data('id');
     var indents = $(event.target).data('indents');
-    $('.sub-comments-' + commentId).slideToggle(150);
+    $('.sub-comments-' + commentId).slideToggle(120);
     $('.expand-minimize-section-' + commentId).html('<button class="button-link comment-maximize" data-id="' + commentId + '" data-indents="' + indents + '">[+]</button>')
-    $('div.comment-content[data-id=' + commentId + ']').slideToggle(150);
-    $('div.comment-vote-box[data-id=' + commentId + ']').slideToggle(150);
-    $('.new-comment-' + commentId).slideToggle(150);
+    $('div.comment-content[data-id=' + commentId + ']').slideToggle(120);
+    $('div.comment-vote-box[data-id=' + commentId + ']').slideToggle(120);
+    $('.new-comment-' + commentId).slideToggle(120);
   },
   
   maximizeComment: function(event) {
     event.preventDefault();
     var commentId = $(event.target).data('id');
     var indents = $(event.target).data('indents');
-    $('.sub-comments-' + commentId).slideToggle(150);
-    $('.expand-minimize-section-' + commentId).html('<button class="button-link comment-maximize" data-id="' + commentId + '" data-indents="' + indents + '">[-]</button>')
-    $('div.comment-content[data-id=' + commentId + ']').slideToggle(150);
-    $('div.comment-vote-box[data-id=' + commentId + ']').slideToggle(150);
-    $('.new-comment-' + commentId).slideToggle(150);
+    $('.sub-comments-' + commentId).slideToggle(120);
+    $('.expand-minimize-section-' + commentId).html('<button class="button-link comment-minimize" data-id="' + commentId + '" data-indents="' + indents + '">[-]</button>')
+    $('div.comment-content[data-id=' + commentId + ']').slideToggle(120);
+    $('div.comment-vote-box[data-id=' + commentId + ']').slideToggle(120);
+    $('.new-comment-' + commentId).slideToggle(120);
   },
   
   createComment: function(event) {
@@ -88,9 +85,7 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     comment.save({}, {
       success: function(comment) {
         $("#sub-navigate").removeAttr("disabled");
-        comment.attributes.current_user = "true";
-        var commentView = new Sync.Views.CommentShow({ model: comment });
-        $('.sub-comments-' + commentId).append(commentView.render().$el);
+        view.addComment(comment);
         view.removeCommentFormNoEvent(commentId);
       }
     });

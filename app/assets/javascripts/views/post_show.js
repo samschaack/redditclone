@@ -11,9 +11,9 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
       this.model.comments(), "add", this.addComment
     );
     
-    // this.listenTo(
-//       this.model.comments(), "remove", this.addComment
-//     );
+    this.listenTo(
+      this.model.comments(), "remove", this.removeComment
+    );
     
     this.model.comments().each(this.addComment.bind(this));
     this.model.comments().fetch();
@@ -26,7 +26,6 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     "click button.remove-comment": "removeComment",
     // "click div.post-show": "removeNewPostCommentForm",
     "click button.new-post-comment": "createPostComment"
-    //make sure to add validation that a user can only remove his own comments
   },
   
   addComment: function(comment) {

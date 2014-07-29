@@ -17,8 +17,13 @@ module Api
     
     def destroy
       @comment = Comment.find(params[:id])
-      @comment.destroy
-      render json: @comment
+      
+      if @comment.user_id == current_user.id
+        @comment.destroy
+        render json: @comment
+      else
+        render text: "not authorized"
+      end
     end
     
     def index
