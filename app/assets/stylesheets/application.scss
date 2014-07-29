@@ -86,6 +86,13 @@ body {
   min-width: 4.3%;
 }
 
+.site-name {
+  color: #53ABDF;
+  position: absolute;
+  top: 34.7%;
+  left: 8.2%;
+}
+
 .alerts {
   position: absolute;
   left: 15.28%;
@@ -711,6 +718,10 @@ img.header {
   max-height: none;
   padding-bottom: .8rem;
   margin-right: .5rem;
+  
+  position: absolute;
+  top: 27.2%;
+  
   -webkit-box-reflect: below -18px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(40%, transparent), to(rgba(255,255,255,0.5)));
 }
 
@@ -984,4 +995,27 @@ a[class="btn text-post-select-button"]:hover {
 
 .text-commands {
   font-family: monospace;
+}
+
+.messages-button {
+  position: absolute;
+  top: 89.2%;
+  left: 3.333%;
+}
+
+.sent-messages-button {
+  position: absolute;
+  top: 89.2%;
+  left: 51.166%;
+}
+
+.messages-box {
+  position: absolute;
+  width: 93%;
+  left: 3.5%;
+  height: 55%;
+  top: 29.5%;
+  border: 1px #BBB solid;
+  border-radius: .5rem;
+  padding: 1rem;
 }

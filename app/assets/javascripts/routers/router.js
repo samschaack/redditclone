@@ -203,9 +203,14 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   accountPage: function() {
-    var accountPageView = new Sync.Views.AccountPage();
+    if (Sync.Models.session) {
+      var accountPageView = new Sync.Views.AccountPage();
     
-    this._swapView(accountPageView);
+      this._swapView(accountPageView);
+    } else {
+      Backbone.history.navigate("#", { trigger: true });
+      Sync.setAlert("sign in to see your account page");
+    }
   },
   
   userPage: function(id) {
