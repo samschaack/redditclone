@@ -48,14 +48,14 @@ window.Sync = {
     Sync.tabs.push(url);
     var numTabs = Sync.tabs.length;
     var tabSize = 18;
-    var initLeft = 17;
+    var initLeft = 50; //17
     var color = "#BBB";
     
     $('.nav-tab-section').html('<style>.triangle-up { position: absolute; width: 0; height: 0; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-bottom: ' + tabSize + 'px solid ' + color + '; }</style>');
     $('.nav-tab-section').append('<style>.triangle-down { position: absolute; width: 0; height: 0; top: .3px; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-top: ' + tabSize + 'px solid ' + color + '; }</style>');
     
     _(Sync.tabs).each(function(url, index) {
-      initLeft = 17 + (index * 4);
+      initLeft = 50 + (index * 4);
       // $('.nav-tab-section').append('<div class="nav-tab" data-url="' + url + '" style="position:absolute; left: ' + initLeft + '%; top: 6.65rem;"><div class="triangle-down" style="left: ' + (tabSize * 3 - 1) + 'px" data-url="' + url + '"></div><div class="triangle-down" style="left: ' + (tabSize + 1) + 'px" data-url="' + url + '"></div><div class="triangle-up" style="left: ' + tabSize * 2 + 'px;" data-url="' + url + '"><span class="invis-text"></span></div></div>');
       $('.nav-tab-section').append('<div class="nav-tab" data-url="' + url + '" style="position:absolute; left: ' + initLeft + '%; top: 100%;"><div class="triangle-down" style="left: ' + (tabSize * 3 - 1) + 'px" data-url="' + url + '"></div><div class="triangle-down" style="left: ' + (tabSize + 1) + 'px" data-url="' + url + '"></div><div class="triangle-up" style="left: ' + tabSize * 2 + 'px;" data-url="' + url + '"><span class="invis-text"></span></div></div>');
     })
@@ -78,14 +78,14 @@ window.Sync = {
   renderTabs: function() {
     var numTabs = Sync.tabs.length;
     var tabSize = 15;
-    var initLeft = 17;
+    var initLeft = 25;
     var color = "#BBB";
     
     $('.nav-tab-section').html('<style>.triangle-up { position: absolute; width: 0; height: 0; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-bottom: ' + tabSize + 'px solid ' + color + '; }</style>');
     $('.nav-tab-section').append('<style>.triangle-down { position: absolute; width: 0; height: 0; top: .3px; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-top: ' + tabSize + 'px solid ' + color + '; }</style>');
     
     _(Sync.tabs).each(function(url, index) {
-      initLeft = 17 + (index * 3);
+      initLeft = 25 + (index * 3);
       $('.nav-tab-section').append('<div class="nav-tab" data-url="' + url + '" style="position:absolute; left: ' + initLeft + '%; top: 6.65rem;"><div class="triangle-down" style="left: ' + (tabSize * 3 - 1) + 'px" data-url="' + url + '"></div><div class="triangle-down" style="left: ' + (tabSize + 1) + 'px" data-url="' + url + '"></div><div class="triangle-up" style="left: ' + tabSize * 2 + 'px;" data-url="' + url + '"><span class="invis-text"></span></div></div>');
     })
     
