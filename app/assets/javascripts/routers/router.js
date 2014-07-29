@@ -96,6 +96,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     if (Sync.Models.session) {
       Sync.Collections.votes = new Sync.Collections.Votes;
+      Sync.Collections.votes.url = "api/votes/front_page"
       Sync.Collections.votes.fetch();
     }
     
@@ -116,13 +117,15 @@ Sync.Routers.Router = Backbone.Router.extend({
     sub.url = 'api/subs/' + subName;
     sub.fetch();
     
-    // var posts = new Sync.Collections.Posts;
-    // posts.url = 'api/s/' + subName;
-    // posts.fetch();
-    
     Sync.Collections.posts = new Sync.Collections.Posts;
     Sync.Collections.posts.url = 'api/s/' + subName;
     Sync.Collections.posts.fetch();
+    
+    if (!Sync.Collections.votes) {
+      Sync.Collections.votes = new Sync.Collections.Votes;
+      Sync.Collections.votes.url = "api/votes/sub_page"
+      Sync.Collections.votes.fetch();
+    }
     
     var subPageView = new Sync.Views.SubPage({
       collection: Sync.Collections.posts,
@@ -141,6 +144,9 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     post = Sync.Collections.posts.getOrFetch(post.attributes.id);
     
+    Sync.Collections.votes = new Sync.Collections.Votes;
+    Sync.Collections.votes.fetch();
+    
     var postShowView = new Sync.Views.PostShow({
       model: post
     });
@@ -157,6 +163,9 @@ Sync.Routers.Router = Backbone.Router.extend({
     }
     
     post = Sync.Collections.posts.getOrFetch(post.attributes.id);
+    
+    Sync.Collections.votes = new Sync.Collections.Votes;
+    Sync.Collections.votes.fetch();
     
     var postShowView = new Sync.Views.PostShow({
       model: post

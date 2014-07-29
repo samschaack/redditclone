@@ -1,8 +1,39 @@
 <div class="post-show" data-id="<%= post.escape('id') %>">
-  <div class="show-score-box">
-    <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></button><%= post.escape('upvotes') - post.escape('downvotes') %>
-    <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></button>
-  </div>
+    <% if (Sync.Models.session) { %>
+      
+      <div class="show-score-box">
+        <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-up post-upvote" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
+             color:#FF8B60;
+             <% } %>" data-id="<%= post.escape('id') %>"></span>
+        </button>
+        <div style="width:100%;text-align:center;">
+          <% score = parseInt(post.escape('upvotes') - post.escape('downvotes')) %>
+          <%= score %>
+        </div>
+        <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-down post-downvote" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
+             color:#9494FF;
+             <% } %>" data-id="<%= post.escape('id') %>"></span>
+        </button>
+      </div>
+      
+    <% } else { %>
+      
+      <div class="show-score-box">
+        <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-up post-upvote" data-id="<%= post.escape('id') %>"></span>
+        </button>
+        <div style="width:100%;text-align:center;">
+          <% score = parseInt(post.escape('upvotes') - post.escape('downvotes')) %>
+          <%= score %>
+        </div>
+        <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
+          <span class="glyphicon glyphicon-chevron-down post-downvote" data-id="<%= post.escape('id') %>"></span>
+        </button>
+      </div>
+      
+    <% } %>
   <div class="post-section">
     <div class="title">
     <% if (post.escape('body')) { %>

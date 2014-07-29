@@ -19,3 +19,9 @@ Sync.Collections.Votes = Backbone.Collection.extend({
     return vote;
   }
 });
+
+if (Sync.Models.session) {
+  Sync.Collections.votes = new Sync.Collections.Votes;
+  Sync.Collections.votes.url = "api/votes/front_page"
+  Sync.Collections.votes.fetch();
+}

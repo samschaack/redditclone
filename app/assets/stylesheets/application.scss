@@ -584,11 +584,31 @@ body {
 .upvote {
   background: transparent;
   z-index: 10;
+  outline:0;
+}
+
+.upvote:focus {
+  outline:0 !important;
+  box-shadow: none;
 }
 
 .downvote {
   background: transparent;
   z-index: 10;
+  outline:0;
+}
+
+.downvote:focus {
+  outline:0 !important;
+  box-shadow: none;
+}
+
+.upvoted {
+  color: #FF8B60;
+}
+
+.downvoted {
+  color: #9494FF;
 }
 
 .post-show {
@@ -1021,4 +1041,8 @@ a[class="btn text-post-select-button"]:hover {
   border-radius: .5rem;
   padding: 1rem;
   overflow: auto;
+}
+
+.front-page-image {
+  background-size: 100% 100%;
 }

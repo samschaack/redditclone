@@ -28,5 +28,7 @@ Rails.application.routes.draw do
   get '/api/subs/owned', to: 'api/subs#owned'
   get '/api/subs/:name', to: 'api/subs#get_sub_info'
   delete '/api/votes', to: 'api/votes#destroy'
+  get '/api/votes/front_page', to: 'api/votes#front_page'
+  get '/api/votes/sub_page', to: 'api/votes#sub_page'
   get '/api/votes/:id', to: 'api/votes#getVote'
 end

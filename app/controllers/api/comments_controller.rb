@@ -1,6 +1,6 @@
 module Api
   class CommentsController < ApiController
-    wrap_parameters :comment, include: [:body, :commentable_id, :commentable_type, :user, :indents]
+    wrap_parameters :comment, include: [:body, :commentable_id, :commentable_type, :user, :indents, :upvotes, :downvotes]
     
     def create
       @comment = Comment.new(comment_params)
@@ -29,9 +29,11 @@ module Api
     def index
       if params[:post_id]
         @comments = Comment.where(["commentable_type = ? AND commentable_id = ?", "Post", params[:post_id]])
+        
         render :comment_index
       else
         @comments = Comment.where(["commentable_type = ? AND commentable_id = ?", "Comment", params[:comment_id]])
+        
         render :comment_index
       end
     end
@@ -47,7 +49,7 @@ module Api
     private
     
     def comment_params
-      params.require(:comment).permit(:body, :commentable_type, :commentable_id, :indents)
+      params.require(:comment).permit(:body, :commentable_type, :commentable_id, :indents, :upvotes, :downvotes)
     end
   end
 end

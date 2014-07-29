@@ -6,6 +6,9 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     this.sub = options.sub;
     this.listenTo(this.collection, "sync", this.render);
     this.listenTo(this.sub, "sync", this.render);
+    if (Sync.Models.session) {
+      this.listenTo(Sync.Collections.votes, "sync add remove", this.render);
+    }
   },
   
   events: {
@@ -16,7 +19,9 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     "click div.thumbnail-post": "postShow",
     "click div.text-post": "postShow",
     "click button.subscribe": "subscribe",
-    "click button.unsubscribe": "unsubscribe"
+    "click button.unsubscribe": "unsubscribe",
+    "click .upvote": "upvote",
+    "click .downvote": "downvote"
   },
   
   postShow: function(event) {
@@ -175,8 +180,28 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     });
   },
   
+  upvote: function(event) {
+    if (Sync.Models.session) {
+      event.preventDefault();
+      var postId = $(event.target).data('id');
+      Sync.vote(postId, "Post", 1);
+    } else {
+      Sync.setAlert("must be signed in to vote");
+    }
+  },
+  
+  downvote: function(event) {
+    if (Sync.Models.session) {
+      event.preventDefault();
+      var postId = $(event.target).data('id');
+      Sync.vote(postId, "Post", -1);
+    } else {
+      Sync.setAlert("must be signed in to vote");
+    }
+  },
+  
   render: function() {
-    var renderedContent = this.template({ posts: this.collection, sub: this.sub });
+    var renderedContent = this.template({ posts: this.collection, sub: this.sub, votes: Sync.Collections.votes });
     
     this.$el.html(renderedContent);
     //this.attachSubviews();

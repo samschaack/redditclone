@@ -4,7 +4,6 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.model = options.model;
     
-    // this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model, "sync", this.imageToggleDefault);
     
     this.listenTo(
@@ -14,6 +13,10 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     this.listenTo(
       this.model.comments(), "remove", this.removeComment
     );
+    
+    if (Sync.Models.session) {
+      this.listenTo(Sync.Collections.votes, "sync add remove", this.render);
+    }
     
     this.model.comments().each(this.addComment.bind(this));
     this.model.comments().fetch();
@@ -25,7 +28,9 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     "click button.post-reply": "newPostComment",
     "click button.remove-comment": "removeComment",
     // "click div.post-show": "removeNewPostCommentForm",
-    "click button.new-post-comment": "createPostComment"
+    "click button.new-post-comment": "createPostComment",
+    "click .upvote": "upvote",
+    "click .downvote": "downvote"
   },
   
   addComment: function(comment) {
@@ -133,8 +138,32 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     }
   },
   
+  upvote: function(event) {
+    if (Sync.Models.session) {
+      event.preventDefault();
+      var postId = $(event.target).data('id');
+      Sync.vote(postId, "Post", 1, { post: this.model });
+    } else {
+      Sync.setAlert("must be signed in to vote");
+    }
+  },
+  
+  downvote: function(event) {
+    if (Sync.Models.session) {
+      event.preventDefault();
+      var postId = $(event.target).data('id');
+      Sync.vote(postId, "Post", -1, { post: this.model });
+    } else {
+      Sync.setAlert("must be signed in to vote");
+    }
+  },
+  
   render: function() {
-    var renderedContent = this.template({ post: this.model, numComments: this.model.comments().length });
+    var renderedContent = this.template({
+      post: this.model,
+      numComments: this.model.comments().length,
+      votes: Sync.Collections.votes
+    });
     
     this.$el.html(renderedContent);
     this.attachSubviews();

@@ -1,13 +1,38 @@
 <div class="comment" data-id="<%= comment.escape('id') %>" style="margin-left: 2rem;<% if (parseInt(comment.escape('indents')) % 2 === 1) { %>background-color: #F7F7F8;<% } else { %>background-color: white;<% } %>">
-  <div class="comment-vote-box" data-id="<%= comment.escape('id') %>">
-    <button class="btn btn-xs upvote"><span class="glyphicon glyphicon-chevron-up"></span></button>
-    <button class="btn btn-xs downvote"><span class="glyphicon glyphicon-chevron-down"></span></button>
-  </div>
+  
+  <% if (Sync.Models.session) { %>
+    
+    <div class="comment-vote-box" data-id="<%= comment.escape('id') %>">
+      <button class="btn btn-xs upvote" data-id="<%= comment.escape('id') %>">
+        <span class="glyphicon glyphicon-chevron-up upvote <% if (votes.findWhere({ voteable_type: "Comment", voteable_id: parseInt(comment.escape('id')), upordown: 1 })) { %>
+           upvoted
+           <% } %>" data-id="<%= comment.escape('id') %>"></span>
+      </button>
+      <button class="btn btn-xs downvote" data-id="<%= comment.escape('id') %>">
+        <span class="glyphicon glyphicon-chevron-down downvote <% if (votes.findWhere({ voteable_type: "Comment", voteable_id: parseInt(comment.escape('id')), upordown: -1 })) { %>
+           downvoted
+           <% } %>" data-id="<%= comment.escape('id') %>"></span>
+      </button>
+    </div>
+    
+  <% } else { %>
+    
+    <div class="comment-vote-box" data-id="<%= comment.escape('id') %>">
+      <button class="btn btn-xs upvote" data-id="<%= comment.escape('id') %>">
+        <span class="glyphicon glyphicon-chevron-up upvote" data-id="<%= comment.escape('id') %>"></span>
+      </button>
+      <button class="btn btn-xs downvote" data-id="<%= comment.escape('id') %>">
+        <span class="glyphicon glyphicon-chevron-down downvote" data-id="<%= comment.escape('id') %>"></span>
+      </button>
+    </div>
+    
+  <% } %>
+  
   <div class="comment-header">
     <div class="expand-minimize-section-<%= comment.escape('id') %>" style="display:inline-block;margin-right:-.5rem;">
       <button class="button-link comment-minimize" data-id="<%= comment.escape('id') %>" data-indents="<%= comment.escape('indents') %>">[-]</button>
     </div>
-    <span style="color:#53ABDF;"><a href="#/u/<%= comment.escape('user') %>"><%= comment.escape('user') %></a></span> 
+    <span style="color:#53ABDF;"><a href="#/u/<%= comment.escape('user') %>"><%= comment.escape('user') %></a></span> (<span class="comment-score" data-id="<%= comment.escape('id') %>"><%= comment.escape('upvotes') - comment.escape('downvotes') %></span> <% if (comment.escape('upvotes') - comment.escape('downvotes') === 1) { %> point)<% } else { %> points)<% } %>  
     <div class="date-time" data-id="<%= comment.escape('id') %>">
       <% comment_time = new Date(comment.escape('created_at')) %>
       <% if (comment_time.toTimeString().slice(0, 2) > 12) { %>

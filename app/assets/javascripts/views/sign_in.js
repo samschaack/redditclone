@@ -20,8 +20,6 @@ Sync.Views.SignIn = Backbone.CompositeView.extend({
   },
   
   signInSuccess: function(user) {
-    Backbone.history.navigate('#', { trigger: true });
-    
     $('.sign-out-button').toggleClass('invisible');
     $('.profile-header').html("signed in as <a href='#/u/me'>" + user.username + "</a>");
     $('.profile-header').toggleClass('invisible');
@@ -34,6 +32,7 @@ Sync.Views.SignIn = Backbone.CompositeView.extend({
     Sync.Models.session.email = user.email;
     
     Sync.setMessage("success");
+    Backbone.history.navigate('#', { trigger: true });
   },
   
   signInFailure: function() {
