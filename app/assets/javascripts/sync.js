@@ -73,6 +73,7 @@ window.Sync = {
     });
     
     $('.nav-tab').mouseleave(function(event) { $('.messages').text('') });
+    Sync.setMessage('++tab');
   },
   
   renderTabs: function() {
