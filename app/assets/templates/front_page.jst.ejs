@@ -22,14 +22,14 @@
       </div>
     <div class="score-box">
       <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
-        <span class="glyphicon glyphicon-chevron-up"></span>
+        <span class="glyphicon glyphicon-chevron-up" data-id="<%= post.escape('id') %>"></span>
       </button>
       <div style="width:100%;text-align:center;">
         <% score = post.escape('upvotes') - post.escape('downvotes') %>
         <%= score %>
       </div>
       <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
-        <span class="glyphicon glyphicon-chevron-down"></span>
+        <span class="glyphicon glyphicon-chevron-down" data-id="<%= post.escape('id') %>"></span>
       </button>
     </div>
     <% var url = post.escape('url')%>

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :subs, only: [:create, :index]
     resources :sub_memberships, only: [:create]
     
-    resources :votes, only: [:create, :destroy]
+    resources :votes, only: [:create]
     
     resources :users, except: [:new, :edit]
     resource :session, only: [:create, :destroy]
@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   get '/api/subs/unsubscribed', to: 'api/subs#unsubscribed'
   get '/api/subs/owned', to: 'api/subs#owned'
   get '/api/subs/:name', to: 'api/subs#get_sub_info'
+  delete '/api/votes', to: 'api/votes#destroy'
 end

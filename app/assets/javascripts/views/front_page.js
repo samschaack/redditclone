@@ -138,10 +138,14 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
   
   upvote: function(event) {
     event.preventDefault();
+    var postId = $(event.target).data('id');
+    Sync.vote(postId, "Post", 1);
   },
   
   downvote: function(event) {
     event.preventDefault();
+    var postId = $(event.target).data('id');
+    Sync.vote(postId, "Post", -1);
   },
   
   render: function() {

@@ -583,10 +583,12 @@ body {
 
 .upvote {
   background: transparent;
+  z-index: 10;
 }
 
 .downvote {
   background: transparent;
+  z-index: 10;
 }
 
 .post-show {

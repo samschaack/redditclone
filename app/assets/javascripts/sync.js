@@ -124,41 +124,67 @@ window.Sync = {
     $('#sub-navigate').val('');
   },
   
-  vote: function(event, id, type, upordown) {
-    event.preventDefault();
-    
+  vote: function(id, type, upordown) {
     $.ajax({
       type: 'POST',
       url: '/api/votes',
-      data: { user:
+      data: { vote:
         {
           upordown: upordown,
-          voteableid: id,
-          voteabletype: type
+          voteable_id: id,
+          voteable_type: type
         }
       },
       success: function(data) {
         var post = Sync.Collections.posts.findWhere({ id: id });
-        post.set('score', post.score + upordown);
-        post.save();
-      },
-      error: function(data) {
-        //delete upvote
-        $.ajax({
-          type: 'DELETE',
-          url: '/api/votes/' + type + '/' + id,
-          data: { user:
-            {
-              voteableid: id,
-              voteabletype: type
-            }
-          },
-          success: function(data) {
-            post.set('score', post.score - upordown);
-            post.save();
+        if (data === 1) {
+          //set vote
+          if (upordown === 1) {
+            post.set('upvotes', post.attributes.upvotes + 1);
+          } else {
+            post.set('downvotes', post.attributes.downvotes + 1);
           }
-        });
+        } else if (data === 2) {
+          //reverse vote
+          if (upordown === 1) {
+            post.set('upvotes', post.attributes.upvotes + 1);
+            post.set('downvotes', post.attributes.downvotes - 1);
+          } else {
+            post.set('upvotes', post.attributes.upvotes - 1);
+            post.set('downvotes', post.attributes.downvotes + 1);
+          }
+        } else if (data === 3) {
+          //nullify vote
+          if (upordown === 1) {
+            post.set('upvotes', post.attributes.upvotes - 1);
+          } else {
+            post.set('downvotes', post.attributes.downvotes - 1);
+          }
+        }
+        post.save();
       }
+      // error: function(data) {
+  //       //delete upvote
+  //       $.ajax({
+  //         type: 'DELETE',
+  //         url: '/api/votes',
+  //         data: { vote:
+  //           {
+  //             voteable_id: id,
+  //             voteable_type: type
+  //           }
+  //         },
+  //         success: function(data) {
+  //           var post = Sync.Collections.posts.findWhere({ id: id });
+  //           if (upordown === 1) {
+  //             post.set('upvotes', post.attributes.upvotes - 1);
+  //           } else {
+  //             post.set('downvotes', post.attributes.downvotes - 1);
+  //           }
+  //           post.save();
+  //         }
+  //       });
+  //     }
     });
   }
 };

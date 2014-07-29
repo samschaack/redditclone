@@ -10,10 +10,8 @@ module Api
         sign_in(@user)
         
         #subscribe user to default subs
-      
-        User.first.owned_subs.each do |sub|
-          SubMembership.create({ user_id: @user.id, sub_id: sub.id })
-        end
+        
+        Default.all.each { |default| SubMembership.create({ user_id: @user.id, sub_id: default.sub.id }) }
         
         render json: @user
       else

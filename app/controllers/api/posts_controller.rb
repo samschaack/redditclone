@@ -1,6 +1,6 @@
 module Api
   class PostsController < ApiController
-    wrap_parameters :post, include: [:title, :url, :body, :sub, :user]
+    wrap_parameters :post, include: [:title, :url, :body, :sub, :user, :upvotes, :downvotes]
     
     def create
       @post = Post.new(post_params)
@@ -17,12 +17,12 @@ module Api
       end
     end
     
-    # def update
-    #   @post = Post.find(params[:id])
-    #   @post.update(post_params)
-    #
-    #   render json: @post
-    # end
+    def update
+      @post = Post.find(params[:id])
+      @post.update(post_params)
+
+      render json: @post
+    end
     
     def destroy
       
@@ -87,7 +87,7 @@ module Api
     private
     
     def post_params
-      params.require(:post).permit(:title, :url, :body) #no user_id
+      params.require(:post).permit(:title, :url, :body, :upvotes, :downvotes) #no user_id
     end
   end
 end
