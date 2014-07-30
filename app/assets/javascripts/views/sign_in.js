@@ -20,19 +20,23 @@ Sync.Views.SignIn = Backbone.CompositeView.extend({
   },
   
   signInSuccess: function(user) {
-    $('.sign-out-button').toggleClass('invisible');
-    $('.profile-header').html("signed in as <a href='#/u/me'>" + user.username + "</a>");
-    $('.profile-header').toggleClass('invisible');
-    $('.sign-in-button').toggleClass('invisible');
-    $('.sign-up-button').toggleClass('invisible');
+    if (!Sync.Models.session) {
+      $('.sign-out-button').toggleClass('invisible');
+      $('.profile-header').html("signed in as <a href='#/u/me'>" + user.username + "</a>");
+      $('.profile-header').toggleClass('invisible');
+      $('.sign-in-button').toggleClass('invisible');
+      $('.sign-up-button').toggleClass('invisible');
     
-    Sync.Models.session = {};
-    Sync.Models.session.username = user.username;
-    Sync.Models.session.points = user.points;
-    Sync.Models.session.email = user.email;
+      Sync.Models.session = {};
+      Sync.Models.session.username = user.username;
+      Sync.Models.session.points = user.points;
+      Sync.Models.session.email = user.email;
     
-    Sync.setMessage("success");
-    Backbone.history.navigate('#', { trigger: true });
+      Sync.setMessage("success");
+      Backbone.history.navigate('#', { trigger: true });
+    } else {
+      Sync.setAlert("you are already signed in");
+    }
   },
   
   signInFailure: function() {

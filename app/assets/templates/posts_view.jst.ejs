@@ -16,7 +16,7 @@
 </div>
 <div class="posts">
   <% posts.each(function(post, index) { %>
-    <!-- post.set('index', index + 1) -->
+    <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
       <div style="min-width: 2.5rem;position:absolute;top:1.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#9A9A9A;"><%= index + 1 %></span><% } else { %><span style="color:#737373;"><%= index + 1 %></span><% } %>
       </div>
@@ -80,9 +80,9 @@
         </button>
       <% } %>
       <% if (post.escape('url')) { %>
-        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <span style="color:#5FAEDF;">·</span>
+        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - <a href="#/s/<%= post.escape('sub') %>">/<%= post.escape('sub') %></a> <span style="color:#5FAEDF;">·</span>
       <% } else { %>
-        <a href="#/p/c/<%= post.escape('id') %>"><%= post.escape('title') %></a> - text - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <span style="color:#5FAEDF;">·</span>
+        <a href="#/p/c/<%= post.escape('id') %>"><%= post.escape('title') %></a> - text - <a href="#/s/<%= post.escape('sub') %>">/<%= post.escape('sub') %></a> <span style="color:#5FAEDF;">·</span>
       <% } %>
       </div>
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>

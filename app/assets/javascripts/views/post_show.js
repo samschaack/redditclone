@@ -27,7 +27,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     "click button.add-comment": "addComment",
     "click button.post-reply": "newPostComment",
     "click button.remove-comment": "removeComment",
-    "click div.post-show": "removeNewPostCommentForm",
+    "click div.comment-section": "removeNewPostCommentForm",
     "click button.new-post-comment": "createPostComment",
     "click .upvote": "upvote",
     "click .downvote": "downvote"
@@ -51,9 +51,9 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   
   removeNewPostCommentForm: function(event) {
     event.preventDefault();
-    if (!$(event.target).is('button')) {
+    if (!$(event.target).is('button') && !$(event.target).is('textarea')) {
       if ($('.new-post-comment').html().slice(0, 30) !== "<button class='button-link p" ) {
-        $('.new-post-comment').html("<button class='button-link post-reply' data-id=" + this.model.attributes.id + ">comment</button>");
+        $('.new-post-comment').html("<button class='button-link post-reply' data-id=" + this.model.attributes.id + ">reply</button>");
       }
     }
   },

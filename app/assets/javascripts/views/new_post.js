@@ -17,17 +17,21 @@ Sync.Views.NewPost = Backbone.View.extend({
     var post = new Sync.Models.Post(params["post"]);
     var sub = params["post"]["sub"]
     
-    post.save({}, {
-      success: function(post) {
-        Backbone.history.navigate("#/p/c/" + post.id, { trigger: true });
-        Sync.setMessage("post created");      
-      },
+    if (params["post"]["url"].match(/\s+/) || !params["post"]["url"].match(/(\w+(\.\w+)+)/)) {
+      Sync.setAlert("not a valid url");
+    } else {
+      post.save({}, {
+        success: function(post) {
+          Backbone.history.navigate("#/p/c/" + post.id, { trigger: true });
+          Sync.setMessage("post created");      
+        },
       
-      error: function(errors) {
-        Sync.setAlert(errors);
-        console.log(errors)
-      }
-    });
+        error: function(errors) {
+          Sync.setAlert(errors);
+          console.log(errors)
+        }
+      });
+    }
   },
   
   render: function() {

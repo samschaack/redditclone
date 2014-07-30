@@ -7,6 +7,8 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     if (Sync.Models.session) {
       this.listenTo(Sync.Collections.votes, "sync add remove", this.render);
     }
+    this.page = 0;
+    this.scrolled = false;
   },
   
   events: {
@@ -164,8 +166,17 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
   render: function() {
     var renderedContent = this.template({ posts: this.collection, votes: Sync.Collections.votes });
     
+    var view = this;
+    $(window).scroll(function() {
+      if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+        if (view.scrolled === false) {
+          view.addPage();
+          view.scrolled = true;
+        }
+      }
+    });
+    
     this.$el.html(renderedContent);
-    //this.attachSubviews();
     return this;
   }
 });

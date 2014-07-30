@@ -262,6 +262,8 @@ $(document).ready(function(){
     Sync.renderTabs();
     Sync.Models.session = null;
     
+    Sync.Collections.votes = new Sync.Collections.Votes;
+    
     Sync.setMessage("success");
   }
   
@@ -313,11 +315,12 @@ $(document).ready(function(){
       var finHY;
     
       var scaleFactor = 1;
-    
+      var initSize = Math.pow(Math.pow(Sync.initWidth, 2) + Math.pow(Sync.initHeight, 2), .5)
+      
       if (diffX < 0 && diffY < 0) {
-        scaleFactor = 1 - Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / 500
+        scaleFactor = 1 - Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / (Math.pow(initSize, .9))
       } else if (diffX > 0 && diffY > 0) {
-        scaleFactor = 1 + Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / 500
+        scaleFactor = 1 + Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / (Math.pow(initSize, .9))
       }
     
       finWX = Sync.initWidth * scaleFactor
@@ -370,6 +373,7 @@ $(document).ready(function(){
       } else {
         Backbone.history.navigate("#/" + $("#sub-navigate").val());
       }
+      $('#sub-navigate').blur();
     }
   });
   //Sync.Models.user = 

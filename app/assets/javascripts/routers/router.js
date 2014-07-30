@@ -94,7 +94,13 @@ Sync.Routers.Router = Backbone.Router.extend({
     //bad?
     Sync.Collections.posts = new Sync.Collections.Posts;
     Sync.Collections.posts.url = 'api/posts';
-    Sync.Collections.posts.fetch();
+    Sync.Collections.posts.fetch({
+      success: function(posts) {
+        posts.each(function(post, index) {
+          post.set('index', index + 1);
+        })
+      }
+    });
     
     if (Sync.Models.session) {
       Sync.Collections.votes = new Sync.Collections.Votes;
@@ -167,15 +173,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     post = Sync.Collections.posts.getOrFetch(post.attributes.id);
     
-    Sync.Collections.votes = new Sync.Collections.Votes;
-    Sync.Collections.votes.fetch();
-    
-    var postShowView = new Sync.Views.PostShow({
-      model: post
-    });
-    
-    $("#sub-navigate").removeAttr("disabled"); 
-    this._swapView(postShowView);
+    this.postClickShow(post.attributes.id);
   },
   
   navToLastPage: function() {

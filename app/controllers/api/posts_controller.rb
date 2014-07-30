@@ -10,7 +10,7 @@ module Api
       if !@post.sub_id
         render json: @post.errors.full_messages
       elsif @post.save
-        render json: @post.errors.full_messages
+        render json: @post
       else
         flash[:errors] = @post.errors.full_messages
         render json: @post.errors.full_messages
@@ -29,14 +29,20 @@ module Api
     end
     
     def sub_page
-      @posts = Sub.find_by_name(params[:name]).posts
       @sub = Sub.find_by_name(params[:name])
+      @posts = @sub.posts
       
       if signed_in? 
         @submembership = SubMembership.where(["sub_id = ? AND user_id = ?", @sub.id, current_user.id])
       else
         @submembership = nil
       end
+      
+      #filter out old posts
+      @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
+      
+      #sort posts before sending
+      @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
       
       render :sub_page
     end
@@ -49,26 +55,30 @@ module Api
         current_user.subs.each do |sub|
           sub.posts.each do |post|
             @posts << post
-            break if @posts.length == 500
           end
-          break if @posts.length == 500
         end
         
-        #@posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
+        #filter out old posts
+        @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
+        
+        #sort posts before sending
+        @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
         
         render :front_page
       else
-        #give user all posts from default subs (all posts as of now)
-        #old method of generating default subs - @subs = Sub.all.where("owner_id = '1'")
         @posts = []
         
         Default.all.each do |default|
           default.sub.posts.each do |post|
             @posts << post
-            break if @posts.length == 500
           end
-          break if @posts.length == 500
         end
+        
+        #filter out old posts
+        @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
+        
+        #sort posts before sending
+        @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
         
         render :front_page
       end
