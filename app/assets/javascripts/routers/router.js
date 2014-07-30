@@ -27,6 +27,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     $("#sub-navigate").attr("disabled", "disabled"); 
     this._swapView(newUserView);
+    $('input#sign-up-username').focus();
   },
   
   newSession: function() {
@@ -34,6 +35,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     
     $("#sub-navigate").attr("disabled", "disabled"); 
     this._swapView(newSessionView);
+    $('input.sign-in-username').focus();
   },
   
   newPost: function() {
@@ -156,10 +158,11 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   postShow: function(index) {
+    var post;
     if (index) {
-      var post = Sync.Collections.posts.findWhere({ index: parseInt(index) });
+      post = Sync.Collections.posts.findWhere({ index: parseInt(index) });
     } else {
-      var post = Sync.Collections.posts.getOrFetch(id);
+      post = Sync.Collections.posts.getOrFetch(id);
     }
     
     post = Sync.Collections.posts.getOrFetch(post.attributes.id);

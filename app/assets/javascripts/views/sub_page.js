@@ -25,10 +25,12 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
   },
   
   postShow: function(event) {
-    var post_id = $(event.target).data('id');
+    if (!$(event.target).is('img')) {
+      var post_id = $(event.target).data('id');
     
-    if (post_id !== undefined) {
-      Backbone.history.navigate("#/p/c/" + post_id);
+      if (post_id !== undefined) {
+        Backbone.history.navigate("#/p/c/" + post_id);
+      }
     }
   },
   
@@ -42,7 +44,7 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
     
     if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
-      $contentTarget.html("<img src=" + url + ">");
+      $contentTarget.html("<img class='sizeable-image' data-id=" + post_id + " src=" + url + ">");
       $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
       $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
     } else {
@@ -56,7 +58,7 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
     
     if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
-      $contentTarget.html("<img src=" + url + ">");
+      $contentTarget.html("<img class='sizeable-image' data-id=" + post_id + " src=" + url + ">");
       $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
       $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
     } else {

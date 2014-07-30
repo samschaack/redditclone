@@ -277,7 +277,7 @@ $(document).ready(function(){
   
   $('.sign-out-button').on('click', signOut);
   
-  $('body').on('mousedown', '.front-page-image', startDrag)
+  $('body').on('mousedown', '.sizeable-image', startDrag)
   
   $('body').on('mousemove', dragImage)
   
@@ -293,13 +293,16 @@ $(document).ready(function(){
     
     Sync.curImg = $(event.target).data('id');
     
-    Sync.initWidth = $("img.front-page-image[data-id='" + Sync.curImg + "']").width();
-    Sync.initHeight = $("img.front-page-image[data-id='" + Sync.curImg + "']").height();
+    Sync.initWidth = $("img.sizeable-image[data-id='" + Sync.curImg + "']").width();
+    Sync.initHeight = $("img.sizeable-image[data-id='" + Sync.curImg + "']").height();
+    var position = $("img.sizeable-image[data-id='" + Sync.curImg + "']").position();
+    Sync.initLeft = position.left;
+    Sync.initTop = position.top;
   }
   
   function dragImage(event) {
     if (Sync.dragging) {
-      $("img.front-page-image[data-id='" + Sync.curImg + "']").addClass("no-max-height");
+      $("img.sizeable-image[data-id='" + Sync.curImg + "']").addClass("no-max-height");
       var curX = event.pageX;
       var curY = event.pageY;
       
@@ -308,30 +311,25 @@ $(document).ready(function(){
       
       var finWX;
       var finHY;
-      
+    
       var scaleFactor = 1;
-      var saveFactor = 1;
-      
+    
       if (diffX < 0 && diffY < 0) {
         scaleFactor = 1 - Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / 500
-        saveFactor = scaleFactor;
       } else if (diffX > 0 && diffY > 0) {
         scaleFactor = 1 + Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / 500
-        saveFactor = scaleFactor;
-      } else {
-        scaleFactor = saveFactor;
       }
-      
+    
       finWX = Sync.initWidth * scaleFactor
       finHY = Sync.initHeight * scaleFactor
-      
-      if (finWX < 100 || finHY < 100) {
-        finWX = Sync.initWidth;
-        finHY = Sync.initHeight;
+    
+      if (finWX < 75 || finHY < 75) {
+        finWX = 75;
+        finHY = 75;
       }
-      
-      $("img.front-page-image[data-id='" + Sync.curImg + "']").css('width', finWX.toString() + "px");
-      $("img.front-page-image[data-id='" + Sync.curImg + "']").css('height', finHY.toString() + "px");
+    
+      $("img.sizeable-image[data-id='" + Sync.curImg + "']").css('width', finWX.toString() + "px");
+      $("img.sizeable-image[data-id='" + Sync.curImg + "']").css('height', finHY.toString() + "px");
     }
   }
   

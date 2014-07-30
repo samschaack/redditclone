@@ -35,7 +35,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
     
     if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
-      $contentTarget.html("<img class='front-page-image' data-id=" + post_id + " src=" + url + ">");
+      $contentTarget.html("<img class='sizeable-image' data-id=" + post_id + " src=" + url + ">");
       $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
       $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
     } else {
@@ -49,7 +49,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     var $contentTarget = $("div.post-content[data-id='" + post_id + "']");
     
     if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
-      $contentTarget.html("<img class='front-page-image' data-id=" + post_id + " src=" + url + ">");
+      $contentTarget.html("<img class='sizeable-image' data-id=" + post_id + " src=" + url + ">");
       $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
       $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
     } else {

@@ -82,7 +82,7 @@ body {
 .profile-header {
   position: absolute;
   right: 8.28%;
-  top: 37%;
+  top: 38%;
   min-width: 4.3%;
 }
 
@@ -421,7 +421,7 @@ body {
 .sign-out-button {
   position: absolute;
   left: 92.50%;
-  top: 28%;
+  top: 30%;
   border-color: #888;
   opacity: 50%;
   color: #888;
@@ -438,6 +438,8 @@ body {
   background-color: #53ABDF;
   border: 1px #53ABDF solid;
   color: #53ABDF;
+  outline:0 !important;
+  box-shadow: none;
   .sign-out-span {
     color: #53ABDF;
   }
@@ -450,7 +452,7 @@ body {
 .sign-up-button {
   position: absolute;
   left: 90.50%;
-  top: 28%;
+  top: 30%;
   border: none;
   opacity: 50%;
 }
@@ -458,7 +460,7 @@ body {
 .sign-in-button {
   position: absolute;
   left: 92.50%;
-  top: 28%;
+  top: 30%;
   border: none;
   opacity: 50%;
 }
@@ -646,6 +648,8 @@ body {
   background-color: #53ABDF;
   border-color: #53ABDF;
   color: #53ABDF;
+  outline:0 !important;
+  box-shadow: none;
   .expand-minimize-all-posts {
     color: #53ABDF;
   }
@@ -669,6 +673,8 @@ body {
   background-color: #53ABDF;
   border-color: #53ABDF;
   color: #53ABDF;
+  outline:0 !important;
+  box-shadow: none;
   .expand-minimize-all-posts {
     color: #53ABDF;
   }
@@ -690,13 +696,22 @@ body {
 .expand-image:hover {
   background-color: #53ABDF;
   border-color: #53ABDF;
+  outline:0 !important;
+  box-shadow: none;
   .expand-image-span {
     color: #53ABDF;
   }
 }
 
+.expand-image:focus {
+  outline:0 !important;
+  box-shadow: none;
+}
+
 .expand-image-span:hover {
   color: white;
+  outline:0 !important;
+  box-shadow: none;
 }
 
 .expand-body {
@@ -708,6 +723,8 @@ body {
 .expand-body:hover {
   background-color: #53ABDF;
   border-color: #53ABDF;
+  outline:0 !important;
+  box-shadow: none;
   .expand-body-span {
     color: white;
   }
@@ -1048,7 +1065,7 @@ a[class="btn text-post-select-button"]:hover {
   overflow: auto;
 }
 
-.front-page-image {
+.sizeable-image {
   background-size: 100% 100%;
   -webkit-user-drag: none;
   z-index: 10;

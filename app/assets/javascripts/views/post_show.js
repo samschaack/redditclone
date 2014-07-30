@@ -27,7 +27,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     "click button.add-comment": "addComment",
     "click button.post-reply": "newPostComment",
     "click button.remove-comment": "removeComment",
-    // "click div.post-show": "removeNewPostCommentForm",
+    "click div.post-show": "removeNewPostCommentForm",
     "click button.new-post-comment": "createPostComment",
     "click .upvote": "upvote",
     "click .downvote": "downvote"
@@ -51,9 +51,11 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   
   removeNewPostCommentForm: function(event) {
     event.preventDefault();
-    // if ($('.new-post-comment').html().slice(0, 30) !== "<button class='button-link p" ) {
-    //   $('.new-post-comment').html("<button class='button-link post-reply' data-id=" + this.model.attributes.id + ">comment</button>");
-    // }
+    if (!$(event.target).is('button')) {
+      if ($('.new-post-comment').html().slice(0, 30) !== "<button class='button-link p" ) {
+        $('.new-post-comment').html("<button class='button-link post-reply' data-id=" + this.model.attributes.id + ">comment</button>");
+      }
+    }
   },
   
   removeNewPostCommentFormNoEvent: function() {
@@ -106,7 +108,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     var $contentTarget = $("div.show-post-content[data-id='" + post_id + "']");
     
     if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
-      $contentTarget.html("<img src=" + url + ">");
+      $contentTarget.html("<img class='sizeable-image' data-id=" + post_id + " src=" + url + ">");
       $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
       $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
     } else {
@@ -126,7 +128,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
         var $contentTarget = $("div.show-post-content[data-id='" + post_id + "']");
     
         if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
-          $contentTarget.html("<img src=" + url + ">");
+          $contentTarget.html("<img class='sizeable-image' data-id=" + post_id + " src=" + url + ">");
           $("span.glyphicon-plus[data-id='" + post_id + "']").removeClass('glyphicon-plus');
           $("span.glyphicon[data-id='" + post_id + "']").addClass('glyphicon-minus');
         } else {
