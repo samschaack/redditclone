@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     
     resources :votes, only: [:create, :index]
     
-    resources :users, except: [:new, :edit]
+    resources :users, except: [:new, :edit, :show]
     resource :session, only: [:create, :destroy]
   end
   
@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   get '/api/votes/front_page', to: 'api/votes#front_page'
   get '/api/votes/sub_page', to: 'api/votes#sub_page'
   get '/api/votes/:id', to: 'api/votes#getVote'
+  get '/api/users/show_current', to: 'api/users#show_current'
+  get '/api/users/:username', to: 'api/users#show'
 end

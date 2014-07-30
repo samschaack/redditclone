@@ -268,7 +268,7 @@ $(document).ready(function(){
   }
   
   function navToLastPage() {
-    // Backbone.history.navigate(window.Sync.lastPage);
+    // Backbone.history.navigate(Sync.lastPage);
   }
   
   $('#make-post').on('click', makePost);
@@ -376,7 +376,6 @@ $(document).ready(function(){
       $('#sub-navigate').blur();
     }
   });
-  //Sync.Models.user = 
   
   // $('#last-page-button').on('click', navToLastPage);
 });

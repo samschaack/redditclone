@@ -23,9 +23,9 @@ Sync.Views.NewPost = Backbone.View.extend({
       post.save({}, {
         success: function(post) {
           Backbone.history.navigate("#/p/c/" + post.id, { trigger: true });
-          Sync.setMessage("post created");      
+          Sync.setMessage("post created");
         },
-      
+        
         error: function(errors) {
           Sync.setAlert(errors);
           console.log(errors)

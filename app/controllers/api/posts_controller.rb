@@ -5,7 +5,7 @@ module Api
     def create
       @post = Post.new(post_params)
       @post.sub_id = Sub.find_by_name(params[:post][:sub]).id
-      @post.user_id = User.find_by_username(params[:post][:user]).id
+      @post.user_id = current_user.id
       
       if !@post.sub_id
         render json: @post.errors.full_messages
@@ -20,7 +20,7 @@ module Api
     def update
       @post = Post.find(params[:id])
       @post.update(post_params)
-
+      
       render json: @post
     end
     
@@ -97,7 +97,7 @@ module Api
     private
     
     def post_params
-      params.require(:post).permit(:title, :url, :body, :upvotes, :downvotes) #no user_id
+      params.require(:post).permit(:title, :url, :body, :upvotes, :downvotes)
     end
   end
 end

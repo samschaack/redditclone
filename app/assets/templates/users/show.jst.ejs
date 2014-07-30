@@ -1,0 +1,13 @@
+<div class="user-show-page">
+  <h3 style="margin-top: -.75rem;margin-bottom: 1.5rem; text-decoration: underline;"><%= user.escape('username') %></h3>
+  email: <%= user.escape('email') %>
+  <br>
+  <br>
+  points: <%= user.escape('points') %>
+  <br>
+  <br>
+  joined: <%= new Date(user.escape('created_at')).toDateString() %>
+  <br>
+  <br>
+  <button class="btn send-message" style="width:100%">send message</a>
+</div>

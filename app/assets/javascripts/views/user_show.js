@@ -3,8 +3,6 @@ Sync.Views.UserShow = Backbone.CompositeView.extend({
   
   initialize: function(options) {
     this.user = options.user;
-    
-    this.listenTo(this.user, "sync", this.render);
   },
   
   events: {

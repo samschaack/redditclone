@@ -4,7 +4,7 @@ module Api
     
     def create
       @comment = Comment.new(comment_params)
-      @comment.user_id = User.find_by_username(params[:comment][:user]).id
+      @comment.user_id = current_user.id
       
       if @comment.save
         @comment.update({ created_at: @comment.created_at.localtime })

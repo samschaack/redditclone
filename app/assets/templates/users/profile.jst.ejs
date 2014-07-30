@@ -1,17 +1,20 @@
 <div class="account-page">
-  <h3 style="margin-top: -.75rem;">user: <%= Sync.Models.session.username %></h3>
-  email: <%= Sync.Models.session.email %>
-  <br>
-  <br>
-  points: <%= Sync.Models.session.points %>
-  <br>
-  <br>
-  messages:
-  <div class="messages-box">
-    
+  <div class="profile">
+    <h3 style="margin-top: -.75rem;">user: <%= Sync.Models.session.username %></h3>
   </div>
-  <!-- <a class="btn link-active link-post-select-button messages-button" style="width:45%">messages</a>
-  <a class="btn text-post-select-button sent-messages-button" style="width:45%">sent messages</a> -->
-  <button class="btn link-active messages-button" style="width:45%">messages</a>
-  <button class="btn sent-messages-button" style="width:45%">sent messages</a>
+    email: <span class="email"><%= Sync.Models.session.email %> (click to change)</span>
+  <div class="profile">
+    <br>
+    points: <%= user.escape('points') %>
+    <br>
+    <br>
+    messages:
+    <div class="messages-box">
+    
+    </div>
+    <!-- <a class="btn link-active link-post-select-button messages-button" style="width:45%">messages</a>
+    <a class="btn text-post-select-button sent-messages-button" style="width:45%">sent messages</a> -->
+    <button class="btn link-active messages-button" style="width:45%">messages</a>
+    <button class="btn sent-messages-button" style="width:45%">sent messages</a>
+  </div>
 </div>

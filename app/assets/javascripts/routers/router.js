@@ -12,7 +12,7 @@ Sync.Routers.Router = Backbone.Router.extend({
     "u": "newSession",
     "u/n": "newUser",
     "u/me": "accountPage",
-    "u/:id": "userPage",
+    "u/:username": "userPage",
     "c": "commandsPage"
   },
   
@@ -218,21 +218,44 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   accountPage: function() {
-    if (Sync.Models.session) {
-      var accountPageView = new Sync.Views.AccountPage();
+    var view = this;
     
-      this._swapView(accountPageView);
+    if (Sync.Models.session) { 
+      $.ajax({
+        type: 'GET',
+        url: '/api/users/show_current',
+        success: function(data) {
+          var user = new Sync.Models.User(data)
+          var accountPageView = new Sync.Views.AccountPage({ user: user });
+          
+          $("#sub-navigate").attr("disabled", "disabled"); 
+          view._swapView(accountPageView);
+        }
+      });
     } else {
       Backbone.history.navigate("#", { trigger: true });
       Sync.setAlert("sign in to see your account page");
     }
   },
   
-  userPage: function(id) {
-    var user = Sync.Collections.users.getOrFetch(id);
-    var userPageView = new Sync.Views.UserShow({ user: user });
+  userPage: function(username) {
+    var view = this;
     
-    this._swapView(userPageView);
+    if (Sync.Models.session) { 
+      $.ajax({
+        type: 'GET',
+        url: '/api/users/' + username,
+        success: function(data) {
+          var user = new Sync.Models.User(data)
+          var userShowView = new Sync.Views.UserShow({ user: user });
+      
+          view._swapView(userShowView);
+        }
+      });
+    } else {
+      Backbone.history.navigate("#", { trigger: true });
+      Sync.setAlert("sign in to see your account page");
+    }
   },
   
   _swapView: function(newView) {
