@@ -13,7 +13,7 @@
 //= require underscore
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+
 //= require backbone
 //= require serializeJSON
 //= require bootstrap

@@ -735,6 +735,11 @@ img {
   max-height: 50%;
 }
 
+.no-max-height {
+  max-width: none;
+  max-height: none;
+}
+
 img.header {
   max-width: none;
   max-height: none;
@@ -1045,4 +1050,6 @@ a[class="btn text-post-select-button"]:hover {
 
 .front-page-image {
   background-size: 100% 100%;
+  -webkit-user-drag: none;
+  z-index: 10;
 }

@@ -277,6 +277,68 @@ $(document).ready(function(){
   
   $('.sign-out-button').on('click', signOut);
   
+  $('body').on('mousedown', '.front-page-image', startDrag)
+  
+  $('body').on('mousemove', dragImage)
+  
+  $('body').on('mouseup', endDrag)
+  
+  function startDrag(event) {
+    Sync.dragging = true;
+    
+    Sync.initImgX = event.pageX;
+    Sync.initImgY = event.pageY;
+    
+    Sync.ratio = Sync.initWidth / Sync.initHeight;
+    
+    Sync.curImg = $(event.target).data('id');
+    
+    Sync.initWidth = $("img.front-page-image[data-id='" + Sync.curImg + "']").width();
+    Sync.initHeight = $("img.front-page-image[data-id='" + Sync.curImg + "']").height();
+  }
+  
+  function dragImage(event) {
+    if (Sync.dragging) {
+      $("img.front-page-image[data-id='" + Sync.curImg + "']").addClass("no-max-height");
+      var curX = event.pageX;
+      var curY = event.pageY;
+      
+      var diffX = curX - Sync.initImgX;
+      var diffY = curY - Sync.initImgY;
+      
+      var finWX;
+      var finHY;
+      
+      var scaleFactor = 1;
+      var saveFactor = 1;
+      
+      if (diffX < 0 && diffY < 0) {
+        scaleFactor = 1 - Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / 500
+        saveFactor = scaleFactor;
+      } else if (diffX > 0 && diffY > 0) {
+        scaleFactor = 1 + Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / 500
+        saveFactor = scaleFactor;
+      } else {
+        scaleFactor = saveFactor;
+      }
+      
+      finWX = Sync.initWidth * scaleFactor
+      finHY = Sync.initHeight * scaleFactor
+      
+      if (finWX < 100 || finHY < 100) {
+        finWX = Sync.initWidth;
+        finHY = Sync.initHeight;
+      }
+      
+      $("img.front-page-image[data-id='" + Sync.curImg + "']").css('width', finWX.toString() + "px");
+      $("img.front-page-image[data-id='" + Sync.curImg + "']").css('height', finHY.toString() + "px");
+    }
+  }
+  
+  function endDrag() {
+    Sync.dragging = false;
+  }
+  
   $('#sub-navigate').keypress(function(e) {
     var command = $('#sub-navigate').val();
     
