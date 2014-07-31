@@ -60,7 +60,7 @@
     <% var url = post.escape('url')%>
     <% if (url && (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png")) { %>
       <div class="thumbnail-section">
-          <img src="<%= post.escape('url') %>" class="thumbail-image">
+          
       </div>
     <div class="thumbnail-post" style="<% if ((parseInt(index) + 1) % 2 === 0) { %>border-top: 2px #CCC dotted;<% } %>" data-id="<%= post.escape('id') %>">
     <% } else { %>
