@@ -60,10 +60,14 @@
     
     <% var url = post.escape('url')%>
     <% if (url && (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png")) { %>
-      <div class="thumbnail-section">
+      <% if ($(window).width() > 1000) { %>
+        <div class="thumbnail-section">
           <img src="<%= post.escape('url') %>" class="thumbail-image">
-      </div>
-    <div class="thumbnail-post" style="<% if ((parseInt(index) + 1) % 2 === 0) { %><% } %>" data-id="<%= post.escape('id') %>">
+        </div>
+        <div class="thumbnail-post" style="<% if ((parseInt(index) + 1) % 2 === 0) { %><% } %>" data-id="<%= post.escape('id') %>">
+        <% } else { %>
+          <div class="text-post" style="<% if ((parseInt(index) + 1) % 2 === 0) { %><% } %>" data-id="<%= post.escape('id') %>">
+      <% } %>
     <% } else { %>
       <div class="text-post" style="<% if ((parseInt(index) + 1) % 2 === 0) { %><% } %>" data-id="<%= post.escape('id') %>">
     <% } %>
@@ -81,9 +85,9 @@
         </button>
       <% } %>
       <% if (post.escape('url')) { %>
-        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <span style="color:#5FAEDF;">·</span>
+        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <!-- <span style="color:#5FAEDF;">·</span> -->
       <% } else { %>
-        <a href="#/p/c/<%= post.escape('id') %>"><%= post.escape('title') %></a> - text - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <span style="color:#5FAEDF;">·</span>
+        <a href="#/p/c/<%= post.escape('id') %>"><%= post.escape('title') %></a> - text - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <!-- <span style="color:#5FAEDF;">·</span> -->
       <% } %>
       </div>
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>

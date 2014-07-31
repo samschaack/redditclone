@@ -91,9 +91,9 @@
         </button>
       <% } %>
       <% if (post.escape('url')) { %>
-        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> <span style="color:#5FAEDF;">·</span>
+        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> <!-- <span style="color:#5FAEDF;">·</span> -->
       <% } else { %>
-        <a href="#/p/c/<%= post.escape('id') %>"><%= post.escape('title') %></a> - text <span style="color:#5FAEDF;">·</span>
+        <a href="#/p/c/<%= post.escape('id') %>"><%= post.escape('title') %></a> - text <!-- <span style="color:#5FAEDF;">·</span> -->
       <% } %>
       </div>
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>

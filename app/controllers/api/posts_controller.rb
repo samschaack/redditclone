@@ -67,13 +67,13 @@ module Api
           sub_memberships.user_id = users.id
       SQL
         .where('users.id = ?', current_user.id)
-        .group('posts.id')
+        .group('posts.id').limit(20)
         
         #filter out old posts
         # .where('users.id = ?', current_user.id).where('posts.created_at > ?', Time.now - 500000)
         
         #sort posts before sending
-        @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
+        #@posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
         
         page = params[:page]
         

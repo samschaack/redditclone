@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  default_scope { order("(upvotes - downvotes) desc") }
+  
   validates :user_id, :commentable_id, :commentable_type, :body, presence: true
   
   belongs_to :commentable, polymorphic: true

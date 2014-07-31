@@ -17,11 +17,11 @@ Sync.Collections.Posts = Backbone.Collection.extend({
     }
     
     return post;
-  },
-  
-  comparator: function(model) {
-    return -model.get('upvotes') + model.get('downvotes');
-  }
+  }// ,
+//
+//   comparator: function(model) {
+//     return -model.get('upvotes') + model.get('downvotes');
+//   }
 });
   
 Sync.Collections.posts = new Sync.Collections.Posts();

@@ -56,7 +56,7 @@
     <div class="post-info">
       <div class="poster in-show">
         <% var post_time = post.escape('created_at'); %>
-        by <%= post.escape('username') %> to /<%= post.escape('name') %>
+        by <%= post.escape('username') %> to s/<%= post.escape('name') %>
       </div>
       <div class="date-time" data-id="<%= post.escape('id') %>">
         <% post_time = new Date(post.escape('created_at')) %>

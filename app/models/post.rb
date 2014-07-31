@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  default_scope { order("(upvotes - downvotes) desc") }
+  
   validates :title, :sub_id, :user_id, presence: true
   validates_presence_of :url, unless: :body
   validates_presence_of :body, unless: :url
