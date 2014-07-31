@@ -291,12 +291,13 @@ $(document).ready(function(){
     Sync.initImgX = event.pageX;
     Sync.initImgY = event.pageY;
     
-    Sync.ratio = Sync.initWidth / Sync.initHeight;
-    
     Sync.curImg = $(event.target).data('id');
     
     Sync.initWidth = $("img.sizeable-image[data-id='" + Sync.curImg + "']").width();
     Sync.initHeight = $("img.sizeable-image[data-id='" + Sync.curImg + "']").height();
+    
+    Sync.ratio = Sync.initWidth / Sync.initHeight;
+    
     var position = $("img.sizeable-image[data-id='" + Sync.curImg + "']").position();
     Sync.initLeft = position.left;
     Sync.initTop = position.top;
@@ -313,7 +314,7 @@ $(document).ready(function(){
       
       var finWX;
       var finHY;
-    
+      
       var scaleFactor = 1;
       var initSize = Math.pow(Math.pow(Sync.initWidth, 2) + Math.pow(Sync.initHeight, 2), .5)
       
@@ -322,15 +323,22 @@ $(document).ready(function(){
       } else if (diffX > 0 && diffY > 0) {
         scaleFactor = 1 + Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2)) / (Math.pow(initSize, .9))
       }
-    
+      
       finWX = Sync.initWidth * scaleFactor
       finHY = Sync.initHeight * scaleFactor
-    
-      if (finWX < 75 || finHY < 75) {
-        finWX = 75;
+      
+      // if (finWX < 75) {
+      //   finWX = 75;
+      // }
+      
+      if (finHY < 75 && Sync.ratio > 1) {
         finHY = 75;
+        finWX = Sync.ratio * 75;
+      } else if (finWX < 75 && Sync.ratio < 1) {
+        finWX = 75;
+        finHY = 75 / Sync.ratio;
       }
-    
+      
       $("img.sizeable-image[data-id='" + Sync.curImg + "']").css('width', finWX.toString() + "px");
       $("img.sizeable-image[data-id='" + Sync.curImg + "']").css('height', finHY.toString() + "px");
     }

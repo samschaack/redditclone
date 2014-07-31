@@ -85,6 +85,7 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
     params["comment"]["commentable_id"] = this.commentId;
     params["comment"]["commentable_type"] = "Comment";
     params["comment"]["indents"] = parseInt(this.model.attributes.indents) + 1;
+    params["comment"]["post_id"] = this.model.attributes.post_id;
     
     var comment = new Sync.Models.Comment(params["comment"]);
     

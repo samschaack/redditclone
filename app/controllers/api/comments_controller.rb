@@ -1,10 +1,12 @@
 module Api
   class CommentsController < ApiController
-    wrap_parameters :comment, include: [:body, :commentable_id, :commentable_type, :user, :indents, :upvotes, :downvotes]
+    wrap_parameters :comment, include: [:body, :commentable_id, :commentable_type, :user, :indents, :upvotes, :downvotes, :post_id]
     
     def create
       @comment = Comment.new(comment_params)
       @comment.user_id = current_user.id
+      @post = Post.find(comment_params[:post_id])
+      @post.update({ num_comments: @post.num_comments + 1 })
       
       if @comment.save
         @comment.update({ created_at: @comment.created_at.localtime })
@@ -49,7 +51,7 @@ module Api
     private
     
     def comment_params
-      params.require(:comment).permit(:body, :commentable_type, :commentable_id, :indents, :upvotes, :downvotes)
+      params.require(:comment).permit(:body, :commentable_type, :commentable_id, :indents, :upvotes, :downvotes , :post_id)
     end
   end
 end

@@ -83,6 +83,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     params["comment"]["user"] = Sync.Models.session.username;
     params["comment"]["commentable_id"] = this.model.attributes.id;
     params["comment"]["commentable_type"] = "Post";
+    params["comment"]["post_id"] = this.model.attributes.id;
     
     var comment = new Sync.Models.Comment(params["comment"]);
     
@@ -90,7 +91,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
       success: function(comment) {
         $("#sub-navigate").removeAttr("disabled"); 
         comment.attributes.user = Sync.Models.session.username;
-        comment.attributes.current_user = "true";
+        // comment.attributes.current_user = "true";
         view.addComment(comment);
         view.removeNewPostCommentFormNoEvent();
         Sync.setMessage("comment created");

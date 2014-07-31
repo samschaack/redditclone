@@ -7,4 +7,13 @@ class Comment < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   
   belongs_to :user
+  
+  before_destroy :decrement_post_comments_count
+  
+  private 
+  
+  def decrement_post_comments_count
+    @post = Post.find(self.post_id)
+    @post.update({ num_comments: @post.num_comments - 1 })
+  end
 end
