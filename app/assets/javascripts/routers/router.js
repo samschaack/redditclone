@@ -243,21 +243,16 @@ Sync.Routers.Router = Backbone.Router.extend({
   userPage: function(username) {
     var view = this;
     
-    if (Sync.Models.session) { 
-      $.ajax({
-        type: 'GET',
-        url: '/api/users/' + username,
-        success: function(data) {
-          var user = new Sync.Models.User(data)
-          var userShowView = new Sync.Views.UserShow({ user: user });
-      
-          view._swapView(userShowView);
-        }
-      });
-    } else {
-      Backbone.history.navigate("#", { trigger: true });
-      Sync.setAlert("sign in to see your account page");
-    }
+    $.ajax({
+      type: 'GET',
+      url: '/api/users/' + username,
+      success: function(data) {
+        var user = new Sync.Models.User(data)
+        var userShowView = new Sync.Views.UserShow({ user: user });
+        
+        view._swapView(userShowView);
+      }
+    });
   },
   
   _swapView: function(newView) {
