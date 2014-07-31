@@ -47,21 +47,37 @@ module Api
     end
     
     def front_page
+      query = 
+      
       if signed_in?
         #give user their subscribed posts
-        @posts = []
-        
-        current_user.subs.each do |sub|
-          sub.posts.each do |post|
-            @posts << post
-          end
-        end
+        @posts = Post.select('posts.*')
+        .joins(<<-SQL)
+        LEFT OUTER JOIN 
+          subs 
+        ON 
+          posts.sub_id = subs.id 
+        JOIN 
+          sub_memberships 
+        ON 
+          sub_memberships.sub_id = subs.id 
+        JOIN 
+          users 
+        ON 
+          sub_memberships.user_id = users.id
+      SQL
+        .where('users.id = ?', current_user.id)
+        .group('posts.id')
         
         #filter out old posts
-        @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
+        # .where('users.id = ?', current_user.id).where('posts.created_at > ?', Time.now - 500000)
         
         #sort posts before sending
         @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
+        
+        page = params[:page]
+        
+        #@posts = @posts[page * 20...page * 20 + 20]
         
         render :front_page
       else

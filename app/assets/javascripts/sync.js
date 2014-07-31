@@ -380,6 +380,9 @@ $(document).ready(function(){
         } else {
           Backbone.history.navigate(Backbone.history.fragment, { trigger: true });
         }
+      } else if (command.match(/\s+/)) {
+          Sync.setAlert("not a valid command");
+          $('#sub-navigate').val('');
       } else {
         Backbone.history.navigate("#/" + $("#sub-navigate").val());
       }

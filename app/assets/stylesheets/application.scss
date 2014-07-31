@@ -82,16 +82,10 @@ body {
 
 .profile-header {
   position: absolute;
-  right: 8.28%;
+//  right: 8.28%;
+  right: 158px;
   top: 38%;
-  min-width: 4.3%;
-}
-
-.site-name {
-  color: #53ABDF;
-  position: absolute;
-  top: 34.7%;
-  left: 8.2%;
+//  min-width: 4.3%;
 }
 
 .alerts {
@@ -200,9 +194,7 @@ body {
 .thumbnail-post {
   min-height: 6rem;
   position: relative;
-  border-top: 2px #AAAAAA dotted;
-//  border-left: 1px #DDD dotted;
-//  border-right: 1px #DDD dotted;
+//  border-top: 2px #AAAAAA dotted;
   padding-top: .5rem;
   margin-left: 1.2rem;
   padding-right: 1.5rem;
@@ -210,10 +202,11 @@ body {
   border-radius: .4rem;
   margin-top: -.3rem;
 //  border: 1px red solid;
-  left: .9%;
+//  left: .9%;
+left: 15.203px;
 //  left: 3%;
   display: inline-block;
-  width: 90.50%;
+  max-width: 90.50%;
 //  width: 96.75%;
   
   //white-space: nowrap;
@@ -258,7 +251,7 @@ body {
 .text-post {
   min-height: 6rem;
   position: relative;
-  border-top: 2px #AAAAAA dotted;
+//  border-top: 2px #AAAAAA dotted;
 //  border-left: 1px #DDD dotted;
 //  border-right: 1px #DDD dotted;
   padding-top: .5rem;
@@ -269,11 +262,11 @@ body {
   margin-top: -.3rem;
   margin-left: .5%;
 //  border: 1px red solid;
-//  left: .9%;
-  left: 2.85%;
+//  left: 2.85%;
+  left: 48.172px;
   display: inline-block;
 //  width: 91.75%;
-  width: 96%;
+  max-width: 96%;
   
   //white-space: nowrap;
   overflow-x: auto;
@@ -347,8 +340,10 @@ body {
     position: relative;
   //  top: 0%;
     top: -.2rem;
-    left: 2%;
+//    left: 2%;
+    left: 33.82px;
     max-width: 4.5%;
+    max-width: 76px;
     height: auto;
     margin-left: 2.3rem;
     margin-right: 2rem;
@@ -365,8 +360,10 @@ body {
     position: absolute;
   //  top: 0%;
     top: -.2rem;
-    left: 2%;
-    max-width: 4.5%;
+//    left: 2%;
+    left: 33.82px;
+//    max-width: 4.5%;
+    width: 76px;
     height: auto;
     margin-left: 2rem;
     margin-right: 2rem;
@@ -422,7 +419,7 @@ body {
 
 .sign-out-button {
   position: absolute;
-  left: 92.50%;
+  left: 92.25%;
   top: 30%;
   border-color: #888;
   opacity: 50%;
@@ -575,6 +572,9 @@ body {
 .post-score-wrapper {
   position: relative;
   margin-left: .5rem;
+  margin-right: .5rem;
+  border-top: 2px dotted #CCC;
+  padding-top: 1rem;
 }
 
 .title {
@@ -590,9 +590,11 @@ body {
   display: inline-block;
   position: absolute;
 //  top: 0%;
-  top: -.4rem;
-  left: 0%;
-  width: 1.5%;
+//  top: -.4rem;
+  top: .5rem;
+  left: 0px;
+//  width: 1.5%;
+  width: 25px;
   margin-left: 2rem;
   margin-right: 2rem;
   vertical-align: top;
@@ -782,7 +784,7 @@ body {
 
 .post-content {
   margin-top: .5rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0rem;
   font-size: 92%;
 }
 
@@ -808,11 +810,33 @@ img.header {
   max-height: none;
   padding-bottom: .8rem;
   margin-right: .5rem;
+//  left: 117px;
   
   position: absolute;
   top: 27.2%;
   
   -webkit-box-reflect: below -18px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(40%, transparent), to(rgba(255,255,255,0.5)));
+}
+
+.site-name {
+  color: #53ABDF;
+  position: absolute;
+  top: 34.7%;
+//  left: 8.2%;
+//  left: 159.54px;
+  left: 60.54px;
+}
+
+.navbar-toggle {
+  position: absolute;
+  top: 15.7%;
+  left: 83%;
+}
+
+.title-wrapper {
+  position: absolute;
+  top: 7.2%;
+  left: 5%;
 }
 
 .comment-section {

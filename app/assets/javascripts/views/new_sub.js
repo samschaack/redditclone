@@ -18,27 +18,33 @@ Sync.Views.NewSub = Backbone.View.extend({
     
     var sub = new Sync.Models.Sub(params["sub"]);
     
-    sub.save({}, {
-      success: function(sub) {
-        $.ajax({
-          type: 'POST',
-          url: '/api/sub_memberships',
-          data: {
-            sub: sub.attributes.name
-          },
-          success: function(data) {
-            Sync.setMessage("sub created");
-            Backbone.history.navigate("#/s/" + sub.attributes.name, { trigger: true });
-            $('.subscribe-section').html(' - ✓');
+    if (params["sub"]["name"].match(/(\.)+|(\,)+|(\s)+|(\/)+|(\!)+|(\@)+(\^)+|(\+)+|(\-)+|(\?)+|(\#)+|(\$)+|(\*)+|(\%)+|(\&)+|(\[)+|(\])+(\{)+|(\})+|(\=)+|(\()+|(\))+|(\')+|(\")+|(\:)+|(\;)+|(\<)+|(\>)+|(\\)+/)) {
+      Sync.setAlert("sub names can't contain spaces or punctuation apart from _");
+    } else if (params["sub"]["description"] === "") {
+      Sync.setAlert("sub must have a description");
+    } else {
+      sub.save({}, {
+        success: function(sub) {
+          $.ajax({
+            type: 'POST',
+            url: '/api/sub_memberships',
+            data: {
+              sub: sub.attributes.name
+            },
+            success: function(data) {
+              Sync.setMessage("sub created");
+              Backbone.history.navigate("#/s/" + sub.attributes.name, { trigger: true });
+              $('.subscribe-section').html(' - ✓');
         
-            setTimeout(function() {
-              $('.subscribe-section').html('');
-              $('.unsubscribe-section').html('<span class="unsubscribe-section"> - <button class="link-button unsubscribe">unsubscribe</button></span>')
-            }, 3000)
-          }
-        });
-      }
-    });
+              setTimeout(function() {
+                $('.subscribe-section').html('');
+                $('.unsubscribe-section').html('<span class="unsubscribe-section"> - <button class="link-button unsubscribe">unsubscribe</button></span>')
+              }, 3000)
+            }
+          });
+        }
+      });
+    }
   },
   
   render: function() {
