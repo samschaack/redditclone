@@ -36,13 +36,13 @@
   
   <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
     <% if signed_in? %>
-      <button type="button" class="btn btn-danger sign-out-button btn-sm"><span class="glyphicon glyphicon-off sign-out-span"></span></button>
-      <button type="button" class="btn btn-success sign-up-button btn-sm invisible"><span class="glyphicon glyphicon-user" style="color:white"></span></button>
-      <button type="button" class="btn btn-info sign-in-button btn-sm invisible"><span class="glyphicon glyphicon-log-in" style="color:white"></span></button>
+      <button type="button" class="btn sign-out-button btn-sm"><span class="glyphicon glyphicon-off sign-out-span"></span></button>
+      <button type="button" class="btn sign-up-button btn-sm invisible"><span class="glyphicon glyphicon-user sign-up-span"></span></button>
+      <button type="button" class="btn sign-in-button btn-sm invisible"><span class="glyphicon glyphicon-log-in sign-in-span"></span></button>
     <% else %>
-      <button type="button" class="btn btn-danger sign-out-button btn-sm invisible"><span class="glyphicon glyphicon-off sign-out-span"></span></button>
-      <button type="button" class="btn btn-success sign-up-button btn-sm"><span class="glyphicon glyphicon-user" style="color:white"></span></button>
-      <button type="button" class="btn btn-info sign-in-button btn-sm"><span class="glyphicon glyphicon-log-in" style="color:white"></span></button>
+      <button type="button" class="btn sign-out-button btn-sm invisible"><span class="glyphicon glyphicon-off sign-out-span"></span></button>
+      <button type="button" class="btn sign-up-button btn-sm"><span class="glyphicon glyphicon-user sign-up-span"></span></button>
+      <button type="button" class="btn sign-in-button btn-sm"><span class="glyphicon glyphicon-log-in sign-in-span"></span></button>
     <% end %>
   </div>
 </div>

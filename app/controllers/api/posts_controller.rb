@@ -12,7 +12,6 @@ module Api
       elsif @post.save
         render json: @post
       else
-        flash[:errors] = @post.errors.full_messages
         render json: @post.errors.full_messages
       end
     end

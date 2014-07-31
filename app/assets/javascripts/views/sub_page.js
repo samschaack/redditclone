@@ -83,7 +83,7 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
       }
     });
     
-    var $minimizeAll = "<button class='btn btn-default minimize-all'>-</button>";
+    var $minimizeAll = "<button class='btn minimize-all'>-</button>";
     $('.expand-minimize-all-posts').html($minimizeAll);
   },
   
@@ -102,7 +102,7 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
       }
     });
     
-    var $expandAll = "<button class='btn btn-default expand-all'>+</button>";
+    var $expandAll = "<button class='btn expand-all'>+</button>";
     $('.expand-minimize-all-posts').html($expandAll);
   },
   

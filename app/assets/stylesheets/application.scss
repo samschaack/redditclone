@@ -436,12 +436,14 @@ body {
   background: linear-gradient(#FFF,#F6F6F6);
 }
 
-.sign-out-button:hover {
-  background-color: #53ABDF;
-  border: 1px #53ABDF solid;
-  color: #53ABDF;
+.sign-out-button:focus {
   outline:0 !important;
   box-shadow: none;
+}
+
+.sign-out-button:hover {
+  color: #53ABDF;
+  border: 1px #53ABDF solid;
   .sign-out-span {
     color: #53ABDF;
   }
@@ -455,16 +457,60 @@ body {
   position: absolute;
   left: 90.50%;
   top: 30%;
-  border: none;
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background: -webkit-linear-gradient(#FFF,#F6F6F6);
+  background: -moz-linear-gradient(#FFF,#F6F6F6);
+  background: -ms-linear-gradient(#FFF,#F6F6F6);
+  background: -o-linear-gradient(#FFF,#F6F6F6);
+  background: linear-gradient(#FFF,#F6F6F6);
   opacity: 50%;
+  outline:0 !important;
+  box-shadow: none;
+  color: #888;
+  border: 1px #888 solid;
+}
+
+.sign-up-button:focus {
+  outline:0 !important;
+  box-shadow: none;
+}
+
+.sign-up-button:hover {
+  color: #53ABDF;
+  border: 1px #53ABDF solid;
+  .sign-up-span {
+    color: #53ABDF;
+  }
 }
 
 .sign-in-button {
   position: absolute;
   left: 92.50%;
   top: 30%;
-  border: none;
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background: -webkit-linear-gradient(#FFF,#F6F6F6);
+  background: -moz-linear-gradient(#FFF,#F6F6F6);
+  background: -ms-linear-gradient(#FFF,#F6F6F6);
+  background: -o-linear-gradient(#FFF,#F6F6F6);
+  background: linear-gradient(#FFF,#F6F6F6);
   opacity: 50%;
+  outline:0 !important;
+  box-shadow: none;
+  color: #888;
+  border: 1px #888 solid;
+}
+
+.sign-in-button:focus {
+  outline:0 !important;
+  box-shadow: none;
+}
+
+.sign-in-button:hover {
+  color: #53ABDF;
+  border: 1px #53ABDF solid;
+  .sign-in-span {
+    color: #53ABDF;
+  }
 }
 
 #make-post {
@@ -647,7 +693,6 @@ body {
 }
 
 .expand-all:hover {
-  background-color: #53ABDF;
   border-color: #53ABDF;
   color: #53ABDF;
   outline:0 !important;
@@ -674,7 +719,6 @@ body {
 }
 
 .minimize-all:hover {
-  background-color: #53ABDF;
   border-color: #53ABDF;
   color: #53ABDF;
   outline:0 !important;
@@ -698,7 +742,6 @@ body {
 }
 
 .expand-image:hover {
-  background-color: #53ABDF;
   border-color: #53ABDF;
   outline:0 !important;
   box-shadow: none;
@@ -725,7 +768,6 @@ body {
 }
 
 .expand-body:hover {
-  background-color: #53ABDF;
   border-color: #53ABDF;
   outline:0 !important;
   box-shadow: none;
@@ -822,6 +864,18 @@ img.header {
 .sign-up-btn {
   margin-left: 1rem;
   width: 7rem;
+}
+
+.sign-up-btn:hover {
+  color: #53ABDF;
+  border-color: #53ABDF;
+  background-color: white;
+  width: 7rem;
+  .sign-up-span {
+    color: #53ABDF;
+    border-color: #53ABDF;
+    background-color: white;
+  }
 }
 
 .post-new {
@@ -1025,6 +1079,33 @@ a[class="btn text-post-select-button"]:hover {
   width: 8rem;
   left: 89%;
   top: 2rem;
+  outline:0 !important;
+  box-shadow: none;
+}
+
+.refresh-directory:hover {
+  background-color: white;
+  border-color: #53ABDF;
+  color: #53ABDF;
+  outline:0 !important;
+  box-shadow: none;
+  .expand-minimize-all-posts {
+    color: #53ABDF;
+  }
+}
+
+.new-sub {
+  outline:0 !important;
+  box-shadow: none;
+}
+
+.new-sub:hover {
+  background-color: white;
+  border-color: #53ABDF;
+  color: #53ABDF;
+  .expand-minimize-all-posts {
+    color: #53ABDF;
+  }
 }
 
 .change-email {
@@ -1034,6 +1115,14 @@ a[class="btn text-post-select-button"]:hover {
   top: 5.125rem;
   padding: 0;
   height: 3rem;
+  outline:0 !important;
+  box-shadow: none;
+}
+
+.change-email:hover {
+  background-color: white;
+  border-color: #53ABDF;
+  color: #53ABDF;
 }
 
 .sub-directory-body {

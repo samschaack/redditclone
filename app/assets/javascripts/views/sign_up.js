@@ -26,6 +26,15 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
         Sync.Models.session.username = user.username;
         Sync.Models.session.points = user.points;
         Sync.Models.session.email = user.email;
+      },
+      error: function(error, data) {
+        if (data.responseJSON.error === "username taken") {
+          Sync.setAlert("sorry, that username is taken");
+        } else if (data.responseJSON.error === "password can't be blank") {
+          Sync.setAlert("password can't be blank");
+        } else if (data.responseJSON.error === "username can't be blank") {
+          Sync.setAlert("username can't be blank");
+        }
       }
     });
   },

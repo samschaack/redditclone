@@ -4,19 +4,24 @@ module Api
     
     def create
       @user = User.new(user_params)
-      @user.reset_token!
-      
-      if @user.save
-        sign_in(@user)
-        
-        #subscribe user to default subs
-        
-        Default.all.each { |default| SubMembership.create({ user_id: @user.id, sub_id: default.sub.id }) }
-        
-        render json: @user
+      if User.find_by_username(params[:user][:username])
+        render json: { error: "username taken" }, status: 422
+      elsif user_params[:password] == ""
+        render json: { error: "password can't be blank" }, status: 422
+      elsif user_params[:username] == ""
+        render json: { error: "username can't be blank" }, status: 422
       else
-        flash[:errors] = @user.errors.full_messages
-        render json: @user.errors.full_messages
+        @user.reset_token!
+      
+        if @user.save
+          sign_in(@user)
+        
+          #subscribe user to default subs
+        
+          Default.all.each { |default| SubMembership.create({ user_id: @user.id, sub_id: default.sub.id }) }
+        
+          render json: @user
+        end
       end
     end
     
