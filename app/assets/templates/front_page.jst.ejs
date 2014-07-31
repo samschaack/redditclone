@@ -88,7 +88,7 @@
       <div class="post-content" data-id="<%= post.escape('id') %>"></div>
       <div class="post-info-wrapper" data-id="<%= post.escape('id') %>">
         <div class="poster">
-          <span style="font-size:85%"><a href="#/p/c/<%= post.escape('id') %>">(<%= post.escape('num_comments') %> comments)</a> - <% var post_time = post.escape('created_at'); %>
+          <span style="font-size:85%"><% if (post.escape('num_comments') !== "1") { %><a href="#/p/c/<%= post.escape('id') %>">(<%= post.escape('num_comments') %> comments)</a><% } else { %><a href="#/p/c/<%= post.escape('id') %>">(<%= post.escape('num_comments') %> comment)</a><% } %> - <% var post_time = post.escape('created_at'); %>
           by <a href="#/u/<%= post.escape('user') %>"><%= post.escape('user') %></a> 
         </span></div>
         <div class="date-time" data-id="<%= post.escape('id') %>">

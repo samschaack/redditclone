@@ -56,7 +56,6 @@ window.Sync = {
     
     _(Sync.tabs).each(function(url, index) {
       initLeft = 50 + (index * 4);
-      // $('.nav-tab-section').append('<div class="nav-tab" data-url="' + url + '" style="position:absolute; left: ' + initLeft + '%; top: 6.65rem;"><div class="triangle-down" style="left: ' + (tabSize * 3 - 1) + 'px" data-url="' + url + '"></div><div class="triangle-down" style="left: ' + (tabSize + 1) + 'px" data-url="' + url + '"></div><div class="triangle-up" style="left: ' + tabSize * 2 + 'px;" data-url="' + url + '"><span class="invis-text"></span></div></div>');
       $('.nav-tab-section').append('<div class="nav-tab" data-url="' + url + '" style="position:absolute; left: ' + initLeft + '%; top: 100%;"><div class="triangle-down" style="left: ' + (tabSize * 3 - 1) + 'px" data-url="' + url + '"></div><div class="triangle-down" style="left: ' + (tabSize + 1) + 'px" data-url="' + url + '"></div><div class="triangle-up" style="left: ' + tabSize * 2 + 'px;" data-url="' + url + '"><span class="invis-text"></span></div></div>');
     })
     
@@ -82,8 +81,8 @@ window.Sync = {
     var initLeft = 50;
     var color = "#BBB";
     
-    $('.nav-tab-section').html('<style>.triangle-up { position: absolute; width: 0; height: 0; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-bottom: ' + tabSize + 'px solid ' + color + '; }</style>');
-    $('.nav-tab-section').append('<style>.triangle-down { position: absolute; width: 0; height: 0; top: .3px; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-top: ' + tabSize + 'px solid ' + color + '; }</style>');
+    $('.nav-tab-section').html('<style>.triangle-up { position: absolute; width: 0; height: 0; border-radius: 2px; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-bottom: ' + tabSize + 'px solid ' + color + '; }</style>');
+    $('.nav-tab-section').append('<style>.triangle-down { position: absolute; width: 0; height: 0; border-radius: 2px; top: .3px; border-left: ' + tabSize + 'px solid transparent; border-right: ' + tabSize + 'px solid transparent; border-top: ' + tabSize + 'px solid ' + color + '; }</style>');
     
     _(Sync.tabs).each(function(url, index) {
       initLeft = 50 + (index * 3);
@@ -139,11 +138,11 @@ window.Sync = {
         if (type === "Post") {
           //post vote
           var post = Sync.Collections.posts.findWhere({ id: id });
-
+          
           if (!post) {
             post = options.post;
           }
-        
+          
           if (data.status === "1") {
             //set vote
             if (upordown === 1) {
@@ -337,6 +336,9 @@ $(document).ready(function(){
       } else if (finWX < 75 && Sync.ratio < 1) {
         finWX = 75;
         finHY = 75 / Sync.ratio;
+      } else if (finWX < 75 || finHY < 75 && Sync.ratio === 1) {
+        finWX = 75;
+        finHY = 75;
       }
       
       $("img.sizeable-image[data-id='" + Sync.curImg + "']").css('width', finWX.toString() + "px");
@@ -381,6 +383,7 @@ $(document).ready(function(){
       } else {
         Backbone.history.navigate("#/" + $("#sub-navigate").val());
       }
+      $('.messages').text('');
       $('#sub-navigate').blur();
     }
   });

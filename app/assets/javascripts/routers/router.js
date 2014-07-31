@@ -207,6 +207,8 @@ Sync.Routers.Router = Backbone.Router.extend({
         } else if (e.which == 117) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which > 48 && e.which < 58) {
+          if (Sync.tabs[e.which - 49] === "") { $('.messages').text("front page"); }
+          else { $('.messages').text(Sync.tabs[e.which - 49]); }
           document.getElementById("sub-navigate").focus();
         }
       });
