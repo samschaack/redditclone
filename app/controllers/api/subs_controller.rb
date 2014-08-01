@@ -19,8 +19,8 @@ module Api
     def create
       @sub = Sub.new({ name: params[:sub][:name], description: params[:sub][:description] })
       
-      owner_id = User.find_by_username(params[:owner]).id
-      @sub.owner_id = owner_id
+      owner_id = current_user.id
+      @sub.owner_id = current_user.id
       
       if @sub.save
         render json: @sub

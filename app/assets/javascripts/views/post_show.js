@@ -125,7 +125,7 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
     if (this.model.attributes.url) {
       var url = this.model.attributes.url;
       var post_id = this.model.attributes.id;
-      if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") {
+      if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png" || url.slice(url.length - 3, url.length) === "gif") {
         var $contentTarget = $("div.show-post-content[data-id='" + post_id + "']");
     
         if ($contentTarget.html() === "" || $contentTarget.html() === undefined) {
@@ -143,6 +143,8 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   
   upvote: function(event) {
     if (Sync.Models.session) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) { event.stopPropagation(); }
       event.preventDefault();
       var postId = $(event.target).data('id');
       Sync.vote(postId, "Post", 1, { post: this.model });
@@ -153,6 +155,8 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   
   downvote: function(event) {
     if (Sync.Models.session) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) { event.stopPropagation(); }
       event.preventDefault();
       var postId = $(event.target).data('id');
       Sync.vote(postId, "Post", -1, { post: this.model });

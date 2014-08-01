@@ -78,7 +78,7 @@ Sync.Views.SubPage = Backbone.View.extend({
     this.collection.models.forEach(function(model) {
       var url = model.attributes.url;
       if (url) {
-        if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") {
+        if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png" || url.slice(url.length - 3, url.length) === "gif") {
           view.toggleImage(model.attributes.id, url);
         }
       } else {
@@ -97,7 +97,7 @@ Sync.Views.SubPage = Backbone.View.extend({
     this.collection.models.forEach(function(model) {
       var url = model.attributes.url;
       if (url) {
-        if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") {
+        if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png" || url.slice(url.length - 3, url.length) === "gif") {
           view.toggleImage(model.attributes.id, url);
         }
       } else {

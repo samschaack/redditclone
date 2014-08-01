@@ -3,18 +3,18 @@
       
       <div class="show-score-box">
         <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-up post-upvote" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
-             color:#FF8B60;
-             <% } %>" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-up upvote <% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
+           upvoted
+           <% } %>" data-id="<%= post.escape('id') %>"></span>
         </button>
-        <div style="width:100%;text-align:center;">
-          <% score = parseInt(post.escape('upvotes') - post.escape('downvotes')) %>
+        <div class="post-score" style="width:100%;text-align:center;  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;" data-id="<%= post.escape('id') %>">
+          <% score = post.escape('upvotes') - post.escape('downvotes') %>
           <%= score %>
         </div>
         <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-down post-downvote" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
-             color:#9494FF;
-             <% } %>" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-down downvote <% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
+           downvoted
+           <% } %>" data-id="<%= post.escape('id') %>"></span>
         </button>
       </div>
       
@@ -44,7 +44,7 @@
     <% } else { %>
       <h3><% var url = post.escape('url') %>
       <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> 
-      <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") { %>
+      <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png" || url.slice(url.length - 3, url.length) === "gif") { %>
         <button class="btn btn-sm expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>" style="margin-bottom:.45rem;">
         <span class="glyphicon glyphicon-plus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
         </button>
@@ -74,11 +74,11 @@
       <% if (Sync.Models.session) { %>
         <button class="button-link post-reply" data-id="<%= post.escape('id') %>">reply</button>
       <% } else { %>
-        <a href="#/u/n">sign up</a> or <a href="#/u">sign in</a> to comment
+        <span style="padding-left: 1rem;"><a href="#/u/n">sign up</a> or <a href="#/u">sign in</a> to comment</span>
       <% } %>
     </div>
     <div class="comments-header">
-      <% if (numComments !== 0) { %>comments: <% } %>
+      <% if (parseInt(post.escape('num_comments')) !== 0) { %>comments (<%= post.escape('num_comments') %>)<% } %>
     </div>
     <div class="comments">
       

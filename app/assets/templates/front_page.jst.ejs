@@ -58,7 +58,7 @@
       <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
         <% var url = post.escape('url') %>
-        <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") { %>
+        <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png" || url.slice(url.length - 3, url.length) === "gif") { %>
         <button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>">
           <span class="glyphicon glyphicon-plus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
         </button>

@@ -55,7 +55,7 @@
       <div class="post-title" data-id="<%= post.escape('id') %>">
       <% if (post.escape('url')) { %>
         <% var url = post.escape('url') %>
-        <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png") { %>
+        <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png" || url.slice(url.length - 3, url.length) === "gif") { %>
         <button class="btn btn-xs expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>">
           <span class="glyphicon glyphicon-plus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
         </button>
@@ -82,7 +82,7 @@
             <% var timeString = post_time.toTimeString().slice(0, 2) - 12 %>
             at <%= timeString + post_time.toTimeString().slice(2, 5) %>pm on <%= post_time.toDateString() %>
           <% } else { %>
-            at <%= post_time.toTimeString().slice(0, 5) %>am on <%= post_time.toDateString() %>
+            at <% if (parseInt(post_time.toTimeString().slice(0, 2)) > 9) { %><%= post_time.toTimeString().slice(0, 5) %><% } else { %><%= post_time.toTimeString().slice(1, 5) %><% } %>am on <%= post_time.toDateString() %>
           <% } %>
         </div>
       </div>
