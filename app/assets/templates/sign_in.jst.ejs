@@ -6,13 +6,13 @@
         Username
       </label>
       <input type="text" name="user[username]" class="my-text-box sign-in-username">
+      <% if ($(window).width() < 1454) { %><br><% } %>
       <label>
         Password
       </label>
       <input type="password" name="user[password]" class="my-text-box">
-      <button class="btn btn-default sign-up-btn"><span class="glyphicon glyphicon-ok sign-up-span"></span></button>
+      <button class="btn btn-default sign-up-btn" style="<% if ($(window).width() < 1722) { %>visibility:hidden;<% } %>"><span class="glyphicon glyphicon-ok sign-up-span"></span></button>
     </form>
-    <br>
-    not a member? <a href="#/u/n">sign up</a>
+    <% if ($(window).width() > 1600) { %><br><% } %>not a member? <a href="#/u/n">sign up</a>
   </div>
 </div>

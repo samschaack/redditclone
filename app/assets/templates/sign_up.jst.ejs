@@ -1,16 +1,18 @@
-<div class="sign-up">
-  <form>
+<div class="sign-in">
+  <div class="front-page-box-wrapper">
     <h3>Sign Up</h3>
-    <label>
-      Username
-    </label>
-    <input type="text" name="user[username]" class="my-text-box" id="sign-up-username">
-    <label>
-      Password
-    </label>
-    <input type="password" name="user[password]" class="my-text-box">
-    <button class="btn btn-default sign-up-btn"><span class="glyphicon glyphicon-ok sign-up-span"></span></button>
-  </form>
-  <br>
-  already a member? <a href="#/u">sign in</a>
+    <form>
+      <label>
+        Username
+      </label>
+      <input type="text" name="user[username]" class="my-text-box sign-in-username">
+      <% if ($(window).width() < 1454) { %><br><% } %>
+      <label>
+        Password
+      </label>
+      <input type="password" name="user[password]" class="my-text-box">
+      <button class="btn btn-default sign-up-btn" style="<% if ($(window).width() < 1722) { %>visibility:hidden;<% } %>"><span class="glyphicon glyphicon-ok sign-up-span"></span></button>
+    </form>
+    <% if ($(window).width() > 1600) { %><br><% } %>already a member? <a href="#/u">sign in</a>
+  </div>
 </div>

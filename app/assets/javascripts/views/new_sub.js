@@ -20,6 +20,8 @@ Sync.Views.NewSub = Backbone.View.extend({
     
     if (params["sub"]["name"].match(/(\.)+|(\,)+|(\s)+|(\/)+|(\!)+|(\@)+(\^)+|(\+)+|(\-)+|(\?)+|(\#)+|(\$)+|(\*)+|(\%)+|(\&)+|(\[)+|(\])+(\{)+|(\})+|(\=)+|(\()+|(\))+|(\')+|(\")+|(\:)+|(\;)+|(\<)+|(\>)+|(\\)+/)) {
       Sync.setAlert("sub names can't contain spaces or punctuation apart from _");
+    } else if (params["sub"]["name"] === "") {
+      Sync.setAlert("sub must have a name");
     } else if (params["sub"]["description"] === "") {
       Sync.setAlert("sub must have a description");
     } else {

@@ -860,9 +860,11 @@ img.header {
   border-radius: .5rem;
   padding: 3%;
   padding-top: 1.2%;
-  padding-left: 5.5%;
-  width: 45%;
-  margin-left: -22.5%;
+  padding-left: 3.5%;
+//  width: 806px;
+  width: 40%;
+  //45%
+  margin-left: -20%;
   left: 50%;
   top: 27rem;
   height: 19rem;
@@ -875,9 +877,11 @@ img.header {
   border-radius: .5rem;
   padding: 3%;
   padding-top: 1.2%;
-  padding-left: 5.5%;
-  width: 45%;
-  margin-left: -22.5%;
+  padding-left: 3.5%;
+//  width: 806px;
+  width: 40%;
+  //45%
+  margin-left: -20%;
   left: 50%;
   top: 27rem;
   height: 19rem;
@@ -1122,7 +1126,7 @@ a[class="btn text-post-select-button"]:hover {
 .refresh-directory {
   position: absolute;
   width: 8rem;
-  left: 89%;
+  right: 0%;
   top: 2rem;
   outline:0 !important;
   box-shadow: none;
