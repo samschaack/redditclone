@@ -1,4 +1,4 @@
-Sync.Views.FrontPage = Backbone.CompositeView.extend({
+Sync.Views.FrontPage = Backbone.View.extend({
   header: JST["front_page_header"],
   
   template: JST["front_page"],
@@ -9,6 +9,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     if (Sync.Models.session) {
       this.listenTo(Sync.Collections.votes, "sync", this.render);
     }
+    $(window).unbind('scroll');
   },
   
   events: {
@@ -164,7 +165,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
   },
   
   addPage: function() {
-    if (this.collection.models.length > (Sync.page + 1) * 20) {
+    if (this.collection.models.length > (Sync.page) * 20) {
       var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, Sync.page * 20 + 20));
     
       $('.posts').append(this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
@@ -183,7 +184,6 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
       $(window).scroll(function() {
         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
           view.addPage();
-          view.scrolled = true;
         }
       });
     

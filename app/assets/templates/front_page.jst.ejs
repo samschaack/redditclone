@@ -14,7 +14,7 @@
            upvoted
            <% } %>" data-id="<%= post.escape('id') %>"></span>
         </button>
-        <div class="post-score" style="width:100%;text-align:center;" data-id="<%= post.escape('id') %>">
+        <div class="post-score" style="width:100%;text-align:center;  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;" data-id="<%= post.escape('id') %>">
           <% score = post.escape('upvotes') - post.escape('downvotes') %>
           <%= score %>
         </div>
@@ -31,7 +31,7 @@
         <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
           <span class="glyphicon glyphicon-chevron-up upvote" data-id="<%= post.escape('id') %>"></span>
         </button>
-        <div style="width:100%;text-align:center;">
+        <div style="width:100%;text-align:center; font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;">
           <% score = post.escape('upvotes') - post.escape('downvotes') %>
           <%= score %>
         </div>

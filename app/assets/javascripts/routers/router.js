@@ -254,7 +254,7 @@ Sync.Routers.Router = Backbone.Router.extend({
   
   _swapView: function(newView) {
     if (this.currentView) {
-      this.currentView.remove();
+      this.currentView && this.currentView.remove();
     }
     
     $(".main").html(newView.render().$el);

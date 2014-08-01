@@ -27,3 +27,8 @@
     <%= url %> - this sub doesn't exist yet. <a href="#/s/n/<%= url.slice(2, url.length) %>">create?</a>
   <% } %>
 </div>
+<a href="#" style="margin-left: 1.25rem;">< front page</a>
+<% Sync.lastPage = sub.escape('name') %>
+<% if (sub.escape('name')) { %>
+  <a href="#/p" style="margin-left: 0rem;">post</a>
+<% } %>

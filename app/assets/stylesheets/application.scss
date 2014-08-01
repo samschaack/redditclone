@@ -20,7 +20,7 @@ html {
 }
 
 * {
-  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  font-family: "Arial Rounded MT", "Helvetica Rounded", Arial, sans-serif;
   color: #555555;
 //  border: 1px red solid;
 }
@@ -323,6 +323,7 @@ left: 15.203px;
   margin-top: 6rem;
   margin-bottom: 2.5rem;
   text-shadow: 1px 1px #DDD;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
   
   //horizontal gradient
   background: #ffffff; /* Old browsers */
@@ -825,6 +826,7 @@ img.header {
 }
 
 .site-name {
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
   color: #53ABDF;
   position: absolute;
   top: 34.7%;

@@ -1,4 +1,4 @@
-Sync.Views.SubPage = Backbone.CompositeView.extend({
+Sync.Views.SubPage = Backbone.View.extend({
   header: JST["sub_page_header"],
   
   template: JST["sub_page"],
@@ -11,6 +11,7 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     if (Sync.Models.session) {
       this.listenTo(Sync.Collections.votes, "sync add remove", this.render);
     }
+    $(window).unbind('scroll');
   },
   
   events: {
@@ -205,10 +206,10 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
   },
   
   addPage: function() {
-    if (this.collection.models.length > (Sync.page + 1) * 20) {
+    if (this.collection.models.length > (Sync.page) * 20) {
       var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, Sync.page * 20 + 20));
     
-      $('.posts').append(this.template({ posts: fCol, sub: this.sub, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+      $('.sub-posts').append(this.template({ posts: fCol, sub: this.sub, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
     
       Sync.page += 1;
     }
