@@ -64,7 +64,7 @@
           <% var timeString = post_time.toTimeString().slice(0, 2) - 12 %>
           at <%= timeString + post_time.toTimeString().slice(2, 5) %>pm on <%= post_time.toDateString() %>
         <% } else { %>
-          at <%= post_time.toTimeString().slice(0, 5) %>am on <%= post_time.toDateString() %>
+          at <% if (parseInt(post_time.toTimeString().slice(0, 2)) > 9) { %><%= post_time.toTimeString().slice(0, 5) %><% } else { %><%= post_time.toTimeString().slice(1, 5) %><% } %>am on <%= post_time.toDateString() %>
         <% } %>
       </div>
     </div>

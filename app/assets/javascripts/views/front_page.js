@@ -10,6 +10,7 @@ Sync.Views.FrontPage = Backbone.View.extend({
       this.listenTo(Sync.Collections.votes, "sync", this.render);
     }
     $(window).unbind('scroll');
+    this.expandedAll = false;
   },
   
   events: {
@@ -63,7 +64,7 @@ Sync.Views.FrontPage = Backbone.View.extend({
   },
   
   expandAll: function(event) {
-    event.preventDefault();
+    if (event) { event.preventDefault(); }
     var view = this;
     
     this.collection.models.forEach(function(model) {
@@ -79,10 +80,11 @@ Sync.Views.FrontPage = Backbone.View.extend({
     
     var $minimizeAll = "<button class='btn minimize-all'>-</button>";
     $('.expand-minimize-all-posts').html($minimizeAll);
+    this.expandedAll = true;
   },
   
   minimizeAll: function(event) {
-    event.preventDefault();
+    if (event) { event.preventDefault(); }
     var view = this;
     
     this.collection.models.forEach(function(model) {
@@ -98,6 +100,7 @@ Sync.Views.FrontPage = Backbone.View.extend({
     
     var $expandAll = "<button class='btn expand-all'>+</button>";
     $('.expand-minimize-all-posts').html($expandAll);
+    this.expandedAll = false;
   },
   
   bodyToggle: function(event) {
@@ -169,14 +172,24 @@ Sync.Views.FrontPage = Backbone.View.extend({
   },
   
   addPage: function() {
-    console.log("addpage: " + Sync.page)
     if (this.collection.models.length > Sync.page * 20) {
-      var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, (Sync.page * 20) + 20));
-      console.log(fCol)
-      console.log(Sync.page)
-      this.$el.append(this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+      if (this.expandedAll === true) {
+        // this.minimizeAll();
+        var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, (Sync.page * 20) + 20));
       
-      Sync.page += 1;
+        // this.$el.append("<span id=" + page + "></span>");
+        this.$el.append(this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+      
+        Sync.page += 1;
+        // Backbone.history.navigate("#" + page);
+        // this.expandAll();
+      } else {
+        var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, (Sync.page * 20) + 20));
+      
+        this.$el.append(this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+      
+        Sync.page += 1;
+      }
     }
   },
   

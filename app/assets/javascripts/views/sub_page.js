@@ -213,7 +213,7 @@ Sync.Views.SubPage = Backbone.View.extend({
     if (this.collection.models.length > (Sync.page) * 20) {
       var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, Sync.page * 20 + 20));
     
-      $('.sub-posts').append(this.template({ posts: fCol, sub: this.sub, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+      this.$el.append(this.template({ posts: fCol, sub: this.sub, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
     
       Sync.page += 1;
     }
