@@ -3,6 +3,10 @@ Sync.Collections.Posts = Backbone.Collection.extend({
   
   url: "/api/posts",
   
+  initialize: function(models) {
+    
+  },
+  
   getOrFetch: function(id) {
     var posts = this;
     

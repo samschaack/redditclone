@@ -18,14 +18,12 @@ module Api
         @vote = Vote.new({ user_id: current_user.id, voteable_type: params[:vote][:voteable_type], voteable_id: params[:vote][:voteable_id], upordown: params[:vote][:upordown] })
         @vote.save
         
-        if type != "Post"
-          object = @vote.voteable_type.constantize.find(@vote.voteable_id)
+        object = @vote.voteable_type.constantize.find(@vote.voteable_id)
         
-          if upordown == 1
-            object.update({ upvotes: object.upvotes + 1 })
-          else 
-            object.update({ downvotes: object.downvotes + 1 })
-          end
+        if upordown == 1
+          object.update({ upvotes: object.upvotes + 1 })
+        else 
+          object.update({ downvotes: object.downvotes + 1 })
         end
         
         render json: { status: "1", id: @vote.id }
@@ -35,16 +33,14 @@ module Api
         @vote = Vote.new({ user_id: current_user.id, voteable_type: params[:vote][:voteable_type], voteable_id: params[:vote][:voteable_id], upordown: params[:vote][:upordown] })
         @vote.save
         
-        if type != "Post"
-          object = @vote.voteable_type.constantize.find(@vote.voteable_id)
+        object = @vote.voteable_type.constantize.find(@vote.voteable_id)
         
-          if upordown == 1
-            object.update({ upvotes: object.upvotes + 1 })
-            object.update({ downvotes: object.downvotes - 1 })
-          else 
-            object.update({ upvotes: object.upvotes - 1 })
-            object.update({ downvotes: object.downvotes + 1 })
-          end
+        if upordown == 1
+          object.update({ upvotes: object.upvotes + 1 })
+          object.update({ downvotes: object.downvotes - 1 })
+        else 
+          object.update({ upvotes: object.upvotes - 1 })
+          object.update({ downvotes: object.downvotes + 1 })
         end
         
         render json: { status: "2", id: @vote.id }
@@ -55,12 +51,10 @@ module Api
         
         object = @vote.voteable_type.constantize.find(@vote.voteable_id)
         
-        if type != "Post"
-          if upordown == 1
-            object.update({ upvotes: object.upvotes - 1 })
-          else 
-            object.update({ downvotes: object.downvotes - 1 })
-          end
+        if upordown == 1
+          object.update({ upvotes: object.upvotes - 1 })
+        else 
+          object.update({ downvotes: object.downvotes - 1 })
         end
         
         render json: { status: "3", id: @vote.id }

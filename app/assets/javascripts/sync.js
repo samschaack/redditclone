@@ -137,53 +137,62 @@ window.Sync = {
       success: function(data) {
         if (type === "Post") {
           //post vote
-          var post = Sync.Collections.posts.findWhere({ id: id });
-          
-          if (!post) {
-            post = options.post;
-          }
+          // var post = Sync.Collections.posts.findWhere({ id: id });
+//
+//           if (!post) {
+//             post = options.post;
+//           }
+          var post = options.post;
           
           if (data.status === "1") {
             //set vote
             if (upordown === 1) {
+              $("span.upvote[data-id='" + id + "']").addClass('upvoted');
               post.set('upvotes', post.attributes.upvotes + 1);
-              Sync.Collections.votes.getOrFetch(data.id)
+              // Sync.Collections.votes.getOrFetch(data.id)
             } else {
+              $("span.downvote[data-id='" + id + "']").addClass('downvoted');
               post.set('downvotes', post.attributes.downvotes + 1);
-              Sync.Collections.votes.getOrFetch(data.id)
+              // Sync.Collections.votes.getOrFetch(data.id)
             }
           } else if (data.status === "2") {
             //reverse vote
             if (upordown === 1) {
+              $("span.upvote[data-id='" + id + "']").addClass('upvoted');
+              $("span.downvote[data-id='" + id + "']").removeClass('downvoted');
               post.set('upvotes', post.attributes.upvotes + 1);
               post.set('downvotes', post.attributes.downvotes - 1);
-              Sync.Collections.votes.getOrFetch(data.id)
+              // Sync.Collections.votes.getOrFetch(data.id)
             } else {
+              $("span.upvote[data-id='" + id + "']").removeClass('upvoted');
+              $("span.downvote[data-id='" + id + "']").addClass('downvoted');              
               post.set('upvotes', post.attributes.upvotes - 1);
               post.set('downvotes', post.attributes.downvotes + 1);
-              Sync.Collections.votes.getOrFetch(data.id)
+              // Sync.Collections.votes.getOrFetch(data.id)
             }
           
-            Sync.Collections.votes.remove(Sync.Collections.votes.findWhere({
-              voteable_type: type, 
-              voteable_id: id, 
-              upordown: upordown * -1
-            }))
+            //             Sync.Collections.votes.remove(Sync.Collections.votes.findWhere({
+            //   voteable_type: type,
+            //   voteable_id: id,
+            //   upordown: upordown * -1
+            // }))
           } else if (data.status === "3") {
             //nullify vote
             if (upordown === 1) {
+              $("span.upvote[data-id='" + id + "']").removeClass('upvoted');              
               post.set('upvotes', post.attributes.upvotes - 1);
             } else {
+              $("span.downvote[data-id='" + id + "']").removeClass('downvoted');              
               post.set('downvotes', post.attributes.downvotes - 1);
             }
           
-            Sync.Collections.votes.remove(Sync.Collections.votes.findWhere({
-              voteable_type: type, 
-              voteable_id: id, 
-              upordown: upordown
-            }))
+            // Sync.Collections.votes.remove(Sync.Collections.votes.findWhere({
+            //   voteable_type: type,
+            //   voteable_id: id,
+            //   upordown: upordown
+            // }))
           }
-          post.save();
+          $("div.post-score[data-id='" + id + "']").text(post.attributes.upvotes - post.attributes.downvotes);
         } else {
           var comment = options.comment;
           

@@ -1,4 +1,6 @@
 Sync.Views.SubPage = Backbone.CompositeView.extend({
+  header: JST["sub_page_header"],
+  
   template: JST["sub_page"],
   
   initialize: function(options) {
@@ -20,8 +22,8 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     "click div.text-post": "postShow",
     "click button.subscribe": "subscribe",
     "click button.unsubscribe": "unsubscribe",
-    "click .upvote": "upvote",
-    "click .downvote": "downvote"
+    "click span.upvote": "upvote",
+    "click span.downvote": "downvote"
   },
   
   postShow: function(event) {
@@ -186,7 +188,7 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     if (Sync.Models.session) {
       event.preventDefault();
       var postId = $(event.target).data('id');
-      Sync.vote(postId, "Post", 1);
+      Sync.vote(postId, "Post", 1, { post: this.collection.findWhere({ id: postId }) });
     } else {
       Sync.setAlert("must be signed in to vote");
     }
@@ -196,17 +198,39 @@ Sync.Views.SubPage = Backbone.CompositeView.extend({
     if (Sync.Models.session) {
       event.preventDefault();
       var postId = $(event.target).data('id');
-      Sync.vote(postId, "Post", -1);
+      Sync.vote(postId, "Post", -1, { post: this.collection.findWhere({ id: postId }) });
     } else {
       Sync.setAlert("must be signed in to vote");
     }
   },
   
-  render: function() {
-    var renderedContent = this.template({ posts: this.collection, sub: this.sub, votes: Sync.Collections.votes });
+  addPage: function() {
+    if (this.collection.models.length > (Sync.page + 1) * 20) {
+      var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, Sync.page * 20 + 20));
     
-    this.$el.html(renderedContent);
-    //this.attachSubviews();
-    return this;
+      $('.posts').append(this.template({ posts: fCol, sub: this.sub, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+    
+      Sync.page += 1;
+    }
+  },
+  
+  render: function() {
+    if (Sync.page === 1) {
+      var fCol = new Sync.Collections.Posts(this.collection.models.slice(0, 20));
+      
+      var renderedContent = this.template({ posts: fCol, sub: this.sub, votes: Sync.Collections.votes, startIndex: 0 });
+      
+      var view = this;
+      $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+          view.addPage();
+          view.scrolled = true;
+        }
+      });
+      
+      this.$el.html(this.header({ sub: this.sub }));
+      this.$el.append(renderedContent);
+      return this;
+    }
   }
 });

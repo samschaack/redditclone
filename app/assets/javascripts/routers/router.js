@@ -88,10 +88,8 @@ Sync.Routers.Router = Backbone.Router.extend({
   
   frontPage: function() {
     //build home page (rails handles deciding which posts to send back?)
+    Sync.page = 1;
     
-    // Sync.Collections.posts.fetch();
-    
-    //bad?
     Sync.Collections.posts = new Sync.Collections.Posts;
     Sync.Collections.posts.url = 'api/posts';
     Sync.Collections.posts.fetch({
@@ -112,7 +110,6 @@ Sync.Routers.Router = Backbone.Router.extend({
       collection: Sync.Collections.posts
     });
     
-    // Sync.lastPage = "f";
     Sync.lastPage = "#";
     
     $("#sub-navigate").removeAttr("disabled"); 
@@ -120,14 +117,15 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   subPage: function(subName) {
-    //bad?
+    Sync.page = 1;
+    
     var sub = new Sync.Models.Sub;
     sub.url = 'api/subs/' + subName;
     sub.fetch();
     
-    Sync.Collections.posts = new Sync.Collections.Posts;
-    Sync.Collections.posts.url = 'api/s/' + subName;
-    Sync.Collections.posts.fetch();
+    Sync.Collections.subPosts = new Sync.Collections.Posts;
+    Sync.Collections.subPosts.url = 'api/s/' + subName;
+    Sync.Collections.subPosts.fetch();
     
     if (!Sync.Collections.votes) {
       Sync.Collections.votes = new Sync.Collections.Votes;
@@ -136,11 +134,10 @@ Sync.Routers.Router = Backbone.Router.extend({
     }
     
     var subPageView = new Sync.Views.SubPage({
-      collection: Sync.Collections.posts,
+      collection: Sync.Collections.subPosts,
       sub: sub
     });
     
-    // Sync.lastPage = "s";
     Sync.lastPage = "#/s/" + subName;
     
     $("#sub-navigate").removeAttr("disabled"); 

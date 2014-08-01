@@ -1,14 +1,14 @@
 Sync.Views.FrontPage = Backbone.CompositeView.extend({
+  header: JST["front_page_header"],
+  
   template: JST["front_page"],
   
   initialize: function(options) {
     this.collection = options.collection;
     this.listenTo(this.collection, "sync", this.render);
     if (Sync.Models.session) {
-      this.listenTo(Sync.Collections.votes, "sync add remove", this.render);
+      this.listenTo(Sync.Collections.votes, "sync", this.render);
     }
-    this.page = 0;
-    this.scrolled = false;
   },
   
   events: {
@@ -19,8 +19,8 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     "click div.thumbnail-post": "postShow",
     "click div.text-post": "postShow",
     "click button.sign-out-button": "signOut",
-    "click .upvote": "upvote",
-    "click .downvote": "downvote"
+    "click span.upvote": "upvote",
+    "click span.downvote": "downvote"
   },
   
   signOut: function(event) {
@@ -147,7 +147,7 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     if (Sync.Models.session) {
       event.preventDefault();
       var postId = $(event.target).data('id');
-      Sync.vote(postId, "Post", 1);
+      Sync.vote(postId, "Post", 1, { post: this.collection.findWhere({ id: postId }) });
     } else {
       Sync.setAlert("must be signed in to vote");
     }
@@ -157,26 +157,39 @@ Sync.Views.FrontPage = Backbone.CompositeView.extend({
     if (Sync.Models.session) {
       event.preventDefault();
       var postId = $(event.target).data('id');
-      Sync.vote(postId, "Post", -1);
+      Sync.vote(postId, "Post", -1, { post: this.collection.findWhere({ id: postId }) });
     } else {
       Sync.setAlert("must be signed in to vote");
     }
   },
   
-  render: function() {
-    var renderedContent = this.template({ posts: this.collection, votes: Sync.Collections.votes });
+  addPage: function() {
+    if (this.collection.models.length > (Sync.page + 1) * 20) {
+      var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, Sync.page * 20 + 20));
     
-    var view = this;
-    $(window).scroll(function() {
-      if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-        if (view.scrolled === false) {
-          // view.addPage();
+      $('.posts').append(this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+    
+      Sync.page += 1;
+    }
+  },
+  
+  render: function() {
+    if (Sync.page === 1) {
+      var fCol = new Sync.Collections.Posts(this.collection.models.slice(0, 20));
+    
+      var renderedContent = this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: 0 });
+    
+      var view = this;
+      $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+          view.addPage();
           view.scrolled = true;
         }
-      }
-    });
+      });
     
-    this.$el.html(renderedContent);
-    return this;
+      this.$el.html(this.header());
+      this.$el.append(renderedContent);
+      return this;
+    }
   }
 });

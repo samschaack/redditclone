@@ -1,54 +1,25 @@
-<div class="-page-header">
-  <% if (sub.escape('name')) { %>
-    s/<%= sub.escape('name') %> - <%= sub.escape('description') %>
-    <span class="subscribe-section">
-      <% if (sub.escape('submember') === "no") { %>
-         - <button class="link-button subscribe">subscribe</button>
-      <% } %>
-    </span>
-     &nbsp<span class="expand-minimize-all-posts"><button class="btn expand-all">+</button></span>
-    <div class="sub-stats">
-      <% var num_users = parseInt(sub.escape('num_users')) %>
-      <% if (num_users === 1) { %>
-        this sub has <%= sub.escape('num_users') %> user
-      <% } else if (num_users > 1) { %>
-        this sub has <%= sub.escape('num_users') %> users
-      <% } else { %>
-        this sub has no users
-      <% } %>
-      <span class="unsubscribe-section">
-      <% if (sub.escape('submember') === "yes") { %>
-         - <button class="link-button unsubscribe">unsubscribe</button>
-      <% } %>
-      </span>
-    </div>
-  <% } else { %>
-    <% var url = Backbone.history.fragment %>
-    <%= url %> - this sub doesn't exist yet. <a href="#/s/n/<%= url.slice(2, url.length) %>">create?</a>
-  <% } %>
-</div>
 <div class="posts">
   <% posts.each(function(post, index) { %>
     <% post.set('index', index + 1) %>
     <div class="post-score-wrapper">
-      <div style="min-width: 2.5rem;position:absolute;top:2.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#8A8A8A;"><%= index + 1 %></span><% } else { %><span style="color:#737373;"><%= index + 1 %></span><% } %>
+      <div style="min-width: 2.5rem;position:absolute;top:2.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#8A8A8A;"><%= startIndex + index + 1 %></span><% } else { %><span style="color:#737373;"><%= startIndex + index + 1 %></span><% } %>
       </div>
     <% if (Sync.Models.session) { %>
       
       <div class="score-box">
         <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-up" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
-             color:#FF8B60;
-             <% } %>" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-up upvote <% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
+           upvoted
+           <% } %>" data-id="<%= post.escape('id') %>"></span>
         </button>
-        <div style="width:100%;text-align:center;">
+        <div class="post-score" style="width:100%;text-align:center;" data-id="<%= post.escape('id') %>">
           <% score = post.escape('upvotes') - post.escape('downvotes') %>
           <%= score %>
         </div>
         <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-down" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
-             color:#9494FF;
-             <% } %>" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-down downvote <% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
+           downvoted
+           <% } %>" data-id="<%= post.escape('id') %>"></span>
         </button>
       </div>
       

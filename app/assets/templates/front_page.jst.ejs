@@ -1,43 +1,27 @@
-<div class="-page-header">
-  <h2 style="margin-bottom:2.8rem;margin-top:.5rem">front page &nbsp
-    <span class="expand-minimize-all-posts">
-      <button class="btn expand-all">+</button>
-    </span>
-    <% if (!Sync.Models.session) { %>
-      <span class="commands-link">
-        <a href="#/c" class="commands" style="color:red;">[goto commands]</a>
-        <!-- <button class="link-button commands" style="color:red;">[goto commands]</button> -->
-        <span style="color:inherit;font-size:80%;">
-          &nbsp click the logo for a listing of all subs.
-        </span>
-      </span>
-    <% } %>
-  </h2>
-</div>
 <div class="posts">
   <% posts.each(function(post, index) { %>
     <!-- post.set('index', index + 1) -->
     <div class="post-score-wrapper">
       <!-- top:1.33rem -->
-      <div style="min-width: 2.5rem;position:absolute;top:2.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#9A9A9A;"><%= index + 1 %></span><% } else { %><span style="color:#737373;"><%= index + 1 %></span><% } %>
+      <div style="min-width: 2.5rem;position:absolute;top:2.33rem;font-size:120%;text-align:center;left: -.4%;"><% if ((parseInt(index) + 1) % 2 === 0) { %><span style="color:#9A9A9A;"><%= startIndex + index + 1 %></span><% } else { %><span style="color:#737373;"><%= startIndex + index + 1 %></span><% } %>
       </div>
       
     <% if (Sync.Models.session) { %>
       
       <div class="score-box">
         <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-up" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
-             color:#FF8B60;
-             <% } %>" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-up upvote <% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: 1 })) { %>
+           upvoted
+           <% } %>" data-id="<%= post.escape('id') %>"></span>
         </button>
-        <div style="width:100%;text-align:center;">
+        <div class="post-score" style="width:100%;text-align:center;" data-id="<%= post.escape('id') %>">
           <% score = post.escape('upvotes') - post.escape('downvotes') %>
           <%= score %>
         </div>
         <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-down" style="<% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
-             color:#9494FF;
-             <% } %>" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-down downvote <% if (votes.findWhere({ voteable_type: "Post", voteable_id: parseInt(post.escape('id')), upordown: -1 })) { %>
+           downvoted
+           <% } %>" data-id="<%= post.escape('id') %>"></span>
         </button>
       </div>
       
@@ -45,14 +29,14 @@
       
       <div class="score-box">
         <button class="btn btn-xs upvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-up" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-up upvote" data-id="<%= post.escape('id') %>"></span>
         </button>
         <div style="width:100%;text-align:center;">
           <% score = post.escape('upvotes') - post.escape('downvotes') %>
           <%= score %>
         </div>
         <button class="btn btn-xs downvote" data-id="<%= post.escape('id') %>">
-          <span class="glyphicon glyphicon-chevron-down" data-id="<%= post.escape('id') %>"></span>
+          <span class="glyphicon glyphicon-chevron-down downvote" data-id="<%= post.escape('id') %>"></span>
         </button>
       </div>
       
@@ -110,5 +94,4 @@
     </div>
   <% }) %>
   <% Sync.lastPage = '#' %>
-  <a href="#/p" style="margin-left: 2.25rem;">post</a>
 </div>

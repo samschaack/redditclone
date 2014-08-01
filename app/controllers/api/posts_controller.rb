@@ -41,7 +41,6 @@ module Api
       # @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
       
       #sort posts before sending
-      @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
       
       render :sub_page
     end
