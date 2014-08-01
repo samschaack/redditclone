@@ -169,11 +169,13 @@ Sync.Views.FrontPage = Backbone.View.extend({
   },
   
   addPage: function() {
-    if (this.collection.models.length > (Sync.page) * 20) {
-      var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, Sync.page * 20 + 20));
-    
-      $('.posts').append(this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
-    
+    console.log("addpage: " + Sync.page)
+    if (this.collection.models.length > Sync.page * 20) {
+      var fCol = new Sync.Collections.Posts(this.collection.models.slice(Sync.page * 20, (Sync.page * 20) + 20));
+      console.log(fCol)
+      console.log(Sync.page)
+      this.$el.append(this.template({ posts: fCol, votes: Sync.Collections.votes, startIndex: Sync.page * 20}))
+      
       Sync.page += 1;
     }
   },
