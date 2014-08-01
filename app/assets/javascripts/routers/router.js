@@ -203,6 +203,8 @@ Sync.Routers.Router = Backbone.Router.extend({
       $('html').keypress(function(e) {
         if (e.which == 96) {
           $("#sub-navigate").removeAttr("disabled"); 
+        } else if (e.which == 97) {
+          document.getElementById("sub-navigate").focus();
         } else if (e.which == 98) {
           document.getElementById("sub-navigate").focus();
         } else if (e.which == 99) {

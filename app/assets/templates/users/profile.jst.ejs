@@ -1,6 +1,6 @@
 <div class="account-page">
   <div class="profile">
-    <h3 style="margin-top: -.75rem;">user: <%= Sync.Models.session.username %></h3>
+    <h3 style="margin-top: -.75rem;margin-bottom:1.5rem;text-decoration:underline;">your profile</h3>
   </div>
     email: <span class="email"><%= Sync.Models.session.email %> (click to change)</span>
   <div class="profile">
@@ -8,13 +8,17 @@
     points: <%= user.escape('points') %>
     <br>
     <br>
-    messages:
+    joined: <%= new Date(user.escape('created_at')).toDateString() %>
+    <br>
+    <br>
+    <a href="#">back to front page</a>
+    <!-- messages:
     <div class="messages-box">
-    
-    </div>
+
+    </div> -->
     <!-- <a class="btn link-active link-post-select-button messages-button" style="width:45%">messages</a>
     <a class="btn text-post-select-button sent-messages-button" style="width:45%">sent messages</a> -->
-    <button class="btn link-active messages-button" style="width:45%">messages</a>
-    <button class="btn sent-messages-button" style="width:45%">sent messages</a>
+    <!-- <button class="btn link-active messages-button" style="width:45%">messages</a>
+    <button class="btn sent-messages-button" style="width:45%">sent messages</a> -->
   </div>
 </div>

@@ -323,7 +323,7 @@ left: 15.203px;
   font-size: 150%;
   margin-left: 1rem;
   margin-top: 6rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   text-shadow: 1px 1px #DDD;
   font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
   
@@ -575,7 +575,7 @@ left: 15.203px;
 
 .sub-stats {
   font-size: 60%;
-  margin-bottom: 3rem;
+  margin-bottom: 0rem;
 }
 
 .post-score-wrapper {
@@ -1046,6 +1046,16 @@ a[class="btn text-post-select-button"]:hover {
 }
 
 .account-page {
+//  position: absolute;
+//  border: 2px solid #BBB;
+//  border-radius: .5rem;
+//  padding: 1.5%;
+//  width: 45%;
+//  margin-left: -22.5%;
+//  left: 50%;
+//  top: 14rem;
+//  height: 58rem;
+//  background-color: white;
   position: absolute;
   border: 2px solid #BBB;
   border-radius: .5rem;
@@ -1053,8 +1063,8 @@ a[class="btn text-post-select-button"]:hover {
   width: 45%;
   margin-left: -22.5%;
   left: 50%;
-  top: 14rem;
-  height: 58rem;
+  top: 24rem;
+  height: 22.5rem;
   background-color: white;
 }
 
@@ -1066,8 +1076,8 @@ a[class="btn text-post-select-button"]:hover {
   width: 45%;
   margin-left: -22.5%;
   left: 50%;
-  top: 18rem;
-  height: 24rem;
+  top: 24rem;
+  height: 22.5rem;
   background-color: white;
 }
 
@@ -1146,8 +1156,8 @@ a[class="btn text-post-select-button"]:hover {
 .change-email {
   position: absolute;
   width: 7rem;
-  left: 31%;
-  top: 5.125rem;
+  left: 29.2%;
+  top: 5.82rem;
   padding: 0;
   height: 3rem;
   outline:0 !important;
