@@ -163,12 +163,21 @@ Sync.Routers.Router = Backbone.Router.extend({
   postShow: function(index) {
     var post;
     if (index) {
-      post = Sync.Collections.posts.findWhere({ index: parseInt(index) });
+      if (Sync.lastPage === "#") {
+        post = Sync.Collections.posts.findWhere({ index: parseInt(index) });
+        post = Sync.Collections.posts.getOrFetch(post.attributes.id);
+      } else {
+        post = Sync.Collections.subPosts.findWhere({ index: parseInt(index) });
+        post = Sync.Collections.subPosts.getOrFetch(post.attributes.id);
+      }
     } else {
-      post = Sync.Collections.posts.getOrFetch(id);
+      if (Backbone.history.fragment === "") {
+        post = Sync.Collections.posts.getOrFetch(id);
+      } else {
+        post = Sync.Collections.subPosts.getOrFetch(id);
+      }
     }
     
-    post = Sync.Collections.posts.getOrFetch(post.attributes.id);
     
     this.postClickShow(post.attributes.id);
   },
