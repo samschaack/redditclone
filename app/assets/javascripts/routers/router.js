@@ -134,10 +134,12 @@ Sync.Routers.Router = Backbone.Router.extend({
     Sync.Collections.subPosts.url = 'api/s/' + subName;
     Sync.Collections.subPosts.fetch();
     
-    if (!Sync.Collections.votes) {
-      Sync.Collections.votes = new Sync.Collections.Votes;
-      Sync.Collections.votes.url = "api/votes/sub_page"
-      Sync.Collections.votes.fetch();
+    if (Sync.Models.session) {
+      if (!Sync.Collections.votes) {
+        Sync.Collections.votes = new Sync.Collections.Votes;
+        Sync.Collections.votes.url = "api/votes/sub_page"
+        Sync.Collections.votes.fetch();
+      }
     }
     
     var subPageView = new Sync.Views.SubPage({
