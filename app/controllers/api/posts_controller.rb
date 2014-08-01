@@ -38,7 +38,7 @@ module Api
       end
       
       #filter out old posts
-      @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
+      # @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
       
       #sort posts before sending
       @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
@@ -67,7 +67,7 @@ module Api
           sub_memberships.user_id = users.id
       SQL
         .where('users.id = ?', current_user.id)
-        .group('posts.id').limit(20)
+        .group('posts.id').limit(500)
         
         #filter out old posts
         # .where('users.id = ?', current_user.id).where('posts.created_at > ?', Time.now - 500000)
@@ -75,25 +75,30 @@ module Api
         #sort posts before sending
         #@posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
         
-        page = params[:page]
+        page = 2 #params[:page]
         
-        #@posts = @posts[page * 20...page * 20 + 20]
+        # @posts = @posts[(page - 1) * 20...(page - 1) * 20 + 20]
         
         render :front_page
       else
-        @posts = []
-        
-        Default.all.each do |default|
-          default.sub.posts.each do |post|
-            @posts << post
-          end
-        end
+        @posts = Post.select('posts.*')
+        .joins(<<-SQL)
+        LEFT OUTER JOIN 
+          subs 
+        ON 
+          posts.sub_id = subs.id 
+        JOIN 
+          defaults
+        ON 
+          defaults.sub_id = subs.id 
+      SQL
+        .limit(20)
         
         #filter out old posts
-        @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
+        # @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
         
         #sort posts before sending
-        @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
+        # @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
         
         render :front_page
       end
