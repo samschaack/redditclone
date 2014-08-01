@@ -91,7 +91,7 @@ module Api
         ON 
           defaults.sub_id = subs.id 
       SQL
-        .limit(20)
+        .limit(500)
         
         #filter out old posts
         # @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
