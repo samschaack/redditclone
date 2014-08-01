@@ -20,8 +20,8 @@ Sync.Views.FrontPage = Backbone.View.extend({
     "click div.thumbnail-post": "postShow",
     "click div.text-post": "postShow",
     "click button.sign-out-button": "signOut",
-    "click span.upvote": "upvote",
-    "click span.downvote": "downvote"
+    "click .upvote": "upvote",
+    "click .downvote": "downvote"
   },
   
   signOut: function(event) {
@@ -146,6 +146,8 @@ Sync.Views.FrontPage = Backbone.View.extend({
   
   upvote: function(event) {
     if (Sync.Models.session) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) { event.stopPropagation(); }
       event.preventDefault();
       var postId = $(event.target).data('id');
       Sync.vote(postId, "Post", 1, { post: this.collection.findWhere({ id: postId }) });
@@ -156,6 +158,8 @@ Sync.Views.FrontPage = Backbone.View.extend({
   
   downvote: function(event) {
     if (Sync.Models.session) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) { event.stopPropagation(); }
       event.preventDefault();
       var postId = $(event.target).data('id');
       Sync.vote(postId, "Post", -1, { post: this.collection.findWhere({ id: postId }) });

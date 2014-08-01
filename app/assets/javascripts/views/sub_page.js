@@ -23,8 +23,8 @@ Sync.Views.SubPage = Backbone.View.extend({
     "click div.text-post": "postShow",
     "click button.subscribe": "subscribe",
     "click button.unsubscribe": "unsubscribe",
-    "click span.upvote": "upvote",
-    "click span.downvote": "downvote"
+    "click .upvote": "upvote",
+    "click .downvote": "downvote"
   },
   
   postShow: function(event) {
@@ -187,6 +187,8 @@ Sync.Views.SubPage = Backbone.View.extend({
   
   upvote: function(event) {
     if (Sync.Models.session) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) { event.stopPropagation(); }
       event.preventDefault();
       var postId = $(event.target).data('id');
       Sync.vote(postId, "Post", 1, { post: this.collection.findWhere({ id: postId }) });
@@ -197,6 +199,8 @@ Sync.Views.SubPage = Backbone.View.extend({
   
   downvote: function(event) {
     if (Sync.Models.session) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) { event.stopPropagation(); }
       event.preventDefault();
       var postId = $(event.target).data('id');
       Sync.vote(postId, "Post", -1, { post: this.collection.findWhere({ id: postId }) });
