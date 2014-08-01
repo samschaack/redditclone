@@ -13,7 +13,14 @@ Sync.Routers.Router = Backbone.Router.extend({
     "u/n": "newUser",
     "u/me": "accountPage",
     "u/:username": "userPage",
-    "c": "commandsPage"
+    "c": "commandsPage",
+    "asteroids": "playAsteroids"
+  },
+  
+  playAsteroids: function() {
+    var asteroidsView = new Sync.Views.Asteroids();
+    debugger
+    this._swapView(asteroidsView);
   },
   
   commandsPage: function() {
