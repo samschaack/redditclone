@@ -14,6 +14,11 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
     
     user.save({}, {
       success: function(user) {
+        Sync.Models.session = {};
+        Sync.Models.session.username = user.username;
+        Sync.Models.session.points = user.points;
+        Sync.Models.session.email = user.email;
+        
         Backbone.history.navigate("#", { trigger: true });
         $('.sign-out-button').toggleClass('invisible');
         $('.profile-header').toggleClass('invisible');
@@ -21,11 +26,6 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
         $('.sign-up-button').toggleClass('invisible');
         $('.profile-header').html("welcome, <a href='#/u/me'>" + user.attributes.username + "</a>!");
         $('.commands-link').html('');
-        
-        Sync.Models.session = {};
-        Sync.Models.session.username = user.username;
-        Sync.Models.session.points = user.points;
-        Sync.Models.session.email = user.email;
       },
       error: function(error, data) {
         if (data.responseJSON.error === "username taken") {
