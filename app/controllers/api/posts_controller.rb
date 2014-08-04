@@ -37,11 +37,6 @@ module Api
         @submembership = nil
       end
       
-      #filter out old posts
-      # @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
-      
-      #sort posts before sending
-      
       render :sub_page
     end
     
@@ -71,13 +66,6 @@ module Api
         #filter out old posts
         # .where('users.id = ?', current_user.id).where('posts.created_at > ?', Time.now - 500000)
         
-        #sort posts before sending
-        #@posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
-        
-        page = 2 #params[:page]
-        
-        # @posts = @posts[(page - 1) * 20...(page - 1) * 20 + 20]
-        
         render :front_page
       else
         @posts = Post.select('posts.*')
@@ -93,12 +81,6 @@ module Api
       SQL
         .limit(500)
         
-        #filter out old posts
-        # @posts = @posts.select{ |p| p.created_at > Time.now - 500000 }
-        
-        #sort posts before sending
-        # @posts = @posts.sort_by{ |p| p.upvotes - p.downvotes }
-        
         render :front_page
       end
     end
@@ -109,7 +91,6 @@ module Api
       @sub = @post.sub
       @current_user = current_user
       
-      # render json: @post
       render :post_show
     end
     
