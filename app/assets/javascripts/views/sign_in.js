@@ -10,7 +10,6 @@ Sync.Views.SignIn = Backbone.CompositeView.extend({
     var view = this;
     
     var params = $(event.target).serializeJSON();
-    // var attrs = new Sync.Models.Session(params["user"]);
     var attrs = params["user"];
     
     Sync.Models.User.authorize(attrs, function(err, user) {
