@@ -1,8 +1,4 @@
 Sync.Views.Asteroids = Backbone.View.extend({
-  initialize: function() {
-    
-  },
-  
   template: JST["asteroids"],
   
   render: function() {
