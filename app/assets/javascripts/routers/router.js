@@ -94,7 +94,6 @@ Sync.Routers.Router = Backbone.Router.extend({
   },
   
   frontPage: function() {
-    //build home page (rails handles deciding which posts to send back?)
     Sync.page = 1;
     
     Sync.Collections.posts = new Sync.Collections.Posts;
@@ -179,14 +178,7 @@ Sync.Routers.Router = Backbone.Router.extend({
         post = Sync.Collections.subPosts.findWhere({ index: parseInt(index) });
         post = Sync.Collections.subPosts.getOrFetch(post.attributes.id);
       }
-    } else {
-      // if (Backbone.history.fragment === "") {
-        // post = Sync.Collections.posts.getOrFetch(id);
-      // } else {
-        // post = Sync.Collections.subPosts.getOrFetch(id);
-      // }
     }
-    
     
     this.postClickShow(post.attributes.id);
   },
