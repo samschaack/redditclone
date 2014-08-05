@@ -17,7 +17,6 @@ Sync.Views.UserShow = Backbone.CompositeView.extend({
     var renderedContent = this.template({ user: this.user });
     
     this.$el.html(renderedContent);
-    // this.attachSubviews();
     return this;
   }
 });
