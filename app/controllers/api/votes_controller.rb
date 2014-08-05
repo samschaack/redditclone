@@ -14,7 +14,6 @@ module Api
       upordown = params[:vote][:upordown].to_i
       
       if Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], params[:vote][:upordown]) == nil && Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], upordownopp) == nil
-        #new vote => save
         @vote = Vote.new({ user_id: current_user.id, voteable_type: params[:vote][:voteable_type], voteable_id: params[:vote][:voteable_id], upordown: params[:vote][:upordown] })
         @vote.save
         
@@ -28,7 +27,6 @@ module Api
         
         render json: { status: "1", id: @vote.id }
       elsif Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], upordownopp) != nil
-        #reverse vote => destroy old one, create new one
         Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], upordownopp).destroy
         @vote = Vote.new({ user_id: current_user.id, voteable_type: params[:vote][:voteable_type], voteable_id: params[:vote][:voteable_id], upordown: params[:vote][:upordown] })
         @vote.save
@@ -45,7 +43,6 @@ module Api
         
         render json: { status: "2", id: @vote.id }
       elsif Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], params[:vote][:upordown]) != nil
-        #undo vote => destroy old one
         @vote = Vote.find_by_user_id_and_voteable_type_and_voteable_id_and_upordown(current_user.id, params[:vote][:voteable_type], params[:vote][:voteable_id], params[:vote][:upordown])
         @vote.destroy
         
@@ -71,7 +68,7 @@ module Api
       render json: @votes
     end
     
-    def sub_page     #Comment.last.commentable_type.constantize.find(Comment.last.commentable_id)
+    def sub_page
       @votes = current_user.votes.where(["voteable_type = ?", "Post"])
       render json: @votes
     end
