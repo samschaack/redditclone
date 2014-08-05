@@ -4,8 +4,6 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.model = options.model;
     
-    // this.listenTo(this.model, "change", this.render);
-    
     this.listenTo(this.model, "sync", this.render);
     
     this.listenTo(
@@ -134,7 +132,6 @@ Sync.Views.CommentShow = Backbone.CompositeView.extend({
   },
   
   removeCommentFormNoEvent: function(commentId, indents) {
-    // var comment_id = $(event.target).data('id');
     var button = "<button class='button-link comment-reply' data-id=" + commentId + " data-indents=" + this.model.attributes.indents + ">reply</button>"
     $('.new-comment-' + this.model.id).html(button)
   },
