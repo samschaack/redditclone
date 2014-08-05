@@ -41,11 +41,6 @@ module Api
     end
     
     def show
-      # @comment = Comment.find(params[:id])
-      # @user = @comment.user
-      #
-      # # render json: @post
-      # render :comment_show
     end
     
     private
