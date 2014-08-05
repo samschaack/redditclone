@@ -104,7 +104,6 @@ Sync.Views.SubDirectory = Backbone.CompositeView.extend({
     }
     
     this.$el.html(renderedContent);
-    // this.attachSubviews();
     return this;
   }
 });
