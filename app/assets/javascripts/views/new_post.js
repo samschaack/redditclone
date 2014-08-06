@@ -22,6 +22,7 @@ Sync.Views.NewPost = Backbone.View.extend({
     } else {
       post.save({}, {
         success: function(post) {
+          Sync.Collections.posts.add(post);
           Backbone.history.navigate("#/p/c/" + post.id, { trigger: true });
           Sync.setMessage("post created");
         },
