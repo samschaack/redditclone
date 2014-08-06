@@ -64,13 +64,21 @@ module Api
     end
     
     def front_page
-      @votes = current_user.votes.where(["voteable_type = ?", "Post"])
-      render json: @votes
+      if signed_in?
+        @votes = current_user.votes.where(["voteable_type = ?", "Post"])
+        render json: @votes
+      else
+        render text: "not signed in (no vote(s) to show)", status: 304
+      end
     end
     
     def sub_page
-      @votes = current_user.votes.where(["voteable_type = ?", "Post"])
-      render json: @votes
+      if signed_in?
+        @votes = current_user.votes.where(["voteable_type = ?", "Post"])
+        render json: @votes
+      else
+        render text: "not signed in (no vote(s) to show)", status: 304
+      end
     end
     
     def index

@@ -56,7 +56,7 @@
     <div class="post-info">
       <div class="poster in-show">
         <% var post_time = post.escape('created_at'); %>
-        by <% if (Sync.Models.session && post.escape('username') === Sync.Models.session.username) { %>you<% } else { %><%= post.escape('username') %><% } %> to s/<%= post.escape('name') %>
+        by <% if (Sync.Models.session && post.escape('username') === Sync.Models.session.username) { %><a href="#/u/me">you</a><% } else { %><%= post.escape('username') %><% } %> to s/<%= post.escape('name') %>
       </div>
       <div class="date-time" data-id="<%= post.escape('id') %>">
         <% post_time = new Date(post.escape('created_at')) %>
