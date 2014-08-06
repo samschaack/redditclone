@@ -24,7 +24,14 @@ module Api
     end
     
     def destroy
+      @post = Post.find(params[:id])
       
+      if @post.user_id == current_user.id
+        @post.destroy
+        render json: @post
+      else
+        render text: "not your post"
+      end
     end
     
     def sub_page

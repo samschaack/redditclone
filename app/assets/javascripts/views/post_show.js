@@ -49,9 +49,9 @@ Sync.Views.PostShow = Backbone.CompositeView.extend({
   },
   
   removeNewPostCommentForm: function(event) {
-    event.preventDefault();
-    if (!$(event.target).is('button') && !$(event.target).is('textarea')) {
+    if (!$(event.target).is('button') && !$(event.target).is('textarea') && !$(event.target).is('a')) {
       if ($('.new-post-comment').html().slice(0, 30) !== "<button class='button-link p" ) {
+        event.preventDefault();
         $('.new-post-comment').html("<button class='button-link post-reply' data-id=" + this.model.attributes.id + ">reply</button>");
       }
     }

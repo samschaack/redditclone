@@ -14,7 +14,21 @@ Sync.Routers.Router = Backbone.Router.extend({
     "u/me": "accountPage",
     "u/:username": "userPage",
     "c": "commandsPage",
-    "asteroids": "playAsteroids"
+    "asteroids": "playAsteroids",
+    "d/p/:id": "deletePost"
+  },
+  
+  deletePost: function(id) {
+    $.ajax({
+      type: 'DELETE',
+      url: '/api/posts/' + id,
+      success: function(data) {
+        Backbone.history.navigate("#", { trigger: true });
+      },
+      error: function(data) {
+        Sync.setAlert("not your post");
+      }
+    });
   },
   
   playAsteroids: function() {

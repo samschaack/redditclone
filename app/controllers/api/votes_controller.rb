@@ -74,8 +74,12 @@ module Api
     end
     
     def index
-      @votes = current_user.votes
-      render json: @votes
+      if signed_in?
+        @votes = current_user.votes
+        render json: @votes
+      else
+        render text: "not signed in (no vote(s) to show)", status: 304
+      end
     end
   end
 end
