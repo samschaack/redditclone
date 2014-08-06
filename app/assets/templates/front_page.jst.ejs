@@ -69,7 +69,7 @@
         </button>
       <% } %>
       <% if (post.escape('url')) { %>
-        <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <!-- <span style="color:#5FAEDF;">·</span> -->
+        <a href="<%= post.escape('url') %>" target="_blank"><%= post.escape('title') %></a> - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <!-- <span style="color:#5FAEDF;">·</span> -->
       <% } else { %>
         <a href="#/p/c/<%= post.escape('id') %>"><%= post.escape('title') %></a> - text - <a href="#/s/<%= post.escape('sub') %>">s/<%= post.escape('sub') %></a> <!-- <span style="color:#5FAEDF;">·</span> -->
       <% } %>

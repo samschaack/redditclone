@@ -19,7 +19,6 @@ Sync.Routers.Router = Backbone.Router.extend({
   
   playAsteroids: function() {
     var asteroidsView = new Sync.Views.Asteroids();
-    debugger
     this._swapView(asteroidsView);
   },
   

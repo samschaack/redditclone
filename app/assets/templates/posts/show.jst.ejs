@@ -43,7 +43,7 @@
       </div>
     <% } else { %>
       <h3><% var url = post.escape('url') %>
-      <a href="<%= post.escape('url') %>"><%= post.escape('title') %></a> 
+      <a href="<%= post.escape('url') %>" target="_blank"><%= post.escape('title') %></a> 
       <% if (url.slice(url.length - 3, url.length) === "jpg" || url.slice(url.length - 3, url.length) === "png" || url.slice(url.length - 3, url.length) === "gif") { %>
         <button class="btn btn-sm expand-image" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>" style="margin-bottom:.45rem;">
         <span class="glyphicon glyphicon-minus expand-image-span" data-id="<%= post.escape('id') %>" data-url="<%= post.escape('url') %>"></span>
