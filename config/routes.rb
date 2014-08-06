@@ -32,5 +32,6 @@ Rails.application.routes.draw do
   get '/api/votes/sub_page', to: 'api/votes#sub_page'
   get '/api/votes/:id', to: 'api/votes#getVote'
   get '/api/users/show_current', to: 'api/users#show_current'
+  get '/api/users/get_session', to: 'api/users#get_session'
   get '/api/users/:username', to: 'api/users#show'
 end

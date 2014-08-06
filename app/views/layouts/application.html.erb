@@ -6,8 +6,6 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag(source = "favicon.ico") %>
-  <% user_hash = signed_in? ? "#{current_user.username} #{current_user.points} #{current_user.email}" : "none" %>
-  <script>$(Sync.setSession({ info: "<%= user_hash %>" }));</script>
 </head>
 <body>
   <%= render partial: "layouts/header" %>

@@ -1089,3 +1089,32 @@ a[class="btn text-post-select-button"]:hover {
   -webkit-user-drag: none;
   z-index: 10;
 }
+
+.new-post-button {
+  border-color: #888;
+  color: #888;
+  
+  background: -webkit-gradient(linear,0 0,0 bottom,from(#FFF),to(#F6F6F6));
+  background: -webkit-linear-gradient(#FFF,#F6F6F6);
+  background: -moz-linear-gradient(#FFF,#F6F6F6);
+  background: -ms-linear-gradient(#FFF,#F6F6F6);
+  background: -o-linear-gradient(#FFF,#F6F6F6);
+  background: linear-gradient(#FFF,#F6F6F6);
+}
+
+.new-post-button:focus {
+  outline:0 !important;
+  box-shadow: none;
+}
+
+.idk {
+  box-shadow: none;
+}
+
+.new-post-button:hover {
+  color: #53ABDF;
+  border: 1px #53ABDF solid;
+  .sign-in-span {
+    color: #53ABDF;
+  }
+}

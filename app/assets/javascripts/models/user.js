@@ -31,9 +31,28 @@ Sync.Models.User = Backbone.Model.extend({
       data: {
         username: this.get('username'),
         password: this.get('password')
+      },
+      success: function(data) {
+        $('.sign-out-button').toggleClass('invisible');
+        $('.profile-header').toggleClass('invisible');
+        $('.sign-in-button').toggleClass('invisible');
+        $('.sign-up-button').toggleClass('invisible');
+    
+        Sync.tabs.splice(0, Sync.tabs.length);
+        Sync.renderTabs();
+        Sync.Models.session = null;
+    
+        Sync.Collections.votes = new Sync.Collections.Votes;
+    
+        Sync.setMessage("success");
+        
+        if (Backbone.history.fragment === "") {
+          Backbone.history.navigate('#/u', { trigger: true });
+        }
+        
+        Backbone.history.navigate('#', { trigger: true });
       }
     });
-    Backbone.history.navigate('#', { trigger: true });
   }
 });
 

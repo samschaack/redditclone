@@ -1,6 +1,2 @@
 <div class="main">
 </div>
-<div class="footer">
-</div>
-<% user_hash = signed_in? ? "#{current_user.username} #{current_user.points} #{current_user.email}" : "none" %>
-<script>$(Sync.initialize({ info: "<%= user_hash %>" }));</script>

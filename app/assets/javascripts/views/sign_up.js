@@ -12,7 +12,9 @@ Sync.Views.SignUp = Backbone.CompositeView.extend({
     var params = $(event.target).serializeJSON();
     var user = new Sync.Models.User(params["user"]);
     
-    if (params["user"]["username"] === "") {
+    if (params["user"]["username"].match(/(\.)+|(\,)+|(\s)+|(\/)+|(\!)+|(\@)+(\^)+|(\+)+|(\-)+|(\?)+|(\#)+|(\$)+|(\*)+|(\%)+|(\&)+|(\[)+|(\])+(\{)+|(\})+|(\=)+|(\()+|(\))+|(\')+|(\")+|(\:)+|(\;)+|(\<)+|(\>)+|(\\)+/)) {
+      Sync.setAlert("usernames can't contain spaces or punctuation apart from _");
+    } else if (params["user"]["username"] === "") {
       Sync.setAlert("username can't be blank");
     } else if (params["user"]["password"] === "") {
       Sync.setAlert("password can't be blank");      

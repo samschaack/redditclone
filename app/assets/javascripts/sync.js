@@ -3,29 +3,29 @@ window.Sync = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function(user) {
-    new Sync.Routers.Router();
-    Backbone.history.start();
-    var userInfo = user.info;
+  initialize: function() {
     Sync.tabs = [];
-    
-    if (userInfo !== "none") {
-      Sync.Models.session = {};
-      Sync.Models.session.username = userInfo.split(" ")[0];
-      Sync.Models.session.points = userInfo.split(" ")[1];
-      Sync.Models.session.email = userInfo.split(" ")[2];
-    }
+    Sync.setSession();
   },
   
-  setSession: function(user) {
-    var userInfo = user.info;
-    
-    if (userInfo !== "none") {
-      Sync.Models.session = {};
-      Sync.Models.session.username = userInfo.split(" ")[0];
-      Sync.Models.session.points = userInfo.split(" ")[1];
-      Sync.Models.session.email = userInfo.split(" ")[2];
-    }
+  setSession: function() {
+    $.ajax({
+      type: 'GET',
+      url: '/api/users/get_session',
+      success: function(data) {
+        Sync.Models.session = {};
+        Sync.Models.session.username = data.username;
+        Sync.Models.session.points = data.points;
+        Sync.Models.session.email = data.email;
+        new Sync.Routers.Router();
+        Backbone.history.start();
+      },
+      error: function(data) {
+        Sync.Models.session = null;
+        new Sync.Routers.Router();
+        Backbone.history.start();
+      }
+    });
   },
   
   setAlert: function(message) {
@@ -213,6 +213,8 @@ $(document).ajaxSend(function (e, xhr, options) {
 });
 
 $(document).ready(function(){
+  $(Sync.initialize());
+  
   function makePost() {
     Backbone.history.navigate("#/p", { trigger: true });
   };
@@ -232,18 +234,6 @@ $(document).ready(function(){
   function signOut(event) {
     event.preventDefault();
     Sync.Models.user.signOut();
-    $('.sign-out-button').toggleClass('invisible');
-    $('.profile-header').toggleClass('invisible');
-    $('.sign-in-button').toggleClass('invisible');
-    $('.sign-up-button').toggleClass('invisible');
-    
-    Sync.tabs.splice(0, Sync.tabs.length);
-    Sync.renderTabs();
-    Sync.Models.session = null;
-    
-    Sync.Collections.votes = new Sync.Collections.Votes;
-    
-    Sync.setMessage("success");
   }
   
   $('#make-post').on('click', makePost);

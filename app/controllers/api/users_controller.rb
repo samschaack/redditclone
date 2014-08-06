@@ -43,14 +43,26 @@ module Api
     end
     
     def show_current
-      points = 0
+      if signed_in?
+        points = 0
       
-      current_user.posts.each { |post| post.votes.each { |vote| points += vote.upordown } }
-      current_user.comments.each { |comment| comment.votes.each { |vote| points += vote.upordown } }
+        current_user.posts.each { |post| post.votes.each { |vote| points += vote.upordown } }
+        current_user.comments.each { |comment| comment.votes.each { |vote| points += vote.upordown } }
       
-      current_user.update({ points: points })
+        current_user.update({ points: points })
       
-      render json: current_user
+        render json: current_user
+      else
+        render text: "session not found", status: 422
+      end
+    end
+    
+    def get_session
+      if signed_in?
+        render json: current_user, only: [:username, :points, :email]
+      else
+        render text: "session not found", status: 422
+      end
     end
     
     def current

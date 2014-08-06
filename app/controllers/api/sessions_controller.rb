@@ -18,9 +18,10 @@ module Api
     
     def destroy
       sign_out
-      respond_to do |format|
-        format.json { head :ok }
-      end
+      #respond_to do |format|
+      #  format.json { head :ok }
+      #end
+      render json: { message: "signed out" }
     end
     
     private
