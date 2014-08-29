@@ -13,9 +13,17 @@ Sub.create( { name: "videos", description: "this sub is for interesting videos",
 Sub.create( { name: "gaming", description: "post anything related to gaming", owner_id: 1 } )
 Sub.create( { name: "new", description: "this sub is for all the newest content on the internet (yes NEW)", owner_id: 1 } )
 
-space_id = Sub.find_by_name("space")
-pics_id = Sub.find_by_name("pics")
-earth_porn_id = Sub.find_by_name("EarthPorn")
+space_id = Sub.find_by_name("space").id
+pics_id = Sub.find_by_name("pics").id
+earth_porn_id = Sub.find_by_name("EarthPorn").id
+
+Default.create( { sub_id: space_id })
+Default.create( { sub_id: pics_id })
+Default.create( { sub_id: earth_porn_id })
+
+#default users
+User.create( { username: "samsam", password: "samsam", points: 0, email: "none" } )
+User.create( { username: "newuser", password: "newuser", points: 0, email: "none" } )
 
 #space
 Post.create( { title: "Baltic Sea from space", url: "http://i.imgur.com/mMZh5dl.jpg", sub_id: space_id, user_id: 2 } )
